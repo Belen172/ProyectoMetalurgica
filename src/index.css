@@ -1,0 +1,321 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+:root {
+  --azul-ultramar: #2A2A58;
+  --azul-petroleo: #37418E;
+  --rojo-principal: #EE353D;
+  --rojo-bordeaux: #9D2E35;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Estilos creativos para la barra de navegación */
+.nav-custom-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 2px; /* Espaciado tipográfico elegante */
+  padding: 8px 16px !important;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Línea indicadora animada en el rojo de la marca */
+.nav-custom-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--rojo-principal);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-custom-link:hover::after {
+  width: 80%;
+}
+
+.nav-custom-link:hover {
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip; /* Evita el scroll horizontal */
+}
+
+/* Hero y Fondos */
+.hero-container {
+  position: relative;
+  min-height: 80vh;
+  background-color: #0b0f19;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Gradiente para opacar la izquierda y resaltar el texto */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.7) 45%, rgba(11,15,25,0.2) 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Botón transparente del Hero */
+.btn-hero-outline {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-hero-outline:hover {
+  background: var(--rojo-principal);
+  border-color: var(--rojo-principal);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* Sección de Características (Barra Azul) */
+.features-bar {
+  background-color: var(--azul-ultramar);
+  color: white;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.feature-item {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.feature-item:last-child {
+  border-right: none;
+}
+
+/* Imagen con corte diagonal para la sección Ingeniería */
+.diagonal-img-container {
+  overflow: hidden;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  transition: transform 0.5s ease;
+}
+
+.diagonal-img-container img {
+  transition: transform 0.6s ease;
+}
+
+.diagonal-img-container:hover img {
+  transform: scale(1.04);
+}
+
+/* Badge flotante sobre la foto */
+.badge-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--azul-ultramar);
+  color: white;
+  border-left: 4px solid var(--rojo-principal);
+  padding: 15px 20px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* Estado activo para el Navbar (línea roja fija) */
+.nav-custom-link.active::after {
+  width: 80% !important;
+}
+
+.nav-custom-link.active {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+/* Compensación de scroll para el Navbar sticky */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 140px;
+}
+
+/* FOOTER RESPONSIVE */
+.footer-diagonal {
+  background-color: var(--azul-ultramar);
+}
+
+/* En Computadoras: Corte diagonal */
+@media (min-width: 768px) {
+  .footer-diagonal {
+    /* Crea la franja diagonal: blanco a la izquierda y azul ultramar a la derecha */
+    background: linear-gradient(120deg, #ffffff 0%, #ffffff 33%, var(--azul-ultramar) 33.2%, var(--azul-ultramar) 100%);
+  }
+}
+
+/* En Celulares: Bloque blanco de borde a borde (Full-Width) */
+@media (max-width: 767.98px) {
+  .footer-diagonal {
+    padding-top: 0 !important;
+  }
+
+  /* Quitamos el margen contenedor en mobile para que el blanco llegue a los bordes */
+  .footer-diagonal > .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .footer-diagonal > .container-fluid > .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .footer-logo-col {
+    background-color: #ffffff;
+    width: 100% !important;
+    padding: 2.2rem 1.5rem !important;
+    border-bottom: 4px solid var(--rojo-principal);
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Mantenemos el padding prolijo para las columnas de Contacto y Ubicación en celular */
+  .footer-diagonal .row > div:not(.footer-logo-col) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
