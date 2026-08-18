@@ -54,11 +54,22 @@ export const Hero = () => {
 
             {/* Título Principal */}
             <h1 
-              className="display-3 fw-bold text-white text-uppercase mb-3" 
-              style={{ lineHeight: '1.05', letterSpacing: '-1px' }}
+              className="text-white text-uppercase mb-3" 
+              style={{ 
+                fontWeight: '700',
+                fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+                letterSpacing: '1px',
+                lineHeight: '1.15',
+                maxWidth: '700px'
+              }}
             >
               PRECISIÓN QUE <br />
-              <span style={{ color: 'var(--rojo-principal)' }}>TOMA FORMA.</span>
+              <span 
+                className="d-inline-block text-nowrap" 
+                style={{ color: 'var(--rojo-principal)', fontWeight: '700' }}
+              >
+                ASEGURA RESULTADOS.
+              </span>
             </h1>
 
             {/* Bajada */}
@@ -66,13 +77,13 @@ export const Hero = () => {
               className="fs-5 text-light opacity-90 mb-4 fw-light" 
               style={{ maxWidth: '520px' }}
             >
-              Tecnología, experiencia y procesos de alta precisión para transformar metal en soluciones.
+              Expertos en alemites, cuplas, servicio de mecanizado y accesorios para aire comprimido. 
             </p>
 
             {/* Botón */}
             <div>
               <a href="#productos" className="btn-hero-outline text-uppercase">
-                Conocé lo que hacemos <FaArrowRight />
+                Conocé nuestros productos <FaArrowRight />
               </a>
             </div>
           </Col>

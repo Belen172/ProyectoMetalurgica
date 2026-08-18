@@ -29,7 +29,7 @@ export const EngineeringSection = () => {
 
             {/* Parrafo */}
             <p className="text-secondary fs-6 mb-4" style={{ maxWidth: '480px' }}>
-              Combinamos conocimiento, tecnología y control para fabricar piezas que cumplen con los más altos requisitos de la industria.
+              Combinamos conocimiento, tecnología y control para ofrecer piezas que cumplen con los más altos requisitos de la industria.
             </p>
 
             {/* Botón */}
@@ -52,19 +52,7 @@ export const EngineeringSection = () => {
                 style={{ maxHeight: '480px', objectFit: 'cover' }}
               />
             </div>
-
-            {/* Tarjeta Flotante */}
-            <div className="badge-card d-flex align-items-center gap-3">
-              <FaCogs className="fs-2 text-white" />
-              <div>
-                <strong className="d-block text-uppercase text-white" style={{ fontSize: '13px', letterSpacing: '1px' }}>
-                  CONTROL EN CADA ETAPA
-                </strong>
-                <small className="text-light opacity-75" style={{ fontSize: '12px' }}>
-                  Desde la materia prima hasta el producto final.
-                </small>
-              </div>
-            </div>
+            
           </Col>
         </Row>
       </Container>

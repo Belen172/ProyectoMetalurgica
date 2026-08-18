@@ -190,6 +190,25 @@ html, body, #root {
   z-index: 3;
 }
 
+/* AJUSTE DEL TÍTULO HERO */
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  max-width: 680px;
+}
+
+.hero-title .highlight-red {
+  color: var(--rojo-principal);
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .hero-title .highlight-red {
+    white-space: normal; /* Permite corte en pantallas muy pequeñas si no entra */
+  }
+}
+
 /* Botón transparente del Hero */
 .btn-hero-outline {
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -212,19 +231,46 @@ html, body, #root {
   transform: translateX(4px);
 }
 
-/* Sección de Características (Barra Azul) */
+/* Sección de Características (FEATURES BAR) */
 .features-bar {
   background-color: var(--azul-ultramar);
-  color: white;
-  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .feature-item {
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  border: none !important; /* Limpia cualquier borde previo que haya quedado */
 }
 
-.feature-item:last-child {
-  border-right: none;
+/* 1. EN DESKTOP (pantallas grandes): Separadores verticales a la derecha */
+@media (min-width: 992px) {
+  .feature-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* 2. EN MOBILE / TABLET (pantallas chicas): Separadores horizontales con aire */
+@media (max-width: 991.98px) {
+  .feature-item {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  /* Línea horizontal abajo, centrada y con buen margen */
+  .feature-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 }
 
 /* Imagen con corte diagonal para la sección Ingeniería */
@@ -318,4 +364,198 @@ section[id] {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
+}
+
+/* CONTENEDOR FLOTANTE FIJO SOBRE EL VIDEO */
+.custom-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1050;
+  pointer-events: none;
+  background: transparent !important;
+}
+
+.custom-header-wrapper a,
+.custom-header-wrapper button,
+.custom-header-wrapper .capsule-nav-container,
+.custom-header-wrapper .trapezoid-logo-container {
+  pointer-events: auto;
+}
+
+/* 1. TRAPECIO BLANCO SUPERIOR */
+.trapezoid-logo-container {
+  background-color: #ffffff;
+  padding: 12px 60px 10px 60px; /* Un poco más de margen vertical para el logo más grande */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
+  width: 520px;
+  max-width: 95vw;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. PANCITA / CÁPSULA AZUL */
+.capsule-nav-container {
+  background-color: var(--azul-ultramar);
+  padding: 5px 18px 7px 18px;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  margin-top: -1px;
+  /* Ancho que calza con la base del trapecio (84% de 520px) */
+  width: 436px;
+  max-width: 95vw;
+}
+
+/* Enlaces del menú forzados en una sola línea */
+.capsule-nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 5px 9px !important;
+  white-space: nowrap; /* Evita que el texto de un botón se corte */
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.capsule-nav-link:hover {
+  color: #ffffff !important;
+}
+
+.capsule-nav-link.active {
+  color: #ffffff !important;
+}
+
+.capsule-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 9px;
+  right: 9px;
+  height: 2px;
+  background-color: var(--rojo-principal);
+  border-radius: 2px;
+}
+
+/* Adaptación Mobile */
+@media (max-width: 768px) {
+  .custom-header-wrapper {
+    width: 100%;
+  }
+
+  /* Bloque del logo full-width sin cortes diagonales */
+  .trapezoid-logo-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    clip-path: none !important;
+    border-radius: 0 !important;
+    padding: 10px 15px !important;
+  }
+
+  .trapezoid-logo-container img {
+    max-height: 44px !important;
+  }
+
+  /* Barra azul full-width cubriendo de borde a borde */
+  .capsule-nav-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    border-radius: 0 !important;
+    padding: 6px 4px !important;
+  }
+
+  /* Menú que ocupa todo el ancho y distribuye los botones parejos */
+  .capsule-nav-container .navbar-nav,
+  .capsule-nav-container .nav {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+  }
+
+  .capsule-nav-link {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.2px !important;
+    padding: 6px 4px !important;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .capsule-nav-link.active::after {
+    left: 4px !important;
+    right: 4px !important;
+  }
+}
+
+/* SECCIÓN NOSOTROS - CARDS */
+.nosotros-section {
+  background-color: #f8f9fa;
+}
+
+.nosotros-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.nosotros-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--azul-ultramar);
+}
+
+.nosotros-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background-color: rgba(227, 43, 43, 0.1);
+  color: var(--rojo-principal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.nosotros-badge-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #f1f3f5;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 4px;
+}
+
+/* SECCIÓN SELLOS / LOGOS GRANDES */
+.cert-seal-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cert-seal-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }

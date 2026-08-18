@@ -1,93 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar as BsNavbar, Nav, Container } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 
-export const Navbar = () => {
+export const Navbar = ({ onOpenContact }) => {
   const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
-    const sectionIds = ['inicio', 'nosotros', 'productos', 'contacto'];
-    
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        // Se activa cuando la sección ocupa más del 30% de la pantalla
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+    const sections = ['inicio', 'nosotros', 'productos', 'contacto'];
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
         }
-      });
-    };
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -50% 0px', // Ajuste para detectar la sección cuando está centrada
-      threshold: 0.2,
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
       }
-    });
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className="sticky-top shadow-sm" style={{ zIndex: 1030 }}>
-      {/* Nivel Superior: Logo Centrado */}
-      <div className="bg-white py-3 border-bottom">
-        <Container fluid className="px-4 d-flex justify-content-center align-items-center">
-          <a href="#inicio" className="text-decoration-none">
-            <img
-              src="/logo.png"
-              alt="Metalúrgica Soltermann"
-              height="75"
-              className="d-block mx-auto"
+    <header className="custom-header-wrapper">
+      <div className="d-flex flex-column align-items-center">
+        
+        {/* NIVEL 1: Trapecio Blanco con Logo */}
+        <div className="trapezoid-logo-container">
+          <a href="#inicio" className="d-inline-flex align-items-center justify-content-center">
+            <img 
+              src="/logo.png" 
+              alt="Metalúrgica Soltermann" 
+              style={{ maxHeight: '56px', width: 'auto' }} 
             />
           </a>
-        </Container>
-      </div>
+        </div>
 
-      {/* Nivel Inferior: Menú con estado activo */}
-      <BsNavbar expand="lg" style={{ backgroundColor: 'var(--azul-ultramar)' }} variant="dark" className="py-2">
-        <Container fluid className="justify-content-center">
-          <BsNavbar.Toggle aria-controls="navbar-soltermann" className="my-1" />
-          <BsNavbar.Collapse id="navbar-soltermann" className="justify-content-center">
-            <Nav className="text-uppercase text-center d-flex gap-lg-5">
-              <Nav.Link
-                href="#inicio"
-                className={`nav-custom-link ${activeSection === 'inicio' ? 'active' : ''}`}
-                onClick={() => setActiveSection('inicio')}
-              >
-                Inicio
-              </Nav.Link>
-              <Nav.Link
-                href="#nosotros"
-                className={`nav-custom-link ${activeSection === 'nosotros' ? 'active' : ''}`}
-                onClick={() => setActiveSection('nosotros')}
-              >
-                Nosotros
-              </Nav.Link>
-              <Nav.Link
-                href="#productos"
-                className={`nav-custom-link ${activeSection === 'productos' ? 'active' : ''}`}
-                onClick={() => setActiveSection('productos')}
-              >
-                Productos
-              </Nav.Link>
-              <Nav.Link
-                href="#contacto"
-                className={`nav-custom-link ${activeSection === 'contacto' ? 'active' : ''}`}
-                onClick={() => setActiveSection('contacto')}
-              >
-                Contacto
-              </Nav.Link>
-            </Nav>
-          </BsNavbar.Collapse>
-        </Container>
-      </BsNavbar>
+        {/* NIVEL 2: Pancita Azul con los Botones */}
+        <div className="capsule-nav-container">
+          <Nav className="d-flex flex-row flex-nowrap align-items-center justify-content-center m-0 p-0">
+            <Nav.Link 
+              href="#inicio" 
+              className={`capsule-nav-link ${activeSection === 'inicio' ? 'active' : ''}`}
+            >
+              INICIO
+            </Nav.Link>
+            <Nav.Link 
+              href="#nosotros" 
+              className={`capsule-nav-link ${activeSection === 'nosotros' ? 'active' : ''}`}
+            >
+              NOSOTROS
+            </Nav.Link>
+            <Nav.Link 
+              href="#productos" 
+              className={`capsule-nav-link ${activeSection === 'productos' ? 'active' : ''}`}
+            >
+              PRODUCTOS
+            </Nav.Link>
+            
+            {/* Botón de Contacto que abre el Modal */}
+            <Nav.Link 
+              as="button"
+              onClick={onOpenContact} 
+              className="capsule-nav-link bg-transparent border-0"
+            >
+              CONTACTO
+            </Nav.Link>
+          </Nav>
+        </div>
+
+      </div>
     </header>
   );
 };
