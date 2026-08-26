@@ -3,40 +3,50 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 
 export const Hero = () => {
-  const videos = ['/Parte1.mp4', '/Parte2.mp4', '/Parte3.mp4'];
-  const [currentVideo, setCurrentVideo] = useState(0);
+  // const videos = ['/Parte1.mp4'];
+  // const [currentVideo, setCurrentVideo] = useState(0);
 
-  const handleVideoEnded = () => {
-    setCurrentVideo((prevIndex) => (prevIndex + 1) % videos.length);
-  };
+  // const handleVideoEnded = () => {
+  //  setCurrentVideo((prevIndex) => (prevIndex + 1) % videos.length);
+  // };
 
   return (
-    <section className="hero-container py-5">
+    <section className="hero-container position-relative overflow-hidden py-5 d-flex align-items-center" style={{ minHeight: '85vh' }}>
+      
       {/* Video de fondo */}
       <video
-        key={videos[currentVideo]}
         autoPlay
         muted
+        loop
         playsInline
-        onEnded={handleVideoEnded}
         style={{
           position: 'absolute',
-          right: 0,
-          bottom: 0,
-          minWidth: '100%',
-          minHeight: '100%',
-          width: 'auto',
-          height: 'auto',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
           zIndex: 1,
           objectFit: 'cover',
-          objectPosition: 'right center'
+          objectPosition: 'right center',
+          transform: 'scale(1.03)',
+          transformOrigin: 'center center'
         }}
       >
-        <source src={videos[currentVideo]} type="video/mp4" />
+        <source src="/parte1.mp4" type="video/mp4" />
       </video>
 
-      {/* Capa de oscurecimiento */}
-      <div className="hero-overlay"></div>
+      {/* Capa de oscurecimiento sobre el video para legibilidad */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.45)',
+          zIndex: 2
+        }}
+      />
 
       {/* Contenido alineado a la izquierda */}
       <Container fluid className="px-4 px-md-5 hero-content my-5">

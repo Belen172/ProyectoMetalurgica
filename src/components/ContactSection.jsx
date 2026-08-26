@@ -135,27 +135,47 @@ export const ContactSection = ({ show, handleClose }) => {
               <hr className="my-3 text-muted opacity-25" />
 
               {/* Redes Sociales */}
-              <div>
-                <small className="text-muted text-uppercase fw-semibold d-block mb-2">Redes Institucionales</small>
-                <div className="d-flex gap-2">
+              <div className="mt-3">
+                <small className="text-muted text-uppercase fw-semibold d-block mb-2" style={{ fontSize: '0.78rem' }}>
+                  Redes Institucionales
+                </small>
+                <div className="d-flex gap-3">
                   <a 
                     href="https://www.instagram.com/metalurgica.soltermann/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn d-flex align-items-center justify-content-center"
-                    style={{ width: '38px', height: '38px', backgroundColor: 'var(--azul-ultramar)' }}
+                    className="btn d-flex align-items-center justify-content-center shadow-sm"
+                    style={{ 
+                      width: '46px', 
+                      height: '46px', 
+                      backgroundColor: 'var(--azul-ultramar)',
+                      borderRadius: '6px',
+                      border: 'none',
+                      transition: 'transform 0.2s ease, opacity 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                   >
-                    <FaInstagram className="fs-6 text-white" />
+                    <FaInstagram className="fs-4 text-white" />
                   </a>
 
                   <a 
                     href="https://www.linkedin.com/company/metal%C3%BArgica-soltermann/home/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn d-flex align-items-center justify-content-center"
-                    style={{ width: '38px', height: '38px', backgroundColor: 'var(--azul-ultramar)' }}
+                    className="btn d-flex align-items-center justify-content-center shadow-sm"
+                    style={{ 
+                      width: '46px', 
+                      height: '46px', 
+                      backgroundColor: 'var(--azul-ultramar)',
+                      borderRadius: '6px',
+                      border: 'none',
+                      transition: 'transform 0.2s ease, opacity 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                   >
-                    <FaLinkedin className="fs-6 text-white" />
+                    <FaLinkedin className="fs-4 text-white" />
                   </a>
                 </div>
               </div>

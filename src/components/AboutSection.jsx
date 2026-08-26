@@ -5,17 +5,16 @@ import { FaTruckMoving, FaStore, FaIndustry, FaSyncAlt, FaRecycle, FaCheckCircle
 export const AboutSection = () => {
   const sectors = [
     'Agro',
-    'Industria',
-    'Maquinarias Viales',
+    'Maquinaria Vial',
     'Autopartes',
     'Agropartes',
     'Minería'
   ];
 
   const clients = [
-    'Ferreterías',
+    'Industria en general',
     'Bulonerías',
-    'Industria en general'
+    'Ferreterías'
   ];
 
   return (
@@ -45,9 +44,6 @@ export const AboutSection = () => {
             Sobre Nosotros
           </h2>
 
-          <p className="text-muted fs-6 mb-0" style={{ maxWidth: '700px' }}>
-            Conocé nuestra trayectoria, capacidad productiva y compromiso con la industria nacional desde Rafaela.
-          </p>
         </div>
 
         {/* Las 3 Tarjetas Principales */}
@@ -64,7 +60,7 @@ export const AboutSection = () => {
                   Alcance Nacional
                 </h4>
                 <p className="text-muted small mb-3">
-                  Desde <strong className="text-dark">Rafaela, Santa Fe</strong>, distribuimos soluciones metalúrgicas con logística a todo el país.
+                  Desde <strong className="text-dark">Rafaela, Santa Fe</strong>, distribuimos soluciones metalúrgicas a todo el país.
                 </p>
               </div>
               <div className="pt-3 border-top">
@@ -73,7 +69,7 @@ export const AboutSection = () => {
                     +300
                   </span>
                   <span className="small fw-bold text-uppercase text-secondary lh-sm">
-                    Clientes activos <br />en Argentina
+                    Clientes activos <br />
                   </span>
                 </div>
               </div>
@@ -88,19 +84,30 @@ export const AboutSection = () => {
                   <FaStore />
                 </div>
                 <h4 className="fw-bold text-uppercase fs-5 mb-2" style={{ color: 'var(--azul-ultramar)' }}>
-                  Clientes Comerciales
+                  Nuestros Clientes
                 </h4>
                 <p className="text-muted small mb-3">
-                  Abastecemos redes comerciales y cadenas industriales con respuesta rápida y stock permanente:
+                  Contamos con respuesta rápida y stock permanente. Abastecemos a: 
                 </p>
-                <ul className="list-unstyled mb-0">
-                  {clients.map((c, idx) => (
-                    <li key={idx} className="d-flex align-items-center mb-2 small text-dark fw-semibold">
-                      <FaCheckCircle className="me-2 text-danger flex-shrink-0" />
+                <ul className="list-unstyled d-flex flex-column gap-2 mb-0 mt-3">
+                {clients.map((c, idx) => (
+                  <li 
+                    key={idx} 
+                    className="d-flex align-items-center justify-content-center justify-content-md-start gap-2"
+                  >
+                    <FaCheckCircle 
+                      className="flex-shrink-0" 
+                      style={{ color: 'var(--rojo-principal)', fontSize: '1.05rem' }} 
+                    />
+                    <span 
+                      className="fw-bold text-uppercase text-secondary lh-sm" 
+                      style={{ fontSize: '0.85rem', letterSpacing: '0.3px' }}
+                    >
                       {c}
-                    </li>
-                  ))}
-                </ul>
+                    </span>
+                  </li>
+                ))}
+              </ul>
               </div>
             </div>
           </Col>
@@ -136,7 +143,7 @@ export const AboutSection = () => {
           
           {/* Sello Mejora Continua */}
           <Col md={6} lg={5}>
-            <div className="cert-seal-box p-4 h-100">
+            <div className="nosotros-card nosotros-card-side p-4 d-flex flex-row align-items-center gap-3 gap-md-4 text-start">
               <img 
                 src="/mejora-continua.png" 
                 alt="Mejora Continua" 
@@ -160,7 +167,7 @@ export const AboutSection = () => {
 
           {/* Sello Compromiso Ambiental / Reciclado */}
           <Col md={6} lg={5}>
-            <div className="cert-seal-box p-4 h-100">
+            <div className="nosotros-card nosotros-card-side p-4 d-flex flex-row align-items-center gap-3 gap-md-4 text-start">
               <img 
                 src="/reciclado.png" 
                 alt="Compromiso Ambiental" 
@@ -176,7 +183,7 @@ export const AboutSection = () => {
                   Compromiso Ambiental
                 </h5>
                 <p className="text-muted small mb-0 lh-sm">
-                  Reutilización y reciclado responsable de metales.
+                  Reutilización y reciclado responsable.
                 </p>
               </div>
             </div>

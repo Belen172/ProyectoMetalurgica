@@ -542,6 +542,33 @@ section[id] {
   margin: 4px;
 }
 
+/* ==========================================================
+   BORDES AZULES SECCIÓN SOBRE NOSOTROS
+   ========================================================== */
+
+/* Las 3 tarjetas de arriba (borde azul superior de 4px) */
+.nosotros-card {
+  border-top: 4px solid var(--azul-ultramar) !important;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nosotros-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Variante para las 2 tarjetas inferiores (borde azul izquierdo de 4px) */
+.nosotros-card.nosotros-card-side {
+  border-top: none !important;
+  border-left: 4px solid var(--azul-ultramar) !important;
+}
+
+.nosotros-card.nosotros-card-side:hover {
+  transform: translateY(-3px);
+}
+
 /* SECCIÓN SELLOS / LOGOS GRANDES */
 .cert-seal-box {
   background: #ffffff;
@@ -559,3 +586,290 @@ section[id] {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
+
+/* ==========================================================
+   CORTE ISOTIPO: DIAGONAL + PANCITA CALIBRADA (MÁS ARRIBA)
+   ========================================================== */
+
+/* 1. SECCIÓN INGENIERÍA: Imagen con la misma curva exacta que el Footer */
+.soltermann-cut-container {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .soltermann-cut-container {
+    border-radius: 0 12px 12px 0;
+    /* La diagonal baja recta */
+    clip-path: polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%);
+    /* Curva circular calibrada para que remate suavemente en la base sin dejar borde abajo */
+    -webkit-mask-image: radial-gradient(circle 58px at -6px 95%, transparent 54px, #000 55px);
+    mask-image: radial-gradient(circle 58px at -6px 95%, transparent 54px, #000 55px);
+  }
+}
+
+/* 2. FOOTER: Bloque azul */
+.footer-soltermann-wrapper {
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-soltermann-blue {
+  background-color: var(--azul-ultramar);
+  color: #ffffff;
+  position: relative;
+  padding: 40px 25px 20px 25px;
+}
+
+@media (min-width: 992px) {
+  .footer-soltermann-blue {
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+    /* Misma altura para la muesca del footer */
+    -webkit-mask-image: radial-gradient(circle 55px at -4px 92%, transparent 51px, #000 52px);
+    mask-image: radial-gradient(circle 55px at -4px 92%, transparent 51px, #000 52px);
+    padding: 50px 40px 25px 80px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .soltermann-cut-container,
+  .footer-soltermann-blue {
+    clip-path: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    border-radius: 0;
+  }
+}
+
+/* ==========================================================
+   MICRO-INTERACCIONES EN ENGINEERING SECTION
+   ========================================================== */
+
+/* 1. Zoom suave de la imagen al pasar el mouse */
+.soltermann-cut-container img {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.soltermann-cut-container:hover img {
+  transform: scale(1.06); /* Zoom progresivo contenido dentro del corte */
+}
+
+/* 2. Efecto de elevación y empuje de flecha en el botón */
+.btn-engineering {
+  background-color: var(--azul-ultramar);
+  border-radius: 2px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.btn-engineering:hover {
+  transform: translateY(-3px); /* Se eleva suavemente */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  background-color: #161c47 !important; /* Tono sutilmente más activo */
+}
+
+/* Desplazamiento sutil de la flecha roja al hacer hover en el botón */
+.btn-engineering svg {
+  transition: transform 0.25s ease;
+}
+
+.btn-engineering:hover svg {
+  transform: translateX(5px); /* La flechita avanza hacia la derecha */
+}
+
+/* Copyright centrado: normal en mobile, compensado en desktop */
+.footer-copyright {
+  transform: none;
+}
+
+@media (min-width: 992px) {
+  .footer-copyright {
+    transform: translateX(-16%);
+  }
+}
+
+/* ==========================================================
+   TARJETAS HORIZONTALES - SECCIÓN PRODUCTOS
+   ========================================================== */
+  .product-family-card {
+    border-radius: 10px;
+    min-height: 130px;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* 👈 Alinea la línea y elementos al inicio */
+    text-align: left;        /* 👈 Alinea el texto a la izquierda */
+    padding: 1.25rem 1.1rem;
+    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.25s ease, filter 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .product-family-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    filter: brightness(1.06);
+  }
+
+  .product-family-title {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.5rem;
+    text-align: left; /* 👈 Texto alineado a la izquierda */
+    width: 100%;
+  }
+  
+  .product-family-line {
+    width: 26px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+  }
+
+  /* ==========================================================
+   BOTÓN CATÁLOGO - ESTILO TARJETA / OUTLINE AZUL
+   ========================================================== */
+.btn-catalogo-compacto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #ffffff;
+  color: var(--azul-ultramar);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1.5px solid #dee2e6;
+  border-top: 3px solid var(--azul-ultramar); /* 👈 Mismo acento superior que las tarjetas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-catalogo-compacto:hover {
+  background-color: #ffffff;
+  color: var(--azul-ultramar);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.09);
+  border-color: #ced4da;
+  border-top-color: var(--azul-ultramar);
+}
+
+/* ==========================================================
+   VISTA DETALLE DE PRODUCTOS & SUBFAMILIAS
+   ========================================================== */
+
+/* Navegación superior entre familias */
+.product-tab-btn {
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  padding: 1rem;
+  min-height: 110px;
+  height: 100%;
+  width: 100%;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  opacity: 0.72;
+  transform: scale(0.97);
+}
+
+.product-tab-btn:hover {
+  opacity: 0.95;
+  transform: scale(1);
+}
+
+/* Tarjeta activa: más grande, con sombra destacada y opacidad total */
+.product-tab-btn.active {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  min-height: 125px;
+  z-index: 2;
+}
+
+/* Tabla técnica de subfamilia */
+.subfamily-container {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.subfamily-header {
+  background-color: var(--azul-ultramar);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+}
+
+.product-table th {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  border: none;
+}
+
+.product-table td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 0.9rem;
+}
+
+.product-img-cell {
+  width: 90px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* ==========================================================
+   ZOOM CONTROLADO EN IMÁGENES DE PRODUCTOS
+   ========================================================== */
+   .product-img-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+    padding: 4px 10px; /* Margen interno de seguridad */
+    cursor: zoom-in;
+  }
+  
+  .product-img-cell {
+    width: 72px;       /* Tamaño base balanceado */
+    height: 44px;
+    object-fit: contain;
+    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                filter 0.25s ease;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Hover con zoom moderado para no tocar el borde */
+  .product-img-wrapper:hover .product-img-cell {
+    transform: scale(1.35); /* Zoom del 35% (suficiente para ver detalles sin desbordar) */
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+    z-index: 10;
+  }
