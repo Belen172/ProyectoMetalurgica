@@ -32,7 +32,7 @@ export const Hero = () => {
           transformOrigin: 'center center'
         }}
       >
-        <source src="/parte1.mp4" type="video/mp4" />
+        <source src="/Parte1.mp4" type="video/mp4" />
       </video>
 
       {/* Capa de oscurecimiento sobre el video para legibilidad */}
