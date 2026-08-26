@@ -97,7 +97,7 @@ export const Footer = () => {
               <hr className="my-3 text-white opacity-25" />
               <Row>
                 <Col 
-                  className="footer-copyright text-center small opacity-75 mb-1 px-3" 
+                  className="footer-copyright small opacity-75 mb-1 px-3" 
                 >
                   © 2026 Metalúrgica Soltermann. Todos los derechos reservados.
                 </Col>

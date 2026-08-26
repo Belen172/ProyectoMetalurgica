@@ -426,214 +426,218 @@ export const ProductFamilyDetail = () => {
   }, [currentId]);
 
   return (
-    <section className="py-4 bg-light min-vh-100">
-      <Container fluid className="px-4 px-md-5 py-4">
-        
-        {/* ENCABEZADO */}
-        <div className="mb-4 text-start pt-2">
-          <div 
-            style={{ 
-              width: '45px', 
-              height: '4px', 
-              backgroundColor: 'var(--rojo-principal)', 
-              marginBottom: '16px' 
-            }} 
-          />
-          <h2 
-            className="display-5 fw-bold text-uppercase mb-2" 
-            style={{ 
-              color: 'var(--azul-ultramar)', 
-              fontWeight: '800',
-              letterSpacing: '0.5px' 
-            }}
-          >
-            Productos
-          </h2>
-          <p className="text-muted lead mb-0" style={{ fontSize: '1.05rem', maxWidth: '560px' }}>
-            Desarrollamos piezas y componentes de alta calidad, adaptados a las necesidades de cada industria.
-          </p>
-        </div>
-
-        {/* SELECTOR SUPERIOR DE LAS 6 FAMILIAS */}
-        <Row className="g-3 g-xl-4 row-cols-2 row-cols-md-3 row-cols-lg-6 mb-5 align-items-center">
-          {allFamilies.map((family) => {
-            const isActive = family.id === currentId;
-            return (
-              <Col key={family.id} className="d-flex">
-                <button
-                  type="button"
-                  onClick={() => navigate(`/productos/${family.id}`)}
-                  className={`product-tab-btn ${isActive ? 'active' : ''}`}
-                  style={{ backgroundColor: family.color, border: 'none' }}
-                >
-                  <span className="text-white fw-bold text-uppercase" style={{ fontSize: isActive ? '0.95rem' : '0.82rem' }}>
-                    {family.title}
-                  </span>
-                  <div style={{ width: '24px', height: '3px', backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: '2px' }} />
-                </button>
-              </Col>
-            );
-          })}
-        </Row>
-
-        {/* TÍTULO DE FAMILIA ACTIVA + BOTÓN DE DESCARGA PDF */}
-        <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
-          <div className="d-flex align-items-center gap-3">
+    <div className="products-page-container">
+      {/* Agregamos pt-5 y pt-lg-4 para empujar el contenido abajo del navbar en mobile */}
+      <section className="bg-light min-vh-100 pb-4">
+        <Container fluid className="px-4 px-md-5 py-2">
+          {/* ENCABEZADO */}
+          <div className="mb-4 text-start pt-2">
             <div 
-              className="rounded-circle p-2 d-flex align-items-center justify-content-center text-white flex-shrink-0" 
-              style={{ backgroundColor: currentFamily.color, width: '42px', height: '42px' }}
+              style={{ 
+                width: '45px', 
+                height: '4px', 
+                backgroundColor: 'var(--rojo-principal)', 
+                marginBottom: '16px' 
+              }} 
+            />
+            <h2 
+              className="display-5 fw-bold text-uppercase mb-2" 
+              style={{ 
+                color: 'var(--azul-ultramar)', 
+                fontWeight: '800',
+                letterSpacing: '0.5px' 
+              }}
             >
-              <FaLayerGroup size={20} />
+              Productos
+            </h2>
+            
+            {/*  <p className="text-muted lead mb-0" style={{ fontSize: '1.05rem', maxWidth: '560px' }}>
+              Desarrollamos piezas y componentes de alta calidad, adaptados a las necesidades de cada industria.
+            </p> */}
+            
+          </div>
+
+          {/* SELECTOR SUPERIOR DE LAS 6 FAMILIAS */}
+          <Row className="g-3 g-xl-4 row-cols-2 row-cols-md-3 row-cols-lg-6 mb-5 align-items-center">
+            {allFamilies.map((family) => {
+              const isActive = family.id === currentId;
+              return (
+                <Col key={family.id} className="d-flex">
+                  <button
+                    type="button"
+                    onClick={() => navigate(`/productos/${family.id}`)}
+                    className={`product-tab-btn ${isActive ? 'active' : ''}`}
+                    style={{ backgroundColor: family.color, border: 'none' }}
+                  >
+                    <span className="text-white fw-bold text-uppercase" style={{ fontSize: isActive ? '0.95rem' : '0.82rem' }}>
+                      {family.title}
+                    </span>
+                    <div style={{ width: '24px', height: '3px', backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: '2px' }} />
+                  </button>
+                </Col>
+              );
+            })}
+          </Row>
+
+          {/* TÍTULO DE FAMILIA ACTIVA + BOTÓN DE DESCARGA PDF */}
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+            <div className="d-flex align-items-center gap-3">
+              <div 
+                className="rounded-circle p-2 d-flex align-items-center justify-content-center text-white flex-shrink-0" 
+                style={{ backgroundColor: currentFamily.color, width: '42px', height: '42px' }}
+              >
+                <FaLayerGroup size={20} />
+              </div>
+              <h3 className="fw-black text-uppercase mb-0" style={{ color: 'var(--azul-ultramar)', letterSpacing: '0.5px' }}>
+                {currentFamily.title}
+              </h3>
             </div>
-            <h3 className="fw-black text-uppercase mb-0" style={{ color: 'var(--azul-ultramar)', letterSpacing: '0.5px' }}>
-              {currentFamily.title}
-            </h3>
+
+            {currentFamily.pdf && (
+              <a
+                href={currentFamily.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-catalogo-compacto"
+                style={{ borderTopColor: currentFamily.color }}
+              >
+                <FaFilePdf size={16} style={{ color: 'var(--rojo-principal)' }} />
+                <span>Descargar PDF {currentFamily.title}</span>
+                <FaExternalLinkAlt size={11} className="ms-1 opacity-75" />
+              </a>
+            )}
           </div>
 
-          {currentFamily.pdf && (
-            <a
-              href={currentFamily.pdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-catalogo-compacto"
-              style={{ borderTopColor: currentFamily.color }}
-            >
-              <FaFilePdf size={16} style={{ color: 'var(--rojo-principal)' }} />
-              <span>Descargar PDF {currentFamily.title}</span>
-              <FaExternalLinkAlt size={11} className="ms-1 opacity-75" />
-            </a>
-          )}
-        </div>
+          {/* RENDERIZADO DINÁMICO SEGÚN EL TIPO DE FAMILIA */}
 
-        {/* RENDERIZADO DINÁMICO SEGÚN EL TIPO DE FAMILIA */}
+          {/* CASO 1: VISTA DE SERVICIO DE MECANIZADO CNC */}
+          {currentFamily.tipo === 'servicio' && (
+            <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm">
+              <Row className="align-items-center g-4">
+                <Col lg={7}>
+                  <span className="badge bg-warning text-dark px-3 py-2 mb-3 fw-bold text-uppercase">
+                    {currentFamily.contenido.subtitulo}
+                  </span>
+                  <h2 className="fw-black mb-4" style={{ color: 'var(--azul-ultramar)' }}>
+                    {currentFamily.contenido.titulo}
+                  </h2>
+                  
+                  <div className="d-flex flex-column gap-3 mb-4">
+                    {currentFamily.contenido.puntos.map((punto, pIdx) => (
+                      <div key={pIdx} className="d-flex align-items-start gap-3">
+                        <div className="rounded-circle p-1 mt-1 bg-light text-primary border d-flex align-items-center justify-content-center">
+                          <FaCheck size={14} style={{ color: currentFamily.color }} />
+                        </div>
+                        <div>
+                          <h6 className="fw-bold mb-1 text-dark">{punto.titulo}</h6>
+                          <p className="text-secondary mb-0 small">{punto.detalle}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
-        {/* CASO 1: VISTA DE SERVICIO DE MECANIZADO CNC */}
-        {currentFamily.tipo === 'servicio' && (
-          <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm">
-            <Row className="align-items-center g-4">
-              <Col lg={7}>
-                <span className="badge bg-warning text-dark px-3 py-2 mb-3 fw-bold text-uppercase">
-                  {currentFamily.contenido.subtitulo}
-                </span>
-                <h2 className="fw-black mb-4" style={{ color: 'var(--azul-ultramar)' }}>
-                  {currentFamily.contenido.titulo}
-                </h2>
-                
-                <div className="d-flex flex-column gap-3 mb-4">
-                  {currentFamily.contenido.puntos.map((punto, pIdx) => (
-                    <div key={pIdx} className="d-flex align-items-start gap-3">
-                      <div className="rounded-circle p-1 mt-1 bg-light text-primary border d-flex align-items-center justify-content-center">
-                        <FaCheck size={14} style={{ color: currentFamily.color }} />
-                      </div>
-                      <div>
-                        <h6 className="fw-bold mb-1 text-dark">{punto.titulo}</h6>
-                        <p className="text-secondary mb-0 small">{punto.detalle}</p>
-                      </div>
+                  <div className="pt-3 border-top mt-4 d-flex flex-column flex-sm-row gap-3">
+                    <div className="small fw-bold text-uppercase text-secondary">
+                      ✔ {currentFamily.contenido.garantia.item1}
                     </div>
-                  ))}
-                </div>
-
-                <div className="pt-3 border-top mt-4 d-flex flex-column flex-sm-row gap-3">
-                  <div className="small fw-bold text-uppercase text-secondary">
-                    ✔ {currentFamily.contenido.garantia.item1}
+                    <div className="small fw-bold text-uppercase text-secondary">
+                      ✔ {currentFamily.contenido.garantia.item2}
+                    </div>
                   </div>
-                  <div className="small fw-bold text-uppercase text-secondary">
-                    ✔ {currentFamily.contenido.garantia.item2}
+                </Col>
+
+                <Col lg={5} className="text-center">
+                  <div className="p-4 bg-light rounded-3 border">
+                    <FaDraftingCompass size={80} style={{ color: currentFamily.color, opacity: 0.9 }} className="mb-3" />
+                    <h5 className="fw-bold text-dark">Planos y Especificaciones Técnicas</h5>
+                    <p className="text-muted small mb-0">Fabricación en serie y mecanizado de alta precisión.</p>
                   </div>
-                </div>
-              </Col>
+                </Col>
+              </Row>
+            </div>
+          )}
 
-              <Col lg={5} className="text-center">
-                <div className="p-4 bg-light rounded-3 border">
-                  <FaDraftingCompass size={80} style={{ color: currentFamily.color, opacity: 0.9 }} className="mb-3" />
-                  <h5 className="fw-bold text-dark">Planos y Especificaciones Técnicas</h5>
-                  <p className="text-muted small mb-0">Fabricación en serie y mecanizado de alta precisión.</p>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        )}
-
-        {/* CASO 2: TABLA DE CUPLAS */}
-        {currentFamily.tipo === 'cuplas' && (
-          <div className="d-flex flex-column gap-4">
-            {currentFamily.subfamilias.map((sub, idx) => (
-              <div key={idx} className="subfamily-container">
-                <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
-                  {sub.nombre}
-                </div>
-                <Table responsive hover className="product-table mb-0 align-middle text-center">
-                  <thead>
-                    <tr>
-                      <th className="text-start">Denominación</th>
-                      <th>Código</th>
-                      <th>ØH (mm)</th>
-                      <th>Ø1 Ø2 Rosca</th>
-                      <th>L (mm)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sub.productos.map((prod, pIdx) => (
-                      <tr key={pIdx}>
-                        <td className="text-start fw-semibold text-dark">{prod.denominacion}</td>
-                        <td className="fw-bold text-primary">{prod.codigo}</td>
-                        <td className="text-secondary">{prod.diametroH}</td>
-                        <td className="text-secondary">{prod.rosca}</td>
-                        <td className="text-secondary">{prod.largo}</td>
+          {/* CASO 2: TABLA DE CUPLAS */}
+          {currentFamily.tipo === 'cuplas' && (
+            <div className="d-flex flex-column gap-4">
+              {currentFamily.subfamilias.map((sub, idx) => (
+                <div key={idx} className="subfamily-container">
+                  <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
+                    {sub.nombre}
+                  </div>
+                  <Table responsive hover className="product-table mb-0 align-middle text-center">
+                    <thead>
+                      <tr>
+                        <th className="text-start">Denominación</th>
+                        <th>Código</th>
+                        <th>ØH (mm)</th>
+                        <th>Ø1 Ø2 Rosca</th>
+                        <th>L (mm)</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* CASO 3: CATÁLOGO ESTÁNDAR (CON ZOOM MEJORADO) */}
-        {currentFamily.tipo === 'catalogo' && (
-          <div className="d-flex flex-column gap-4">
-            {currentFamily.subfamilias.map((sub, idx) => (
-              <div key={idx} className="subfamily-container">
-                <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
-                  {sub.nombre}
+                    </thead>
+                    <tbody>
+                      {sub.productos.map((prod, pIdx) => (
+                        <tr key={pIdx}>
+                          <td className="text-start fw-semibold text-dark">{prod.denominacion}</td>
+                          <td className="fw-bold text-primary">{prod.codigo}</td>
+                          <td className="text-secondary">{prod.diametroH}</td>
+                          <td className="text-secondary">{prod.rosca}</td>
+                          <td className="text-secondary">{prod.largo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
                 </div>
-                <Table responsive hover className="product-table mb-0 align-middle">
-                  <thead>
-                    <tr>
-                      <th style={{ width: '130px' }} className="text-center">Producto</th>
-                      <th style={{ width: '140px' }}>Código</th>
-                      <th>Descripción</th>
-                      {sub.columnas.includes('Compatibilidad') && <th>Compatibilidad</th>}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sub.productos.map((prod, pIdx) => (
-                      <tr key={pIdx}>
-                        <td className="text-center">
-                          <div className="product-img-wrapper">
-                            <img 
-                              src={prod.foto} 
-                              alt={prod.codigo} 
-                              className="product-img-cell"
-                              onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
-                            />
-                          </div>
-                        </td>
-                        <td className="fw-bold text-dark">{prod.codigo}</td>
-                        <td className="text-secondary">{prod.descripcion}</td>
-                        {prod.compatibilidad && (
-                          <td className="text-muted small">{prod.compatibilidad}</td>
-                        )}
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
 
-      </Container>
-    </section>
+          {/* CASO 3: CATÁLOGO ESTÁNDAR (CON ZOOM MEJORADO) */}
+          {currentFamily.tipo === 'catalogo' && (
+            <div className="d-flex flex-column gap-4">
+              {currentFamily.subfamilias.map((sub, idx) => (
+                <div key={idx} className="subfamily-container">
+                  <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
+                    {sub.nombre}
+                  </div>
+                  <Table responsive hover className="product-table mb-0 align-middle">
+                    <thead>
+                      <tr>
+                        <th style={{ width: '130px' }} className="text-center">Producto</th>
+                        <th style={{ width: '140px' }}>Código</th>
+                        <th>Descripción</th>
+                        {sub.columnas.includes('Compatibilidad') && <th>Compatibilidad</th>}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sub.productos.map((prod, pIdx) => (
+                        <tr key={pIdx}>
+                          <td className="text-center">
+                            <div className="product-img-wrapper">
+                              <img 
+                                src={prod.foto} 
+                                alt={prod.codigo} 
+                                className="product-img-cell"
+                                onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
+                              />
+                            </div>
+                          </td>
+                          <td className="fw-bold text-dark">{prod.codigo}</td>
+                          <td className="text-secondary">{prod.descripcion}</td>
+                          {prod.compatibilidad && (
+                            <td className="text-muted small">{prod.compatibilidad}</td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              ))}
+            </div>
+          )}
+
+        </Container>
+      </section>
+    </div>
   );
 };

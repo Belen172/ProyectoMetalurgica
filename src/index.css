@@ -321,129 +321,83 @@ section[id] {
   scroll-margin-top: 140px;
 }
 
-/* FOOTER RESPONSIVE */
-.footer-diagonal {
-  background-color: var(--azul-ultramar);
-}
+/* ==========================================================
+   NAVBAR FIJO INSTITUCIONAL (PROPORCIONES AMPLIAS)
+   ========================================================== */
 
-/* En Computadoras: Corte diagonal */
-@media (min-width: 768px) {
-  .footer-diagonal {
-    /* Crea la franja diagonal: blanco a la izquierda y azul ultramar a la derecha */
-    background: linear-gradient(120deg, #ffffff 0%, #ffffff 33%, var(--azul-ultramar) 33.2%, var(--azul-ultramar) 100%);
+   .custom-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
   }
-}
-
-/* En Celulares: Bloque blanco de borde a borde (Full-Width) */
-@media (max-width: 767.98px) {
-  .footer-diagonal {
-    padding-top: 0 !important;
+  
+  .custom-header-wrapper > div {
+    pointer-events: auto;
   }
-
-  /* Quitamos el margen contenedor en mobile para que el blanco llegue a los bordes */
-  .footer-diagonal > .container-fluid {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .footer-diagonal > .container-fluid > .row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .footer-logo-col {
+  
+  /* NIVEL 1: Trapecio Blanco Amplio */
+  /* NIVEL 1: Trapecio Blanco que coincide exactamente con las puntas */
+  .trapezoid-logo-container {
     background-color: #ffffff;
-    width: 100% !important;
-    padding: 2.2rem 1.5rem !important;
-    border-bottom: 4px solid var(--rojo-principal);
-    margin-bottom: 1.5rem !important;
+    padding: 10px 40px 14px 40px;
+    width: 600px; /* Ancho superior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    
+    /* Corte matemático: la base inferior medirá exactamente 480px */
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
   }
-
-  /* Mantenemos el padding prolijo para las columnas de Contacto y Ubicación en celular */
-  .footer-diagonal .row > div:not(.footer-logo-col) {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+  
+  /* NIVEL 2: Menú Azul Recto con Espaciado Cómodo */
+  .capsule-nav-container {
+    background-color: var(--azul-ultramar, #2A2A58);
+    padding: 8px 24px;
+    margin-top: -3px;
+    width: 480px; /* 👈 Rectángulo más ancho para lectura limpia */
+    border-radius: 0 !important; /* Puntas rectas */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   }
-}
-
-/* CONTENEDOR FLOTANTE FIJO SOBRE EL VIDEO */
-.custom-header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1050;
-  pointer-events: none;
-  background: transparent !important;
-}
-
-.custom-header-wrapper a,
-.custom-header-wrapper button,
-.custom-header-wrapper .capsule-nav-container,
-.custom-header-wrapper .trapezoid-logo-container {
-  pointer-events: auto;
-}
-
-/* 1. TRAPECIO BLANCO SUPERIOR */
-.trapezoid-logo-container {
-  background-color: #ffffff;
-  padding: 12px 60px 10px 60px; /* Un poco más de margen vertical para el logo más grande */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
-  width: 520px;
-  max-width: 95vw;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* 2. PANCITA / CÁPSULA AZUL */
-.capsule-nav-container {
-  background-color: var(--azul-ultramar);
-  padding: 5px 18px 7px 18px;
-  border-radius: 0 0 20px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-  margin-top: -1px;
-  /* Ancho que calza con la base del trapecio (84% de 520px) */
-  width: 436px;
-  max-width: 95vw;
-}
-
-/* Enlaces del menú forzados en una sola línea */
-.capsule-nav-link {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  padding: 5px 9px !important;
-  white-space: nowrap; /* Evita que el texto de un botón se corte */
-  position: relative;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.capsule-nav-link:hover {
-  color: #ffffff !important;
-}
-
-.capsule-nav-link.active {
-  color: #ffffff !important;
-}
-
-.capsule-nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 1px;
-  left: 9px;
-  right: 9px;
-  height: 2px;
-  background-color: var(--rojo-principal);
-  border-radius: 2px;
-}
+  
+  /* Enlaces del Menú */
+  .capsule-nav-link {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.88rem; /* Tipografía más legible */
+    letter-spacing: 0.8px;
+    padding: 6px 16px !important;
+    white-space: nowrap; /* Evita que los textos se quiebren en dos líneas */
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    border-radius: 0 !important;
+    position: relative;
+  }
+  
+  .capsule-nav-link:hover {
+    opacity: 0.85;
+  }
+  
+  /* Indicador de pestaña activa */
+  .capsule-nav-link.active {
+    color: #ffffff !important;
+  }
+  
+  .capsule-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background-color: var(--rojo-principal, #EE353D);
+  }
 
 /* Adaptación Mobile */
 @media (max-width: 768px) {
@@ -609,52 +563,38 @@ section[id] {
   }
 }
 
-/* 2. FOOTER: Bloque azul */
-.footer-soltermann-wrapper {
-  background-color: #ffffff;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-soltermann-blue {
-  background-color: var(--azul-ultramar);
-  color: #ffffff;
-  position: relative;
-  padding: 40px 25px 20px 25px;
-}
-
-@media (min-width: 992px) {
-  .footer-soltermann-blue {
-    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
-    /* Misma altura para la muesca del footer */
-    -webkit-mask-image: radial-gradient(circle 55px at -4px 92%, transparent 51px, #000 52px);
-    mask-image: radial-gradient(circle 55px at -4px 92%, transparent 51px, #000 52px);
-    padding: 50px 40px 25px 80px;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .soltermann-cut-container,
-  .footer-soltermann-blue {
-    clip-path: none !important;
-    -webkit-mask-image: none !important;
-    mask-image: none !important;
-    border-radius: 0;
-  }
-}
-
 /* ==========================================================
    MICRO-INTERACCIONES EN ENGINEERING SECTION
    ========================================================== */
+/* ==========================================================
+   IMAGEN INGENIERÍA (DIAGONAL CONTINUA DE PUNTA A PUNTA)
+   ========================================================== */
 
-/* 1. Zoom suave de la imagen al pasar el mouse */
-.soltermann-cut-container img {
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+.engineering-img-container {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  max-width: 900px;            /* Contenedor más ancho para que la diagonal viaje completa */
+  height: 430px;
+  margin-left: -90px;          /* Desplaza el inicio de la imagen hacia la izquierda */
+  border-radius: 0 18px 18px 0; /* Puntas redondeadas a la derecha */
+  
+  /* 4 puntos: diagonal recta sin quiebres verticales */
+  clip-path: polygon(320px 0%, 100% 0%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(320px 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.engineering-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change: transform;
 }
 
-.soltermann-cut-container:hover img {
-  transform: scale(1.06); /* Zoom progresivo contenido dentro del corte */
+.engineering-img-container:hover .engineering-img {
+  transform: scale(1.05);
 }
 
 /* 2. Efecto de elevación y empuje de flecha en el botón */
@@ -677,17 +617,6 @@ section[id] {
 
 .btn-engineering:hover svg {
   transform: translateX(5px); /* La flechita avanza hacia la derecha */
-}
-
-/* Copyright centrado: normal en mobile, compensado en desktop */
-.footer-copyright {
-  transform: none;
-}
-
-@media (min-width: 992px) {
-  .footer-copyright {
-    transform: translateX(-16%);
-  }
 }
 
 /* ==========================================================
@@ -847,29 +776,175 @@ section[id] {
 /* ==========================================================
    ZOOM CONTROLADO EN IMÁGENES DE PRODUCTOS
    ========================================================== */
-   .product-img-wrapper {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: visible;
-    padding: 4px 10px; /* Margen interno de seguridad */
-    cursor: zoom-in;
+.product-img-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  padding: 4px 10px; /* Margen interno de seguridad */
+  cursor: zoom-in;
+}
+
+.product-img-cell {
+  width: 72px;       /* Tamaño base balanceado */
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              filter 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover con zoom moderado para no tocar el borde */
+.product-img-wrapper:hover .product-img-cell {
+  transform: scale(1.35); /* Zoom del 35% (suficiente para ver detalles sin desbordar) */
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  z-index: 10;
+}
+
+/* ==========================================================
+   FOOTER SOLTERMANN (INCLINACIÓN A 45° Y COPYRIGHT CENTRADO)
+   ========================================================== */
+
+.footer-soltermann-wrapper {
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid var(--azul-ultramar, #2A2A58); /* 👈 Línea azul superior */
+}
+
+/* Bloque azul: Inclinación exacta a 45° que empata con la foto y el logo */
+.footer-soltermann-blue {
+  background-color: var(--azul-ultramar, #2A2A58);
+  color: #ffffff;
+  position: relative;
+  border-radius: 0 !important;
+  margin-left: -80px;            /* Desplaza el fondo para ganar espacio */
+  padding: 40px 30px 20px 140px; /* Padding izquierdo para proteger el texto de la diagonal */
+  
+  /* Desplazamiento horizontal ampliado a 260px para lograr los 45° reales */
+  clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
+  -webkit-clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
+}
+
+/* Centrado visual del copyright */
+.footer-copyright {
+  text-align: center;
+  width: 100%;
+  margin-left: -200px; /* Desplazamiento más marcado a la izquierda */
+}
+
+/* En celulares se apila normal */
+@media (max-width: 991.98px) {
+  .footer-soltermann-blue {
+    margin-left: 0;
+    padding: 35px 20px 20px 20px;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
   }
   
-  .product-img-cell {
-    width: 72px;       /* Tamaño base balanceado */
-    height: 44px;
-    object-fit: contain;
-    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                filter 0.25s ease;
-    position: relative;
-    z-index: 1;
+  .footer-copyright {
+    margin-left: 0;
   }
-  
-  /* Hover con zoom moderado para no tocar el borde */
-  .product-img-wrapper:hover .product-img-cell {
-    transform: scale(1.35); /* Zoom del 35% (suficiente para ver detalles sin desbordar) */
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-    z-index: 10;
+}
+
+/* ==========================================================
+   DROPDOWN HOVER DE PRODUCTOS
+   ========================================================== */
+
+/* Contenedor relativo en el link de Productos */
+.nav-item-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Menú flotante alineado al inicio del botón PRODUCTOS */
+.products-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;                      /* Alinea el borde izquierdo justo con la "P" de PRODUCTOS */
+  transform: none;              /* Quita el centrado anterior */
+  background-color: var(--azul-ultramar, #2A2A58);
+  min-width: 260px;
+  border-radius: 0 0 8px 8px;
+  padding: 8px 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 1100;
+  border-top: 2px solid var(--rojo-principal, #EE353D);
+}
+
+/* Al hacer hover */
+.nav-item-dropdown:hover .products-dropdown-menu {
+  display: block;
+  animation: fadeInNav 0.2s ease-in-out;
+}
+
+/* Animación de entrada fluida */
+@keyframes fadeInNav {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Opciones de la lista */
+.products-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 9px 18px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.products-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  padding-left: 22px; /* Pequeño desplazamiento interactivo */
+}
+
+/* ==========================================================
+   COMPENSACIÓN NAVBAR FIJO EN VISTAS Y SECCIÓN PRODUCTOS
+   ========================================================== */
+
+/* 1. Si estás en la vista/ruta dedicada de productos */
+.products-page-container,
+.products-section-wrapper {
+  padding-top: 100px !important; /* Espacio para que respire abajo del navbar */
+}
+
+/* 2. Scroll margin para que el scrollIntoView no tape el título */
+#productos,
+.product-family-section {
+  scroll-margin-top: 130px;
+}
+
+@media (max-width: 768px) {
+  .products-page-container {
+    padding-top: 0 !important;
+  }
+
+  .products-page-container section {
+    padding-top: 95px !important; /* Da el margen exacto para que la línea roja quede visible y despegada */
+  }
+
+  .products-page-container .container,
+  .products-page-container .container-fluid {
+    padding-top: 0 !important;
+  }
+}

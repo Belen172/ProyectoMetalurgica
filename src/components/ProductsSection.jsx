@@ -67,9 +67,11 @@ export const ProductsSection = () => {
           >
             Productos
           </h2>
-          <p className="text-muted lead mb-0" style={{ fontSize: '1.05rem', maxWidth: '560px' }}>
+          
+          {/*  <p className="text-muted lead mb-0" style={{ fontSize: '1.05rem', maxWidth: '560px' }}>
             Desarrollamos piezas y componentes de alta calidad, adaptados a las necesidades de cada industria.
-          </p>
+          </p> */}
+          
         </div>
 
         {/* Grilla de las 6 familias */}

@@ -6,7 +6,7 @@ export const EngineeringSection = () => {
   return (
     <section className="py-5 bg-white overflow-hidden">
       <Container fluid className="px-4 px-md-5 my-md-4">
-        <Row className="align-items-center gy-5">
+        <Row className="align-items-center g-4 justify-content-between">
           <Col lg={5} className="text-start d-flex flex-column align-items-start">
             {/* Línea roja acento alineada a la izquierda */}
             <div 
@@ -43,13 +43,12 @@ export const EngineeringSection = () => {
           </Col>
 
           {/* Columna de Imagen con el corte del Isotipo */}
-          <Col lg={7}>
-            <div className="soltermann-cut-container shadow-lg">
+          <Col lg={7} xl={7} className="d-flex justify-content-end">
+            <div className="engineering-img-container">
               <img 
-                src="/alemites.jpeg"
-                alt="Ingeniería Mecanizada Soltermann" 
-                className="w-100 d-block" 
-                style={{ maxHeight: '480px', objectFit: 'cover' }}
+                src="/alemites.jpeg" 
+                alt="Ingeniería detrás de cada pieza" 
+                className="engineering-img"
               />
             </div>
           </Col>

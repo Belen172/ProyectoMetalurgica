@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+// Lista de familias institucionales
+const PRODUCT_FAMILIES = [
+  { id: 'alemites-pulgadas', name: 'Alemites Rosca en Pulgadas' },
+  { id: 'alemites-metrica', name: 'Alemites Rosca Métrica' },
+  { id: 'cuplas', name: 'Cuplas Roscadas' },
+  { id: 'especiales', name: 'Alemites Especiales' },
+  { id: 'mecanizado-plano', name: 'Mecanizado CNC' },
+  { id: 'aire-comprimido', name: 'Aire Comprimido' },
+];
+
 export const Navbar = ({ onOpenContact }) => {
   const [activeSection, setActiveSection] = useState('inicio');
   const location = useLocation();
@@ -36,7 +46,7 @@ export const Navbar = ({ onOpenContact }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  // Manejador inteligente de navegación entre rutas y secciones
+  // Manejador de navegación general (Inicio / Nosotros / Productos general)
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
 
@@ -48,7 +58,6 @@ export const Navbar = ({ onOpenContact }) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
-      // Si estamos en /productos/:familyId, vamos a la raíz y hacemos scroll
       navigate('/');
       setTimeout(() => {
         const element = document.getElementById(targetId);
@@ -58,6 +67,20 @@ export const Navbar = ({ onOpenContact }) => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }, 100);
+    }
+  };
+
+  // Manejador al hacer click en una familia específica del dropdown
+  const handleFamilyClick = (familyId) => {
+    // Opción A: Si manejás rutas dedicadas tipo "/productos/:id"
+    navigate(`/productos/${familyId}`);
+
+    // Opción B: Si las familias están dentro del home en la sección #productos
+    if (location.pathname === '/') {
+      const element = document.getElementById('productos');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -80,7 +103,7 @@ export const Navbar = ({ onOpenContact }) => {
           </a>
         </div>
 
-        {/* NIVEL 2: Pancita Azul con los Botones */}
+        {/* NIVEL 2: Barra Azul con los Botones */}
         <div className="capsule-nav-container">
           <Nav className="d-flex flex-row flex-nowrap align-items-center justify-content-center m-0 p-0">
             <Nav.Link 
@@ -99,15 +122,32 @@ export const Navbar = ({ onOpenContact }) => {
               NOSOTROS
             </Nav.Link>
             
-            <Nav.Link 
-              href="#productos" 
-              onClick={(e) => handleNavClick(e, 'productos')}
-              className={`capsule-nav-link ${activeSection === 'productos' ? 'active' : ''}`}
-            >
-              PRODUCTOS
-            </Nav.Link>
+            {/* ÍTEM PRODUCTOS CON DROPDOWN EN HOVER */}
+            <div className="nav-item-dropdown">
+              <Nav.Link 
+                href="#productos" 
+                onClick={(e) => handleNavClick(e, 'productos')}
+                className={`capsule-nav-link ${activeSection === 'productos' ? 'active' : ''}`}
+              >
+                PRODUCTOS
+              </Nav.Link>
+
+              {/* Menú Flotante de Categorías */}
+              <div className="products-dropdown-menu shadow-lg">
+                {PRODUCT_FAMILIES.map((family) => (
+                  <button
+                    key={family.id}
+                    type="button"
+                    className="products-dropdown-item"
+                    onClick={() => handleFamilyClick(family.id)}
+                  >
+                    {family.name}
+                  </button>
+                ))}
+              </div>
+            </div>
             
-            {/* Botón de Contacto que abre el Modal */}
+            {/* Botón de Contacto */}
             <Nav.Link 
               as="button"
               onClick={onOpenContact} 
