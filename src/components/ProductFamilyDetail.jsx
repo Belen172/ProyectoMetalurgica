@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table } from 'react-bootstrap';
-import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt, FaWhatsapp } from 'react-icons/fa';
+import { DoubleProductTable } from './DoubleProductTable';
 
 export const allFamilies = [
   { id: 'alemites-pulgadas', title: 'Alemites Rosca en Pulgadas', color: '#2A2A58' },
   { id: 'alemites-metrica', title: 'Alemites Rosca Métrica', color: '#37418E' },
-  { id: 'cuplas', title: 'Cuplas Roscadas', color: '#EE353D' },
   { id: 'especiales', title: 'Alemites Especiales', color: '#9D2E35' },
-  { id: 'mecanizado-plano', title: 'Mecanizado CNC', color: '#F68B34' },
-  { id: 'aire-comprimido', title: 'Aire Comprimido', color: '#009ADC' }
+  { id: 'cuplas', title: 'Cuplas Roscadas', color: '#EE353D' },
+  { id: 'aire-comprimido', title: 'Aire Comprimido', color: '#009ADC' },
+  { id: 'mecanizado-plano', title: 'Servicio de Mecanizado', color: '#F68B34' },
 ];
 
 // Base de datos de productos por familia
@@ -207,7 +208,7 @@ const familiesDatabase = {
 
   // 5. SERVICIO MECANIZADO SEGÚN PLANO
   'mecanizado-plano': {
-    title: 'Servicio Mecanizado CNC',
+    title: 'Servicio de Mecanizado',
     color: '#F68B34',
     tipo: 'servicio',
     pdf: '/catalogos/ficha-mecanizado-cnc.pdf',
@@ -427,9 +428,9 @@ export const ProductFamilyDetail = () => {
 
   return (
     <div className="products-page-container">
-      {/* Agregamos pt-5 y pt-lg-4 para empujar el contenido abajo del navbar en mobile */}
       <section className="bg-light min-vh-100 pb-4">
         <Container fluid className="px-4 px-md-5 py-2">
+          
           {/* ENCABEZADO */}
           <div className="mb-4 text-start pt-2">
             <div 
@@ -450,11 +451,6 @@ export const ProductFamilyDetail = () => {
             >
               Productos
             </h2>
-            
-            {/*  <p className="text-muted lead mb-0" style={{ fontSize: '1.05rem', maxWidth: '560px' }}>
-              Desarrollamos piezas y componentes de alta calidad, adaptados a las necesidades de cada industria.
-            </p> */}
-            
           </div>
 
           {/* SELECTOR SUPERIOR DE LAS 6 FAMILIAS */}
@@ -508,130 +504,312 @@ export const ProductFamilyDetail = () => {
             )}
           </div>
 
-          {/* RENDERIZADO DINÁMICO SEGÚN EL TIPO DE FAMILIA */}
+          {/* RENDERIZADO DINÁMICO */}
 
           {/* CASO 1: VISTA DE SERVICIO DE MECANIZADO CNC */}
           {currentFamily.tipo === 'servicio' && (
-            <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm">
-              <Row className="align-items-center g-4">
-                <Col lg={7}>
-                  <span className="badge bg-warning text-dark px-3 py-2 mb-3 fw-bold text-uppercase">
-                    {currentFamily.contenido.subtitulo}
-                  </span>
-                  <h2 className="fw-black mb-4" style={{ color: 'var(--azul-ultramar)' }}>
-                    {currentFamily.contenido.titulo}
-                  </h2>
+            <div className="d-flex flex-column gap-4">
+              
+              {/* BLOQUE PRINCIPAL: PRESENTACIÓN + VIDEO + CONTACTO */}
+              <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm text-start">
+                <Row className="align-items-center g-4 g-lg-5">
                   
-                  <div className="d-flex flex-column gap-3 mb-4">
-                    {currentFamily.contenido.puntos.map((punto, pIdx) => (
-                      <div key={pIdx} className="d-flex align-items-start gap-3">
-                        <div className="rounded-circle p-1 mt-1 bg-light text-primary border d-flex align-items-center justify-content-center">
-                          <FaCheck size={14} style={{ color: currentFamily.color }} />
+                  {/* Columna Izquierda */}
+                  <Col lg={7} className="text-start">
+                    
+                    {/* Badge Naranja */}
+                    <span 
+                      className="badge text-white px-3 py-2 mb-3 fw-bold text-uppercase d-inline-block"
+                      style={{ backgroundColor: currentFamily.color, fontSize: '0.8rem', letterSpacing: '0.5px' }}
+                    >
+                      {currentFamily.contenido.subtitulo}
+                    </span>
+                    
+                    {/* Título Principal */}
+                    <h2 
+                      className="fw-bold mb-4 text-start" 
+                      style={{ 
+                        color: 'var(--azul-ultramar)', 
+                        fontWeight: '800',
+                        fontSize: '1.85rem',
+                        letterSpacing: '-0.3px'
+                      }}
+                    >
+                      {currentFamily.contenido.titulo}
+                    </h2>
+                    
+                    {/* Lista de características */}
+                    <div className="d-flex flex-column gap-3 mb-4">
+                      {currentFamily.contenido.puntos.map((punto, pIdx) => (
+                        <div key={pIdx} className="text-start">
+                          <h6 className="fw-bold mb-1 text-dark" style={{ fontSize: '1rem' }}>
+                            {punto.titulo}
+                          </h6>
+                          <p className="text-secondary mb-0 small" style={{ fontSize: '0.88rem' }}>
+                            {punto.detalle}
+                          </p>
                         </div>
-                        <div>
-                          <h6 className="fw-bold mb-1 text-dark">{punto.titulo}</h6>
-                          <p className="text-secondary mb-0 small">{punto.detalle}</p>
-                        </div>
+                      ))}
+                    </div>
+
+                    {/* Tarjetas Institucionales */}
+                    <div className="pt-3 border-top mt-4">
+                      <Row className="g-3">
+                        <Col xs={12} sm={6}>
+                          <div 
+                            className="d-flex align-items-center gap-3 p-2 p-md-3 bg-white rounded shadow-sm border"
+                            style={{ borderLeft: '4px solid var(--azul-ultramar, #2A2A58)' }}
+                          >
+                            <img 
+                              src="/mejora-continua.png" 
+                              alt="Mejora Continua" 
+                              style={{ width: '42px', height: '42px', objectFit: 'contain', flexShrink: 0 }}
+                              onError={(e) => { e.target.src = 'https://placehold.co/42?text=ISO'; }}
+                            />
+                            <div className="text-start">
+                              <h6 className="fw-bold mb-0 text-uppercase" style={{ color: 'var(--azul-ultramar, #2A2A58)', fontSize: '0.82rem' }}>
+                                Mejora Continua
+                              </h6>
+                              <p className="text-secondary mb-0 small" style={{ fontSize: '0.74rem', lineHeight: '1.2' }}>
+                                Optimización constante en cada proceso productivo.
+                              </p>
+                            </div>
+                          </div>
+                        </Col>
+
+                        <Col xs={12} sm={6}>
+                          <div 
+                            className="d-flex align-items-center gap-3 p-2 p-md-3 bg-white rounded shadow-sm border"
+                            style={{ borderLeft: '4px solid var(--azul-ultramar, #2A2A58)' }}
+                          >
+                            <img 
+                              src="/reciclado.png" 
+                              alt="Compromiso Ambiental" 
+                              style={{ width: '42px', height: '42px', objectFit: 'contain', flexShrink: 0 }}
+                              onError={(e) => { e.target.src = 'https://placehold.co/42?text=ECO'; }}
+                            />
+                            <div className="text-start">
+                              <h6 className="fw-bold mb-0 text-uppercase" style={{ color: 'var(--azul-ultramar, #2A2A58)', fontSize: '0.82rem' }}>
+                                Compromiso Ambiental
+                              </h6>
+                              <p className="text-secondary mb-0 small" style={{ fontSize: '0.74rem', lineHeight: '1.2' }}>
+                                Reutilización y reciclado responsable.
+                              </p>
+                            </div>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+
+                    {/* Botón WhatsApp: Cotización de Plano */}
+                    <div className="mt-4 pt-2">
+                      <a
+                        href="https://wa.me/5493492419267?text=Hola,%20quisiera%20enviar%20un%20plano%20para%20cotizaci%C3%B3n%20de%20mecanizado."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn d-inline-flex align-items-center gap-2 px-4 py-2 text-white fw-bold shadow-sm"
+                        style={{ 
+                          backgroundColor: '#25D366', 
+                          borderRadius: '8px',
+                          fontSize: '0.92rem',
+                          letterSpacing: '0.3px',
+                          border: 'none'
+                        }}
+                      >
+                        <FaWhatsapp size={20} />
+                        <span>Enviar plano para cotización</span>
+                      </a>
+                    </div>
+
+                  </Col>
+
+                  {/* Columna Derecha: Video + Texto de Calidad */}
+                  <Col lg={5} className="text-start">
+                    <div className="p-3 p-md-4 bg-light rounded-3 border">
+                      <div 
+                        className="rounded overflow-hidden shadow-sm mb-3 bg-dark d-flex align-items-center justify-content-center"
+                        style={{ maxHeight: '250px' }}
+                      >
+                        <video 
+                          src="/productos/video-cnc.mp4" 
+                          autoPlay 
+                          loop 
+                          muted 
+                          playsInline
+                          controls
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        >
+                          Tu navegador no soporta la reproducción de video.
+                        </video>
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="pt-3 border-top mt-4 d-flex flex-column flex-sm-row gap-3">
-                    <div className="small fw-bold text-uppercase text-secondary">
-                      ✔ {currentFamily.contenido.garantia.item1}
+                      <div className="text-center px-2">
+                        <h6 className="fw-bold text-dark mb-1" style={{ fontSize: '0.92rem' }}>
+                          Calidad garantizada en cada proyecto.
+                        </h6>
+                        <p className="text-secondary small mb-0" style={{ fontSize: '0.84rem', lineHeight: '1.45' }}>
+                          Precisión, tecnología y compromiso para la industria mediante desarrollo sobre plano y especificaciones técnicas.
+                        </p>
+                      </div>
                     </div>
-                    <div className="small fw-bold text-uppercase text-secondary">
-                      ✔ {currentFamily.contenido.garantia.item2}
-                    </div>
-                  </div>
-                </Col>
+                  </Col>
 
-                <Col lg={5} className="text-center">
-                  <div className="p-4 bg-light rounded-3 border">
-                    <FaDraftingCompass size={80} style={{ color: currentFamily.color, opacity: 0.9 }} className="mb-3" />
-                    <h5 className="fw-bold text-dark">Planos y Especificaciones Técnicas</h5>
-                    <p className="text-muted small mb-0">Fabricación en serie y mecanizado de alta precisión.</p>
-                  </div>
-                </Col>
-              </Row>
+                </Row>
+              </div>
+
+              {/* BLOQUE DE PREGUNTAS FRECUENTES (FAQ) */}
+              <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm text-start">
+                <h4 className="fw-bold mb-4" style={{ color: 'var(--azul-ultramar)' }}>
+                  Preguntas Frecuentes sobre Mecanizado
+                </h4>
+                <Row className="g-3">
+                  
+                  <Col xs={12} md={4}>
+                    <div className="p-3 bg-light rounded-3 border h-100">
+                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
+                        ¿Procesan piezas torneadas bajo plano o muestra?
+                      </h6>
+                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
+                        Sí, trabajamos directamente con planos constructivos (PDF/CAD) o desarrollamos la ingeniería inversa a partir de una muestra física.
+                      </p>
+                    </div>
+                  </Col>
+
+                  <Col xs={12} md={4}>
+                    <div className="p-3 bg-light rounded-3 border h-100">
+                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
+                        ¿Cómo aseguran la calidad dimensional de las series?
+                      </h6>
+                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
+                        Monitoreamos el proceso de torneado en nuestro laboratorio metrológico equipado con MMC (Máquina de Medición por Coordenadas).
+                      </p>
+                    </div>
+                  </Col>
+
+                  <Col xs={12} md={4}>
+                    <div className="p-3 bg-light rounded-3 border h-100">
+                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
+                        ¿Atienden pedidos para petróleo, minería y agro?
+                      </h6>
+                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
+                        Sí, estamos enfocados en la fabricación de piezas críticas de tornería para dichos sectores en Buenos Aires y todo el país.
+                      </p>
+                    </div>
+                  </Col>
+
+                </Row>
+              </div>
+
             </div>
           )}
 
-          {/* CASO 2: TABLA DE CUPLAS */}
+          {/* CASO 2: TABLA DE CUPLAS (CON PLANO TÉCNICO Y FOTO REAL) */}
           {currentFamily.tipo === 'cuplas' && (
-            <div className="d-flex flex-column gap-4">
+            <div className="d-flex flex-column gap-5">
               {currentFamily.subfamilias.map((sub, idx) => (
                 <div key={idx} className="subfamily-container">
-                  <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
+                  {/* Cabecera roja de la subfamilia */}
+                  <div 
+                    className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase" 
+                    style={{ backgroundColor: currentFamily.color, fontSize: '0.95rem', letterSpacing: '0.5px' }}
+                  >
                     {sub.nombre}
                   </div>
-                  <Table responsive hover className="product-table mb-0 align-middle text-center">
-                    <thead>
-                      <tr>
-                        <th className="text-start">Denominación</th>
-                        <th>Código</th>
-                        <th>ØH (mm)</th>
-                        <th>Ø1 Ø2 Rosca</th>
-                        <th>L (mm)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {sub.productos.map((prod, pIdx) => (
-                        <tr key={pIdx}>
-                          <td className="text-start fw-semibold text-dark">{prod.denominacion}</td>
-                          <td className="fw-bold text-primary">{prod.codigo}</td>
-                          <td className="text-secondary">{prod.diametroH}</td>
-                          <td className="text-secondary">{prod.rosca}</td>
-                          <td className="text-secondary">{prod.largo}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
+
+                  {/* Contenedor principal */}
+                  <div className="bg-white p-3 border border-top-0 rounded-bottom shadow-sm">
+                    <Row className="g-3 align-items-center">
+                      
+                      {/* Columna Izquierda: Imagen Única y Destacada */}
+                      <Col xs={12} lg={4} xl={3}>
+                        <div className="d-flex flex-column align-items-center justify-content-center p-3 bg-light rounded border h-100" style={{ minHeight: '340px' }}>
+                          
+                          {idx === 0 ? (
+                            /* 1. Subfamilia 1: Plano Técnico Estático con Cotas */
+                            <div className="text-center w-100">
+                              <div className="bg-white p-3 border rounded shadow-sm d-flex align-items-center justify-content-center">
+                                <img 
+                                  src="/productos/cuplas-plano.png" 
+                                  alt="Plano Técnico Cupla" 
+                                  style={{ 
+                                    maxHeight: '260px', 
+                                    maxWidth: '100%', 
+                                    objectFit: 'contain',
+                                    display: 'block',
+                                    margin: '0 auto'
+                                  }}
+                                />
+                              </div>
+                              {/* <small className="d-block text-muted mt-2 fw-semibold" style={{ fontSize: '0.75rem' }}>
+                                Plano de cotas (ØH, Ø1, Ø2, L)
+                              </small> */}
+                            </div>
+                          ) : (
+                            /* 2. Subfamilia 2: Foto Real con Zoom */
+                            <div className="text-center w-100">
+                              <div className="cupla-zoom-wrapper p-3 border shadow-sm" style={{ backgroundColor: '#fff', borderRadius: '8px' }}>
+                                <img 
+                                  src="/productos/cuplas-roscadas.png" 
+                                  alt="Cuplas Roscadas" 
+                                  className="cupla-zoom-img"
+                                  style={{ maxHeight: '220px', maxWidth: '100%' }}
+                                />
+                              </div>
+                              {/* <small className="d-block text-muted mt-2 fw-semibold" style={{ fontSize: '0.75rem' }}>
+                                Pasa el cursor para ampliar
+                              </small> */}
+                            </div>
+                          )}
+
+                        </div>
+                      </Col>
+
+                      {/* Columna Derecha: Tabla alineada a la izquierda */}
+                      <Col xs={12} lg={8} xl={9}>
+                        <div className="table-responsive rounded">
+                          <Table hover className="align-middle mb-0 custom-product-table">
+                            <thead className="table-light text-secondary text-uppercase small">
+                              <tr>
+                                <th style={{ width: '15%' }} className="text-start">Código</th>
+                                <th style={{ width: '35%' }} className="text-start">Descripción</th>
+                                <th style={{ width: '15%' }} className="text-start">ØH (mm)</th>
+                                <th style={{ width: '23%' }} className="text-start">Ø1 Ø2 Rosca</th>
+                                <th style={{ width: '12%' }} className="text-start">L (mm)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {sub.productos.map((prod, pIdx) => (
+                                <tr key={pIdx}>
+                                  <td className="fw-bold text-dark text-start py-2">{prod.codigo}</td>
+                                  <td className="text-secondary small text-start py-2">{prod.denominacion}</td>
+                                  <td className="text-secondary small text-start py-2">{prod.diametroH}</td>
+                                  <td className="text-secondary small text-start py-2">{prod.rosca}</td>
+                                  <td className="text-secondary small text-start py-2">{prod.largo}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Col>
+
+                    </Row>
+                  </div>
                 </div>
               ))}
             </div>
           )}
 
-          {/* CASO 3: CATÁLOGO ESTÁNDAR (CON ZOOM MEJORADO) */}
+          {/* CASO 3: CATÁLOGO ESTÁNDAR (IMPLEMENTADO CON DOUBLE PRODUCT TABLE) */}
           {currentFamily.tipo === 'catalogo' && (
-            <div className="d-flex flex-column gap-4">
+            <div className="d-flex flex-column gap-3">
               {currentFamily.subfamilias.map((sub, idx) => (
-                <div key={idx} className="subfamily-container">
-                  <div className="subfamily-header" style={{ backgroundColor: currentFamily.color }}>
-                    {sub.nombre}
-                  </div>
-                  <Table responsive hover className="product-table mb-0 align-middle">
-                    <thead>
-                      <tr>
-                        <th style={{ width: '130px' }} className="text-center">Producto</th>
-                        <th style={{ width: '140px' }}>Código</th>
-                        <th>Descripción</th>
-                        {sub.columnas.includes('Compatibilidad') && <th>Compatibilidad</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {sub.productos.map((prod, pIdx) => (
-                        <tr key={pIdx}>
-                          <td className="text-center">
-                            <div className="product-img-wrapper">
-                              <img 
-                                src={prod.foto} 
-                                alt={prod.codigo} 
-                                className="product-img-cell"
-                                onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
-                              />
-                            </div>
-                          </td>
-                          <td className="fw-bold text-dark">{prod.codigo}</td>
-                          <td className="text-secondary">{prod.descripcion}</td>
-                          {prod.compatibilidad && (
-                            <td className="text-muted small">{prod.compatibilidad}</td>
-                          )}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </div>
+                <DoubleProductTable
+                  key={idx}
+                  title={sub.nombre}
+                  products={sub.productos}
+                  headerColor={currentFamily.color}
+                  hasCompatibility={sub.columnas?.includes('Compatibilidad')}
+                />
               ))}
             </div>
           )}

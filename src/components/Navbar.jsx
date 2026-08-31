@@ -6,10 +6,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const PRODUCT_FAMILIES = [
   { id: 'alemites-pulgadas', name: 'Alemites Rosca en Pulgadas' },
   { id: 'alemites-metrica', name: 'Alemites Rosca Métrica' },
-  { id: 'cuplas', name: 'Cuplas Roscadas' },
   { id: 'especiales', name: 'Alemites Especiales' },
-  { id: 'mecanizado-plano', name: 'Mecanizado CNC' },
+  { id: 'cuplas', name: 'Cuplas Roscadas' },
   { id: 'aire-comprimido', name: 'Aire Comprimido' },
+  { id: 'mecanizado-plano', name: 'Mecanizado CNC' },
 ];
 
 export const Navbar = ({ onOpenContact }) => {

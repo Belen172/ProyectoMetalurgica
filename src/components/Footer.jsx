@@ -8,42 +8,58 @@ export const Footer = () => {
       <Container fluid className="p-0">
         <Row className="g-0 align-items-center">
           
-          {/* PRIMERA COLUMNA: Logo, texto en 2 renglones y redes (Fondo blanco) */}
-          <Col lg={4} className="p-4 p-xl-4 d-flex flex-column align-items-center justify-content-center text-center">
-            <div className="mb-3">
-              <img 
-                src="/logo.png" 
-                alt="Metalúrgica Soltermann" 
-                style={{ maxHeight: '52px', width: 'auto' }} 
+          {/* PRIMERA COLUMNA: Línea roja, Logo, descripción y redes con fondo gris claro */}
+          <Col lg={4} className="d-flex flex-column justify-content-start h-100 pt-3 pb-4">
+            
+            {/* Línea roja pegada al borde superior y alineada con el margen de PRODUCTOS */}
+            <div className="w-100 text-start px-4 px-md-5 mb-4 mb-lg-5">
+              <div 
+                style={{ 
+                  width: '45px', 
+                  height: '4px', 
+                  backgroundColor: 'var(--rojo-principal, #EE353D)', 
+                  borderRadius: '2px'
+                }} 
               />
             </div>
 
-            {/* Texto forzado exactamente a 2 renglones */}
-            <p className="fw-medium mb-3 text-secondary text-center" style={{ fontSize: '0.85rem', lineHeight: '1.4' }}>
-              <span className="d-block text-nowrap">Expertos en alemites, cuplas, servicio de mecanizado</span>
-              <span className="d-block text-nowrap">y accesorios para aire comprimido.</span>
-            </p>
-             
-            <div className="d-flex justify-content-center gap-3 fs-5">
-              <a 
-                href="https://www.instagram.com/metalurgica.soltermann/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ color: 'var(--azul-ultramar)' }}
-                className="opacity-85 hover-opacity-100"
-              >
-                <FaInstagram />
-              </a>
-              <a 
-                href="https://www.linkedin.com/company/metal%C3%BArgica-soltermann/home/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ color: 'var(--azul-ultramar)' }}
-                className="opacity-85 hover-opacity-100"
-              >
-                <FaLinkedin />
-              </a>
+            {/* Logo, texto y redes */}
+            <div className="d-flex flex-column align-items-center justify-content-center text-center px-3 mt-auto mb-auto">
+              <div className="mb-3">
+                <img 
+                  src="/logo.png" 
+                  alt="Metalúrgica Soltermann" 
+                  style={{ maxHeight: '52px', width: 'auto' }} 
+                />
+              </div>
+
+              <p className="fw-medium mb-3 text-secondary text-center" style={{ fontSize: '0.85rem', lineHeight: '1.4' }}>
+                <span className="d-block text-nowrap">Expertos en alemites, cuplas, servicio de mecanizado</span>
+                <span className="d-block text-nowrap">y accesorios para aire comprimido.</span>
+              </p>
+                
+              <div className="d-flex justify-content-center gap-3 fs-5">
+                <a 
+                  href="https://www.instagram.com/metalurgica.soltermann/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: 'var(--azul-ultramar)' }}
+                  className="opacity-85 hover-opacity-100"
+                >
+                  <FaInstagram />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/metal%C3%BArgica-soltermann/home/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: 'var(--azul-ultramar)' }}
+                  className="opacity-85 hover-opacity-100"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
             </div>
+
           </Col>
 
           {/* SEGUNDA Y TERCERA COLUMNA: Bloque azul con Contacto, Ubicación y Copyright */}
@@ -51,8 +67,7 @@ export const Footer = () => {
             <div className="footer-soltermann-blue text-white">
               <Row className="gy-4 align-items-start justify-content-center">
                 
-                {/* CONTACTO CENTRADO */}
-                {/* CONTACTO CENTRADO (Con mejor separación vertical y más abajo) */}
+                {/* CONTACTO */}
                 <Col md={6} className="d-flex flex-column align-items-center text-center">
                   <h5 className="fw-bold text-uppercase mb-2 text-white">Contacto</h5>
                   
@@ -76,7 +91,7 @@ export const Footer = () => {
                   </ul>
                 </Col>
 
-                {/* UBICACIÓN Y MAPA CENTRADOS */}
+                {/* UBICACIÓN Y MAPA */}
                 <Col md={6} className="d-flex flex-column align-items-center text-center">
                   <h5 className="fw-bold text-uppercase mb-3 text-white">Ubicación</h5>
                   
@@ -93,12 +108,10 @@ export const Footer = () => {
 
               </Row>
 
-              {/* COPYRIGHT INTEGRADO */}
+              {/* COPYRIGHT */}
               <hr className="my-3 text-white opacity-25" />
               <Row>
-                <Col 
-                  className="footer-copyright small opacity-75 mb-1 px-3" 
-                >
+                <Col className="footer-copyright small opacity-75 mb-1 px-3">
                   © 2026 Metalúrgica Soltermann. Todos los derechos reservados.
                 </Col>
               </Row>

@@ -17,29 +17,29 @@ const productFamilies = [
     link: '/productos/alemites-metrica'
   },
   {
-    id: 'cuplas',
-    title: 'Cuplas Roscadas',
-    color: '#EE353D',
-    link: '/productos/cuplas'
-  },
-  {
     id: 'especiales',
     title: 'Alemites Especiales',
     color: '#9D2E35',
     link: '/productos/especiales'
   },
   {
-    id: 'mecanizado-plano',
-    title: 'Mecanizado CNC',
-    color: '#F68B34',
-    link: '/productos/mecanizado-plano'
+    id: 'cuplas',
+    title: 'Cuplas Roscadas',
+    color: '#EE353D',
+    link: '/productos/cuplas'
   },
   {
     id: 'aire-comprimido',
     title: 'Aire Comprimido',
     color: '#009ADC',
     link: '/productos/aire-comprimido'
-  }
+  },
+  {
+    id: 'mecanizado-plano',
+    title: 'Servicio de Mecanizado',
+    color: '#F68B34',
+    link: '/productos/mecanizado-plano'
+  },
 ];
 
 export const ProductsSection = () => {
