@@ -804,49 +804,54 @@ section[id] {
 }
 
 /* ==========================================================
-   FOOTER SOLTERMANN (INCLINACIÓN A 45° Y COPYRIGHT CENTRADO)
+   FOOTER SOLTERMANN CON FONDO GRIS CONTINUO REAL
    ========================================================== */
-
-.footer-soltermann-wrapper {
-  background-color: var(--bs-light, #f8f9fa); /* Mismo gris claro de las secciones */
-  position: relative;
-  border-top: none !important; /* Elimina la línea azul */
-}
-
-/* Bloque azul: Inclinación exacta a 45° que empata con la foto y el logo */
-.footer-soltermann-blue {
-  background-color: var(--azul-ultramar, #2A2A58);
-  color: #ffffff;
-  position: relative;
-  border-radius: 0 !important;
-  margin-left: -80px;            /* Desplaza el fondo para ganar espacio */
-  padding: 40px 30px 20px 140px; /* Padding izquierdo para proteger el texto de la diagonal */
+   .footer-soltermann-wrapper {
+    background-color: #f0f2f5 !important; /* Gris institucional visible de las secciones */
+    position: relative;
+    width: 100%;
+    border-top: none !important;
+  }
   
-  /* Desplazamiento horizontal ampliado a 260px para lograr los 45° reales */
-  clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
-  -webkit-clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
-}
-
-/* Centrado visual del copyright */
-.footer-copyright {
-  text-align: center;
-  width: 100%;
-  margin-left: -200px; /* Desplazamiento más marcado a la izquierda */
-}
-
-/* En celulares se apila normal */
-@media (max-width: 991.98px) {
+  /* Columna izquierda del logo: asegura el fondo gris en todas las páginas */
+  .footer-left-col {
+    background-color: #f0f2f5 !important;
+  }
+  
+  /* Bloque azul: Inclinación exacta a 45° que empata con la foto y el logo */
   .footer-soltermann-blue {
-    margin-left: 0;
-    padding: 35px 20px 20px 20px;
-    clip-path: none !important;
-    -webkit-clip-path: none !important;
+    background-color: var(--azul-ultramar, #2A2A58) !important;
+    color: #ffffff;
+    position: relative;
+    border-radius: 0 !important;
+    margin-left: -80px;            /* Desplaza el fondo para ganar espacio */
+    padding: 40px 30px 20px 140px; /* Padding izquierdo para proteger el texto de la diagonal */
+    
+    /* Desplazamiento horizontal a 260px para lograr los 45° */
+    clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
+    -webkit-clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
   }
   
+  /* Centrado visual del copyright */
   .footer-copyright {
-    margin-left: 0;
+    text-align: center;
+    width: 100%;
+    margin-left: -200px;
   }
-}
+  
+  /* Responsive en pantallas chicas */
+  @media (max-width: 991.98px) {
+    .footer-soltermann-blue {
+      margin-left: 0;
+      padding: 35px 20px 20px 20px;
+      clip-path: none !important;
+      -webkit-clip-path: none !important;
+    }
+    
+    .footer-copyright {
+      margin-left: 0;
+    }
+  }
 
 /* ==========================================================
    DROPDOWN HOVER DE PRODUCTOS
@@ -970,22 +975,83 @@ section[id] {
 /* ==========================================================
    ZOOM HOVER PARA IMÁGENES DE CUPLAS
    ========================================================== */
-   .cupla-zoom-wrapper {
-    position: relative;
-    overflow: hidden;
-    background-color: #ffffff;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: zoom-in;
-  }
-  
-  .cupla-zoom-img {
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    object-fit: contain;
-  }
-  
-  .cupla-zoom-wrapper:hover .cupla-zoom-img {
-    transform: scale(1.6); /* Mismo factor de zoom interactivo */
-  }
+.cupla-zoom-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+}
+
+.cupla-zoom-img {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-fit: contain;
+}
+
+.cupla-zoom-wrapper:hover .cupla-zoom-img {
+  transform: scale(1.6); /* Mismo factor de zoom interactivo */
+}
+
+/* ==========================================================
+   PREVIEW FLOTANTE EN HOVER (ZOOM LATERAL SIN SOLAPAMIENTO)
+   ========================================================== */
+
+/* 1. Cuando se pasa el mouse por la fila, esa fila pasa al frente de toda la tabla */
+.custom-product-table tbody tr:hover {
+  position: relative;
+  z-index: 99999 !important;
+}
+
+/* 2. Celda del producto con contexto relativo limpio */
+.custom-product-table td.product-cell-zoom {
+  position: relative;
+  overflow: visible !important;
+}
+
+.product-preview-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Popover flotante con z-index alto y fondo blanco sólido */
+.product-preview-popover {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 115%;                  /* Desplazamiento a la derecha de la miniatura */
+  transform: translateY(-50%);
+  background-color: #ffffff !important;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #d0d7de;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28) !important;
+  z-index: 100000 !important;   /* Garantiza que esté por encima de texto y códigos */
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-preview-popover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mostrar al hacer hover */
+.product-preview-container:hover .product-preview-popover {
+  display: flex;
+}
+
+/* En las últimas 2 o 3 filas se despliega hacia arriba */
+.custom-product-table tbody tr:nth-last-child(-n+3) .product-preview-popover {
+  top: auto;
+  bottom: 10%;
+  transform: translateY(0);
+}

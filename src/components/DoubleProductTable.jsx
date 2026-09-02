@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
 
-// Subcomponente de una tabla individual
+// Subcomponente de una tabla individual con Zoom Flotante Lateral
 const SingleTable = ({ items, hasCompatibility }) => (
-  <div className="table-responsive bg-white rounded shadow-sm">
+  <div className="table-responsive bg-white rounded shadow-sm" style={{ overflow: 'visible' }}>
     <Table hover className="align-middle mb-0 custom-product-table">
       <thead className="table-light text-secondary text-uppercase small">
         <tr>
@@ -16,15 +16,25 @@ const SingleTable = ({ items, hasCompatibility }) => (
       <tbody>
         {items.map((prod, index) => (
           <tr key={prod.codigo || index}>
-            <td className="text-center py-2">
-              <div className="product-img-wrapper">
+            <td className="text-center py-2 position-relative product-cell-zoom" style={{ overflow: 'visible' }}>
+              <div className="product-preview-container">
+                {/* 1. Miniatura estándar visible en la tabla */}
                 <img 
                   src={prod.foto || '/placeholder.png'} 
                   alt={prod.codigo} 
-                  className="product-img-cell"
+                  className="product-thumb-img"
                   style={{ maxHeight: '42px', maxWidth: '60px', objectFit: 'contain' }}
                   onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
                 />
+
+                {/* 2. Popover ampliado que aparece al costado en hover */}
+                <div className="product-preview-popover shadow">
+                  <img 
+                    src={prod.foto || '/placeholder.png'} 
+                    alt={`Detalle ${prod.codigo}`} 
+                    onError={(e) => { e.target.src = 'https://placehold.co/150x150?text=Pieza'; }}
+                  />
+                </div>
               </div>
             </td>
             <td className="fw-bold text-dark py-2 text-start">{prod.codigo}</td>

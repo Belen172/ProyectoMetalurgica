@@ -278,7 +278,7 @@ const familiesDatabase = {
         ]
       },
       {
-        nombre: 'Conector Rápido macho especial',
+        nombre: 'Conector Rápido macho',
         columnas: ['Producto', 'Código', 'Descripción'],
         productos: [
           { foto: '/productos/AC40-001.png', codigo: 'AC40-001', descripcion: 'Con rosca hembra 5/16 UNF' }

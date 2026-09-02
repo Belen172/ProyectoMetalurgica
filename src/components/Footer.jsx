@@ -4,12 +4,12 @@ import { FaInstagram, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaWhatsapp } from 
 
 export const Footer = () => {
   return (
-    <footer className="footer-soltermann-wrapper pt-4 pt-lg-0">
+    <footer className="footer-soltermann-wrapper pt-4 pt-lg-0" style={{ backgroundColor: '#f8f9fa' }}>
       <Container fluid className="p-0">
         <Row className="g-0 align-items-center">
           
           {/* PRIMERA COLUMNA: Línea roja, Logo, descripción y redes con fondo gris claro */}
-          <Col lg={4} className="d-flex flex-column justify-content-start h-100 pt-3 pb-4">
+          <Col lg={4} className="footer-left-col d-flex flex-column justify-content-start h-100 pt-3 pb-4">
             
             {/* Línea roja pegada al borde superior y alineada con el margen de PRODUCTOS */}
             <div className="w-100 text-start px-4 px-md-5 mb-4 mb-lg-5">
@@ -114,6 +114,31 @@ export const Footer = () => {
                 <Col className="footer-copyright small opacity-75 mb-1 px-3">
                   © 2026 Metalúrgica Soltermann. Todos los derechos reservados.
                 </Col>
+
+              {/* LOGO DE AUTOR / DESARROLLADOR ANCLADO A LA DERECHA */}
+              <div 
+                className="d-none d-md-flex align-items-center"
+                style={{
+                  position: 'absolute',
+                  right: '50px',              /* Un poco más hacia la izquierda para despegar del botón de WhatsApp */
+                  bottom: '8px',               /* Centrado con el texto de copyright */
+                  width: 'auto',
+                  zIndex: 10
+                }}
+              >
+                <img 
+                  src="/logo-dev.png" 
+                  alt="Desarrollo Web" 
+                  style={{ 
+                    maxHeight: '58px',         /* Tamaño más grande y legible */
+                    width: 'auto',
+                    objectFit: 'contain',
+                    filter: 'brightness(0) invert(1)', 
+                    opacity: 0.95
+                  }} 
+                />
+              </div>
+              
               </Row>
 
             </div>
