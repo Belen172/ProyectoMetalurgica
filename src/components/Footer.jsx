@@ -115,28 +115,46 @@ export const Footer = () => {
                   © 2026 Metalúrgica Soltermann. Todos los derechos reservados.
                 </Col>
 
-              {/* LOGO DE AUTOR / DESARROLLADOR ANCLADO A LA DERECHA */}
+              {/* LOGO DE AUTOR / DESARROLLADOR ANCLADO A LA DERECHA CON ENLACE A LINKEDIN */}
               <div 
                 className="d-none d-md-flex align-items-center"
                 style={{
                   position: 'absolute',
-                  right: '50px',              /* Un poco más hacia la izquierda para despegar del botón de WhatsApp */
-                  bottom: '8px',               /* Centrado con el texto de copyright */
+                  right: '50px',
+                  bottom: '8px',
                   width: 'auto',
                   zIndex: 10
                 }}
               >
-                <img 
-                  src="/logo-dev.png" 
-                  alt="Desarrollo Web" 
-                  style={{ 
-                    maxHeight: '58px',         /* Tamaño más grande y legible */
-                    width: 'auto',
-                    objectFit: 'contain',
-                    filter: 'brightness(0) invert(1)', 
-                    opacity: 0.95
-                  }} 
-                />
+                <a 
+                  href="https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-zbrun/" 
+                  target="_blank"  /* Abre el LinkedIn en una pestaña nueva */
+                  rel="noopener noreferrer" /* Abre el LinkedIn en una pestaña nueva */
+                  title="Desarrollado por María Belén Zbrun"
+                  style={{ display: 'inline-block', textDecoration: 'none' }}
+                >
+                  <img 
+                    src="/logo-dev.png" 
+                    alt="Perfil LinkedIn Desarrollador" 
+                    style={{ 
+                      maxHeight: '58px',
+                      width: 'auto',
+                      objectFit: 'contain',
+                      filter: 'brightness(0) invert(1)',
+                      opacity: 0.95,
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s ease, opacity 0.2s ease'
+                    }} 
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.opacity = '1';
+                      e.currentTarget.style.transform = 'scale(1.05)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.opacity = '0.9';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  />
+                </a>
               </div>
               
               </Row>

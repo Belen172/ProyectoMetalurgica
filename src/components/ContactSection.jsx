@@ -94,7 +94,7 @@ export const ContactSection = ({ show, handleClose }) => {
                     href="https://wa.me/5493492220724?text=Hola,%20quisiera%20realizar%20una%20consulta%20de%20Ventas" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-outline-success fw-bold d-flex align-items-center justify-content-between px-3 py-2 bg-white"
+                    className="btn btn-outline-success fw-bold d-flex align-items-center justify-content-between px-3 py-2"
                   >
                     <span><FaWhatsapp className="fs-5 me-2" /> Ventas</span>
                     <small>+54 9 3492 22-0724</small>
@@ -104,7 +104,7 @@ export const ContactSection = ({ show, handleClose }) => {
                     href="https://wa.me/5493492419267?text=Hola,%20quisiera%20realizar%20una%20consulta%20Técnica" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="btn btn-outline-success fw-bold d-flex align-items-center justify-content-between px-3 py-2 bg-white"
+                    className="btn btn-outline-success fw-bold d-flex align-items-center justify-content-between px-3 py-2"
                   >
                     <span><FaWhatsapp className="fs-5 me-2" /> Soporte Técnico</span>
                     <small>+54 9 3492 41-9267</small>
