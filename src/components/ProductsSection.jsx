@@ -18,7 +18,7 @@ const productFamilies = [
   },
   {
     id: 'especiales',
-    title: 'Alemites Especiales',
+    title: 'Especiales',
     color: '#9D2E35',
     link: '/productos/especiales'
   },

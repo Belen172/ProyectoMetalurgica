@@ -7,7 +7,7 @@ import { DoubleProductTable } from './DoubleProductTable';
 export const allFamilies = [
   { id: 'alemites-pulgadas', title: 'Alemites Rosca en Pulgadas', color: '#2A2A58' },
   { id: 'alemites-metrica', title: 'Alemites Rosca Métrica', color: '#37418E' },
-  { id: 'especiales', title: 'Alemites Especiales', color: '#9D2E35' },
+  { id: 'especiales', title: 'Especiales', color: '#9D2E35' },
   { id: 'cuplas', title: 'Cuplas Roscadas', color: '#EE353D' },
   { id: 'aire-comprimido', title: 'Aire Comprimido', color: '#009ADC' },
   { id: 'mecanizado-plano', title: 'Servicio de Mecanizado', color: '#F68B34' },
@@ -175,7 +175,7 @@ const familiesDatabase = {
 
   // 4. ALEMITES ESPECIALES
   'especiales': {
-    title: 'Alemites Especiales',
+    title: 'Especiales',
     color: '#9D2E35',
     tipo: 'catalogo',
     pdf: '/catalogos/catalogo-alemites-especiales.pdf',
@@ -498,7 +498,7 @@ export const ProductFamilyDetail = () => {
                 style={{ borderTopColor: currentFamily.color }}
               >
                 <FaFilePdf size={16} style={{ color: 'var(--rojo-principal)' }} />
-                <span>Descargar PDF {currentFamily.title}</span>
+                <span>Descargar Catálogo {currentFamily.title}</span>
                 <FaExternalLinkAlt size={11} className="ms-1 opacity-75" />
               </a>
             )}
@@ -510,39 +510,41 @@ export const ProductFamilyDetail = () => {
           {currentFamily.tipo === 'servicio' && (
             <div className="d-flex flex-column gap-4">
               
-              {/* BLOQUE PRINCIPAL: PRESENTACIÓN + VIDEO + CONTACTO */}
+              {/* BLOQUE PRINCIPAL: PRESENTACIÓN + VIDEO + TARJETAS + CONTACTO */}
               <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm text-start">
-                <Row className="align-items-center g-4 g-lg-5">
+                <Row className="align-items-start g-4 g-lg-5">
                   
-                  {/* Columna Izquierda */}
+                  {/* Columna Izquierda: Título, Puntos y los 2 Rectángulos */}
                   <Col lg={7} className="text-start">
                     
                     {/* Badge Naranja */}
                     <span 
                       className="badge text-white px-3 py-2 mb-3 fw-bold text-uppercase d-inline-block"
-                      style={{ backgroundColor: currentFamily.color, fontSize: '0.8rem', letterSpacing: '0.5px' }}
+                      style={{ backgroundColor: currentFamily.color || '#E85D04', fontSize: '0.8rem', letterSpacing: '0.5px' }}
                     >
                       {currentFamily.contenido.subtitulo}
                     </span>
                     
-                    {/* Título Principal */}
+                    {/* Título Principal en color negro */}
                     <h2 
-                      className="fw-bold mb-4 text-start" 
+                      className="fw-bold mb-4 text-start text-dark" 
                       style={{ 
-                        color: 'var(--azul-ultramar)', 
-                        fontWeight: '800',
-                        fontSize: '1.85rem',
-                        letterSpacing: '-0.3px'
+                        fontWeight: '800', 
+                        fontSize: '1.85rem', 
+                        letterSpacing: '-0.3px' 
                       }}
                     >
                       {currentFamily.contenido.titulo}
                     </h2>
                     
-                    {/* Lista de características */}
+                    {/* Lista de características con títulos en color Naranja */}
                     <div className="d-flex flex-column gap-3 mb-4">
                       {currentFamily.contenido.puntos.map((punto, pIdx) => (
                         <div key={pIdx} className="text-start">
-                          <h6 className="fw-bold mb-1 text-dark" style={{ fontSize: '1rem' }}>
+                          <h6 
+                            className="fw-bold mb-1" 
+                            style={{ fontSize: '1rem', color: currentFamily.color || '#E85D04' }}
+                          >
                             {punto.titulo}
                           </h6>
                           <p className="text-secondary mb-0 small" style={{ fontSize: '0.88rem' }}>
@@ -552,105 +554,98 @@ export const ProductFamilyDetail = () => {
                       ))}
                     </div>
 
-                    {/* Tarjetas Institucionales */}
-                    <div className="pt-3 border-top mt-4">
+                    {/* Tarjetas Institucionales (Movidas a la izquierda) */}
+                    <div className="pt-2 mt-4">
                       <Row className="g-3">
+                        {/* Tarjeta 1 */}
                         <Col xs={12} sm={6}>
                           <div 
-                            className="d-flex align-items-center gap-3 p-2 p-md-3 bg-white rounded shadow-sm border"
-                            style={{ borderLeft: '4px solid var(--azul-ultramar, #2A2A58)' }}
+                            className="p-3 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center"
+                            style={{ 
+                              border: '1px solid #dee2e6',
+                              borderLeft: `5px solid ${currentFamily.color || '#E85D04'}`
+                            }}
                           >
-                            <img 
-                              src="/mejora-continua.png" 
-                              alt="Mejora Continua" 
-                              style={{ width: '42px', height: '42px', objectFit: 'contain', flexShrink: 0 }}
-                              onError={(e) => { e.target.src = 'https://placehold.co/42?text=ISO'; }}
-                            />
-                            <div className="text-start">
-                              <h6 className="fw-bold mb-0 text-uppercase" style={{ color: 'var(--azul-ultramar, #2A2A58)', fontSize: '0.82rem' }}>
-                                Mejora Continua
-                              </h6>
-                              <p className="text-secondary mb-0 small" style={{ fontSize: '0.74rem', lineHeight: '1.2' }}>
-                                Optimización constante en cada proceso productivo.
-                              </p>
-                            </div>
+                            <span 
+                              className="fw-bold text-uppercase d-block mb-1" 
+                              style={{ color: currentFamily.color || '#E85D04', fontSize: '0.78rem', letterSpacing: '0.4px' }}
+                            >
+                              Calidad Garantizada
+                            </span>
+                            <h6 className="fw-bold mb-0 text-dark" style={{ fontSize: '0.88rem', fontWeight: '800' }}>
+                              EN CADA PROYECTO
+                            </h6>
                           </div>
                         </Col>
 
+                        {/* Tarjeta 2 */}
                         <Col xs={12} sm={6}>
                           <div 
-                            className="d-flex align-items-center gap-3 p-2 p-md-3 bg-white rounded shadow-sm border"
-                            style={{ borderLeft: '4px solid var(--azul-ultramar, #2A2A58)' }}
+                            className="p-3 bg-white rounded shadow-sm h-100 d-flex flex-column justify-content-center"
+                            style={{ 
+                              border: '1px solid #dee2e6',
+                              borderLeft: `5px solid ${currentFamily.color || '#E85D04'}`
+                            }}
                           >
-                            <img 
-                              src="/reciclado.png" 
-                              alt="Compromiso Ambiental" 
-                              style={{ width: '42px', height: '42px', objectFit: 'contain', flexShrink: 0 }}
-                              onError={(e) => { e.target.src = 'https://placehold.co/42?text=ECO'; }}
-                            />
-                            <div className="text-start">
-                              <h6 className="fw-bold mb-0 text-uppercase" style={{ color: 'var(--azul-ultramar, #2A2A58)', fontSize: '0.82rem' }}>
-                                Compromiso Ambiental
-                              </h6>
-                              <p className="text-secondary mb-0 small" style={{ fontSize: '0.74rem', lineHeight: '1.2' }}>
-                                Reutilización y reciclado responsable.
-                              </p>
-                            </div>
+                            <span 
+                              className="fw-bold text-uppercase d-block mb-1" 
+                              style={{ color: currentFamily.color || '#E85D04', fontSize: '0.75rem', letterSpacing: '0.3px' }}
+                            >
+                              Precisión, Tecnología y Compromiso
+                            </span>
+                            <h6 className="fw-bold mb-0 text-dark" style={{ fontSize: '0.82rem', fontWeight: '800' }}>
+                              PARA LA INDUSTRIA
+                            </h6>
                           </div>
                         </Col>
                       </Row>
                     </div>
 
-                    {/* Botón WhatsApp: Cotización de Plano */}
-                    <div className="mt-4 pt-2">
-                      <a
-                        href="https://wa.me/5493492419267?text=Hola,%20quisiera%20enviar%20un%20plano%20para%20cotizaci%C3%B3n%20de%20mecanizado."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn d-inline-flex align-items-center gap-2 px-4 py-2 text-white fw-bold shadow-sm"
-                        style={{ 
-                          backgroundColor: '#25D366', 
-                          borderRadius: '8px',
-                          fontSize: '0.92rem',
-                          letterSpacing: '0.3px',
-                          border: 'none'
-                        }}
-                      >
-                        <FaWhatsapp size={20} />
-                        <span>Enviar plano para cotización</span>
-                      </a>
-                    </div>
-
                   </Col>
 
-                  {/* Columna Derecha: Video + Texto de Calidad */}
+                  {/* Columna Derecha: Video + Botón de WhatsApp debajo */}
                   <Col lg={5} className="text-start">
-                    <div className="p-3 p-md-4 bg-light rounded-3 border">
-                      <div 
-                        className="rounded overflow-hidden shadow-sm mb-3 bg-dark d-flex align-items-center justify-content-center"
-                        style={{ maxHeight: '250px' }}
-                      >
-                        <video 
-                          src="/productos/video-cnc.mp4" 
-                          autoPlay 
-                          loop 
-                          muted 
-                          playsInline
-                          controls
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    <div className="d-flex flex-column gap-3">
+                      
+                      {/* Reproductor de Video */}
+                      <div className="p-3 bg-light rounded-3 border shadow-sm">
+                        <div 
+                          className="rounded overflow-hidden shadow-sm bg-dark d-flex align-items-center justify-content-center"
+                          style={{ minHeight: '230px' }}
                         >
-                          Tu navegador no soporta la reproducción de video.
-                        </video>
+                          <video 
+                            src="/productos/video-cnc.mp4" 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }}
+                          >
+                            Tu navegador no soporta la reproducción de video.
+                          </video>
+                        </div>
                       </div>
 
-                      <div className="text-center px-2">
-                        <h6 className="fw-bold text-dark mb-1" style={{ fontSize: '0.92rem' }}>
-                          Calidad garantizada en cada proyecto.
-                        </h6>
-                        <p className="text-secondary small mb-0" style={{ fontSize: '0.84rem', lineHeight: '1.45' }}>
-                          Precisión, tecnología y compromiso para la industria mediante desarrollo sobre plano y especificaciones técnicas.
-                        </p>
+                      {/* Botón WhatsApp (Movido debajo del video) */}
+                      <div className="w-100">
+                        <a
+                          href="https://wa.me/5493492419267?text=Hola,%20quisiera%20enviar%20un%20plano%20para%20cotizaci%C3%B3n%20de%20mecanizado."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn d-flex align-items-center justify-content-center gap-2 py-2 px-3 text-white fw-bold shadow-sm w-100"
+                          style={{ 
+                            backgroundColor: '#25D366', 
+                            borderRadius: '8px', 
+                            fontSize: '0.92rem', 
+                            letterSpacing: '0.3px', 
+                            border: 'none' 
+                          }}
+                        >
+                          <FaWhatsapp size={20} />
+                          <span>Enviar plano para cotización</span>
+                        </a>
                       </div>
+
                     </div>
                   </Col>
 
@@ -670,7 +665,7 @@ export const ProductFamilyDetail = () => {
                         ¿Procesan piezas torneadas bajo plano o muestra?
                       </h6>
                       <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
-                        Sí, trabajamos directamente con planos constructivos (PDF/CAD) o desarrollamos la ingeniería inversa a partir de una muestra física.
+                        Sí, trabajamos directamente con planos constructivos (PDF/JPG) o desarrollamos la ingeniería inversa a partir de una muestra física.
                       </p>
                     </div>
                   </Col>
@@ -705,67 +700,70 @@ export const ProductFamilyDetail = () => {
 
           {/* CASO 2: TABLA DE CUPLAS (CON PLANO TÉCNICO Y FOTO REAL) */}
           {currentFamily.tipo === 'cuplas' && (
-            <div className="d-flex flex-column gap-5">
-              {currentFamily.subfamilias.map((sub, idx) => (
-                <div key={idx} className="subfamily-container">
-                  {/* Cabecera roja de la subfamilia */}
-                  <div 
-                    className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase" 
-                    style={{ backgroundColor: currentFamily.color, fontSize: '0.95rem', letterSpacing: '0.5px' }}
-                  >
-                    {sub.nombre}
+            <Row className="g-4 align-items-center">
+              
+              {/* Columna Izquierda: Ambas Imágenes (Plano Técnico + Foto Real) */}
+              <Col xs={12} lg={3} xl={3}> 
+                <div className="d-flex flex-column gap-3 justify-content-center">
+                  
+                  {/* 1. Plano Técnico Estático con Cotas (Más alto y aprovechando todo el ancho) */}
+                  <div className="bg-light p-2 border rounded text-center shadow-sm">
+                    <div 
+                      className="bg-white p-2 border rounded shadow-sm d-flex align-items-center justify-content-center" 
+                      style={{ height: '310px' }}
+                    >
+                      <img 
+                        src="/productos/cuplas-plano.png" 
+                        alt="Plano Técnico Cupla" 
+                        style={{ 
+                          height: '100%', 
+                          width: '100%', 
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: '0 auto'
+                        }}
+                      />
+                    </div>
                   </div>
 
-                  {/* Contenedor principal */}
-                  <div className="bg-white p-3 border border-top-0 rounded-bottom shadow-sm">
-                    <Row className="g-3 align-items-center">
+                  {/* 2. Foto Real con Zoom */}
+                  <div className="bg-light p-2 border rounded text-center shadow-sm">
+                    <div 
+                      className="cupla-zoom-wrapper p-2 border shadow-sm d-flex align-items-center justify-content-center" 
+                      style={{ backgroundColor: '#fff', borderRadius: '8px', height: '240px' }}
+                    >
+                      <img 
+                        src="/productos/cuplas-roscadas.png" 
+                        alt="Cuplas Roscadas" 
+                        className="cupla-zoom-img"
+                        style={{ 
+                          maxHeight: '100%', 
+                          maxWidth: '100%', 
+                          objectFit: 'contain' 
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                </div>
+              </Col>
+
+              {/* Columna Derecha: Tablas de Subfamilias con sus cabeceras rojas */}
+              <Col xs={12} lg={9} xl={9}>
+                <div className="d-flex flex-column gap-4">
+                  {currentFamily.subfamilias.map((sub, idx) => (
+                    <div key={idx} className="subfamily-container">
                       
-                      {/* Columna Izquierda: Imagen Única y Destacada */}
-                      <Col xs={12} lg={4} xl={3}>
-                        <div className="d-flex flex-column align-items-center justify-content-center p-3 bg-light rounded border h-100" style={{ minHeight: '340px' }}>
-                          
-                          {idx === 0 ? (
-                            /* 1. Subfamilia 1: Plano Técnico Estático con Cotas */
-                            <div className="text-center w-100">
-                              <div className="bg-white p-3 border rounded shadow-sm d-flex align-items-center justify-content-center">
-                                <img 
-                                  src="/productos/cuplas-plano.png" 
-                                  alt="Plano Técnico Cupla" 
-                                  style={{ 
-                                    maxHeight: '260px', 
-                                    maxWidth: '100%', 
-                                    objectFit: 'contain',
-                                    display: 'block',
-                                    margin: '0 auto'
-                                  }}
-                                />
-                              </div>
-                              {/* <small className="d-block text-muted mt-2 fw-semibold" style={{ fontSize: '0.75rem' }}>
-                                Plano de cotas (ØH, Ø1, Ø2, L)
-                              </small> */}
-                            </div>
-                          ) : (
-                            /* 2. Subfamilia 2: Foto Real con Zoom */
-                            <div className="text-center w-100">
-                              <div className="cupla-zoom-wrapper p-3 border shadow-sm" style={{ backgroundColor: '#fff', borderRadius: '8px' }}>
-                                <img 
-                                  src="/productos/cuplas-roscadas.png" 
-                                  alt="Cuplas Roscadas" 
-                                  className="cupla-zoom-img"
-                                  style={{ maxHeight: '220px', maxWidth: '100%' }}
-                                />
-                              </div>
-                              {/* <small className="d-block text-muted mt-2 fw-semibold" style={{ fontSize: '0.75rem' }}>
-                                Pasa el cursor para ampliar
-                              </small> */}
-                            </div>
-                          )}
+                      {/* Cabecera roja alineada exclusivamente con el ancho de la tabla */}
+                      <div 
+                        className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase" 
+                        style={{ backgroundColor: currentFamily.color, fontSize: '0.95rem', letterSpacing: '0.5px' }}
+                      >
+                        {sub.nombre}
+                      </div>
 
-                        </div>
-                      </Col>
-
-                      {/* Columna Derecha: Tabla alineada a la izquierda */}
-                      <Col xs={12} lg={8} xl={9}>
+                      {/* Contenedor de la tabla */}
+                      <div className="bg-white p-3 border border-top-0 rounded-bottom shadow-sm">
                         <div className="table-responsive rounded">
                           <Table hover className="align-middle mb-0 custom-product-table">
                             <thead className="table-light text-secondary text-uppercase small">
@@ -790,13 +788,14 @@ export const ProductFamilyDetail = () => {
                             </tbody>
                           </Table>
                         </div>
-                      </Col>
+                      </div>
 
-                    </Row>
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </Col>
+
+            </Row>
           )}
 
           {/* CASO 3: CATÁLOGO ESTÁNDAR (IMPLEMENTADO CON DOUBLE PRODUCT TABLE) */}

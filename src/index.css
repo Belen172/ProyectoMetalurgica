@@ -1055,3 +1055,10 @@ section[id] {
   bottom: 10%;
   transform: translateY(0);
 }
+
+/* Ocultar botón y control de volumen en videos */
+video::-webkit-media-controls-volume-control-container,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
