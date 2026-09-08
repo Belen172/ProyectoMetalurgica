@@ -15,7 +15,7 @@ const SingleTable = ({ items, hasCompatibility }) => (
       </thead>
       <tbody>
         {items.map((prod, index) => (
-          <tr key={prod.codigo || index}>
+          <tr key={`${prod.codigo}-${index}`}>
             <td className="text-center py-2 position-relative product-cell-zoom" style={{ overflow: 'visible' }}>
               <div className="product-preview-container">
                 {/* 1. Miniatura estándar visible en la tabla */}

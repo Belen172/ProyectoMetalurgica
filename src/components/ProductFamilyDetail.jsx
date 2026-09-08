@@ -429,51 +429,78 @@ export const ProductFamilyDetail = () => {
   return (
     <div className="products-page-container">
       <section className="bg-light min-vh-100 pb-4">
-        <Container fluid className="px-4 px-md-5 py-2">
-          
-          {/* ENCABEZADO */}
-          <div className="mb-4 text-start pt-2">
-            <div 
-              style={{ 
-                width: '45px', 
-                height: '4px', 
-                backgroundColor: 'var(--rojo-principal)', 
-                marginBottom: '16px' 
-              }} 
-            />
-            <h2 
-              className="display-5 fw-bold text-uppercase mb-2" 
-              style={{ 
-                color: 'var(--azul-ultramar)', 
-                fontWeight: '800',
-                letterSpacing: '0.5px' 
-              }}
-            >
-              Productos
-            </h2>
-          </div>
+        
+        {/* BLOQUE STICKY COMPLETO CON FONDO BLANCO Y MARGEN DE CONTENCIÓN */}
+        <div 
+          className="bg-white shadow-sm w-100" 
+          style={{ 
+            position: 'sticky', 
+            top: '125px', /* Desplaza el contenedor por debajo del Navbar completo */
+            zIndex: 1025,
+            backgroundColor: '#ffffff'
+          }}
+        >
+          <Container fluid className="px-4 px-md-5 pt-3 pb-3">
+            
+            {/* ENCABEZADO "PRODUCTOS" CON LÍNEA ROJA FIJA */}
+            <div className="mb-3 text-start">
+              {/* Línea roja directa */}
+              <div 
+                style={{ 
+                  width: '45px', 
+                  height: '4px', 
+                  backgroundColor: '#e63946', 
+                  borderRadius: '2px',
+                  display: 'block',
+                  marginBottom: '10px'
+                }} 
+              />
+              <h2 
+                className="display-5 fw-bold text-uppercase mb-0"
+                style={{
+                  color: '#1e2044',
+                  fontWeight: '800',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Productos
+              </h2>
+            </div>
 
-          {/* SELECTOR SUPERIOR DE LAS 6 FAMILIAS */}
-          <Row className="g-3 g-xl-4 row-cols-2 row-cols-md-3 row-cols-lg-6 mb-5 align-items-center">
-            {allFamilies.map((family) => {
-              const isActive = family.id === currentId;
-              return (
-                <Col key={family.id} className="d-flex">
-                  <button
-                    type="button"
-                    onClick={() => navigate(`/productos/${family.id}`)}
-                    className={`product-tab-btn ${isActive ? 'active' : ''}`}
-                    style={{ backgroundColor: family.color, border: 'none' }}
-                  >
-                    <span className="text-white fw-bold text-uppercase" style={{ fontSize: isActive ? '0.95rem' : '0.82rem' }}>
-                      {family.title}
-                    </span>
-                    <div style={{ width: '24px', height: '3px', backgroundColor: 'rgba(255,255,255,0.8)', borderRadius: '2px' }} />
-                  </button>
-                </Col>
-              );
-            })}
-          </Row>
+            {/* GRILLA DE LAS 6 FAMILIAS */}
+            <Row className="g-3 g-xl-4 row-cols-2 row-cols-md-3 row-cols-lg-6 align-items-center m-0">
+              {allFamilies.map((family) => {
+                const isActive = family.id === currentId;
+                return (
+                  <Col key={family.id} className="d-flex p-1">
+                    <button
+                      type="button"
+                      onClick={() => navigate(`/productos/${family.id}`)}
+                      className={`product-family-card w-100 ${isActive ? 'active' : 'inactive'}`}
+                      style={{ 
+                        backgroundColor: family.color,
+                        border: 'none',
+                        textDecoration: 'none',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <div className="product-family-title text-start">
+                        {family.title}
+                      </div>
+                      <div className="product-family-line" />
+                    </button>
+                  </Col>
+                );
+              })}
+            </Row>
+
+          </Container>
+        </div>
+
+        {/* ========================================================
+            CONTENIDO SCROLLEABLE (TÍTULO ACTIVO + TABLAS)
+           ======================================================== */}
+        <Container fluid className="px-4 px-md-5 py-4">
 
           {/* TÍTULO DE FAMILIA ACTIVA + BOTÓN DE DESCARGA PDF */}
           <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">

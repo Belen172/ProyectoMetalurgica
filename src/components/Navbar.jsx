@@ -9,7 +9,7 @@ const PRODUCT_FAMILIES = [
   { id: 'especiales', name: 'Especiales' },
   { id: 'cuplas', name: 'Cuplas Roscadas' },
   { id: 'aire-comprimido', name: 'Aire Comprimido' },
-  { id: 'mecanizado-plano', name: 'Mecanizado CNC' },
+  { id: 'mecanizado-plano', name: 'Servicio de Mecanizado' },
 ];
 
 export const Navbar = ({ onOpenContact }) => {
@@ -84,10 +84,19 @@ export const Navbar = ({ onOpenContact }) => {
     }
   };
 
+  // Si estamos en la home (/), fondo transparente. Si estamos en productos, fondo blanco.
+  const isHome = location.pathname === '/';
+
   return (
-    <header className="custom-header-wrapper">
+    <header 
+      className="custom-header-wrapper" 
+      style={{ 
+        background: isHome ? 'transparent' : '#ffffff',
+        backgroundColor: isHome ? 'transparent' : '#ffffff'
+      }}
+    >
       <div className="d-flex flex-column align-items-center">
-        
+          
         {/* NIVEL 1: Trapecio Blanco con Logo */}
         <div className="trapezoid-logo-container">
           <a 
@@ -98,14 +107,14 @@ export const Navbar = ({ onOpenContact }) => {
             <img 
               src="/logo.png" 
               alt="Metalúrgica Soltermann" 
-              style={{ maxHeight: '56px', width: 'auto', cursor: 'pointer' }} 
+              style={{ maxHeight: '52px', width: 'auto', cursor: 'pointer' }} 
             />
           </a>
         </div>
-
-        {/* NIVEL 2: Barra Azul con los Botones */}
+  
+        {/* NIVEL 2: Barra Azul Recta con los Botones */}
         <div className="capsule-nav-container">
-          <Nav className="d-flex flex-row flex-nowrap align-items-center justify-content-center m-0 p-0">
+          <Nav className="d-flex flex-row flex-nowrap align-items-center justify-content-between m-0 p-0 w-100">
             <Nav.Link 
               href="#inicio" 
               onClick={(e) => handleNavClick(e, 'inicio')}
@@ -131,8 +140,7 @@ export const Navbar = ({ onOpenContact }) => {
               >
                 PRODUCTOS
               </Nav.Link>
-
-              {/* Menú Flotante de Categorías */}
+  
               <div className="products-dropdown-menu shadow-lg">
                 {PRODUCT_FAMILIES.map((family) => (
                   <button
@@ -149,7 +157,7 @@ export const Navbar = ({ onOpenContact }) => {
             
             {/* Botón de Contacto */}
             <Nav.Link 
-              as="button"
+              as="button" 
               onClick={onOpenContact} 
               className="capsule-nav-link bg-transparent border-0"
             >
@@ -157,7 +165,7 @@ export const Navbar = ({ onOpenContact }) => {
             </Nav.Link>
           </Nav>
         </div>
-
+  
       </div>
     </header>
   );

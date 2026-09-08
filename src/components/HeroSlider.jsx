@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 
@@ -35,7 +35,7 @@ export const Hero = () => {
         <source src="/Parte1.mp4" type="video/mp4" />
       </video>
 
-      {/* Capa de oscurecimiento sobre el video para legibilidad */}
+      {/* Capa de oscurecimiento */}
       <div 
         style={{
           position: 'absolute',
@@ -48,35 +48,38 @@ export const Hero = () => {
         }}
       />
 
-      {/* Contenido alineado a la izquierda */}
-      <Container fluid className="px-4 px-md-5 hero-content my-5">
+      {/* Contenido */}
+      <Container fluid className="px-4 px-md-5 hero-content my-5" style={{ zIndex: 3 }}>
         <Row>
-          <Col lg={7} xl={6} className="text-start">
+          <Col xs={12} lg={9} xl={8} className="text-start">
             {/* Línea roja acento */}
             <div 
               style={{ 
-                width: '60px', 
+                width: '55px', 
                 height: '4px', 
-                backgroundColor: 'var(--rojo-principal)', 
-                marginBottom: '20px' 
+                backgroundColor: 'var(--rojo-principal, #e63946)', 
+                marginBottom: '18px',
+                borderRadius: '2px'
               }}
-            ></div>
+            />
 
-            {/* Título Principal */}
+            {/* Título: 2 renglones en Desktop y fluido en Mobile */}
             <h1 
               className="text-white text-uppercase mb-3" 
               style={{ 
-                fontWeight: '700',
-                fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
-                letterSpacing: '1px',
-                lineHeight: '1.15',
-                maxWidth: '700px'
+                fontWeight: '700', /* 👈 Más liviano, idéntico al original */
+                fontSize: 'clamp(1.8rem, 4.2vw, 3.4rem)',
+                letterSpacing: '1.5px', /* 👈 Espaciado tipográfico abierto */
+                lineHeight: '1.18',
+                maxWidth: '850px'
               }}
             >
               PRECISIÓN QUE <br />
               <span 
-                className="d-inline-block text-nowrap" 
-                style={{ color: 'var(--rojo-principal)', fontWeight: '700' }}
+                style={{ 
+                  color: 'var(--rojo-principal, #e63946)', 
+                  fontWeight: '700' 
+                }}
               >
                 ASEGURA RESULTADOS.
               </span>
@@ -84,8 +87,12 @@ export const Hero = () => {
 
             {/* Bajada */}
             <p 
-              className="fs-5 text-light opacity-90 mb-4 fw-light" 
-              style={{ maxWidth: '520px' }}
+              className="text-light opacity-90 mb-4 fw-light" 
+              style={{ 
+                fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
+                maxWidth: '560px',
+                lineHeight: '1.45'
+              }}
             >
               Expertos en alemites, cuplas, servicio de mecanizado y accesorios para aire comprimido. 
             </p>
@@ -93,7 +100,7 @@ export const Hero = () => {
             {/* Botón */}
             <div>
               <a href="#productos" className="btn-hero-outline text-uppercase">
-                Conocé nuestros productos <FaArrowRight />
+                Conocé nuestros productos <FaArrowRight className="ms-2" />
               </a>
             </div>
           </Col>

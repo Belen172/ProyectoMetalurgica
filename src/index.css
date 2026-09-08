@@ -620,6 +620,29 @@ section[id] {
 }
 
 /* ==========================================================
+   ADAPTACIÓN MOBILE / TABLET: IMAGEN RECTANGULAR COMPLETA
+   ========================================================== */
+@media (max-width: 991px) {
+  .engineering-img-container {
+    max-width: 100% !important;
+    height: 240px !important;            /* Altura ideal para mobile */
+    margin-left: 0 !important;           /* Anula el desplazamiento de -90px */
+    margin-top: 1.5rem !important;
+    border-radius: 12px !important;      /* Bordes redondeados en las 4 esquinas */
+    clip-path: none !important;          /* Quita el corte diagonal */
+    -webkit-clip-path: none !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .engineering-img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* ==========================================================
    TARJETAS HORIZONTALES - SECCIÓN PRODUCTOS
    ========================================================== */
   .product-family-card {
@@ -710,7 +733,7 @@ section[id] {
   text-align: left;
   padding: 1rem;
   min-height: 110px;
-  height: 100%;
+  height: 110%;
   width: 100%;
   transition: all 0.25s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -724,12 +747,13 @@ section[id] {
 }
 
 /* Tarjeta activa: más grande, con sombra destacada y opacidad total */
+/* Tarjeta activa: destacada sin desbordar el contenedor sticky */
 .product-tab-btn.active {
-  opacity: 1;
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
-  min-height: 125px;
-  z-index: 2;
+  opacity: 1 !important;
+  transform: none !important; /* Anula cualquier scale o translate */
+  height: 110px !important;   /* Mantiene exactamente la misma altura */
+  min-height: unset !important;
+  box-shadow: 0 0 0 3px #ffffff, 0 4px 12px rgba(0, 0, 0, 0.3) !important; /* Resalte interior sin agrandar */
 }
 
 /* Tabla técnica de subfamilia */
@@ -1061,4 +1085,236 @@ video::-webkit-media-controls-volume-control-container,
 video::-webkit-media-controls-volume-slider,
 video::-webkit-media-controls-mute-button {
   display: none !important;
+}
+
+  /* ========================================================
+   CORRECCIÓN DEFINITIVA DE CAPAS Y TARJETAS
+   ======================================================== */
+
+/* 1. La tabla siempre viaja por debajo del bloque sticky */
+.products-page-container table,
+.products-page-container .table,
+.products-page-container .table-responsive,
+.products-page-container tr,
+.products-page-container td {
+  position: static !important;
+  z-index: 1 !important;
+}
+
+/* 2. Botones de familias dentro del límite sticky */
+.product-tab-btn {
+  height: 90px !important;
+  min-height: 90px !important;
+  max-height: 90px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 14px 12px 10px 12px !important;
+  border-radius: 8px !important;
+  transform: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+}
+
+.product-tab-btn .product-tab-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.80rem !important;
+  line-height: 1.2 !important;
+}
+
+.product-tab-btn .product-tab-indicator {
+  width: 22px !important;
+  height: 3px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 2px !important;
+}
+
+/* Tarjeta activa: mismo tamaño exacto con marco de resalte */
+.product-tab-btn.active {
+  opacity: 1 !important;
+  transform: none !important;
+  height: 90px !important;
+  min-height: 90px !important;
+  max-height: 90px !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ========================================================
+   ESTILOS DE FAMILIAS: ACTIVA VS INACTIVAS
+  ======================================================== */
+.product-family-card {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  transition: all 0.25s ease-in-out;
+}
+
+/* 1. Tarjetas INACTIVAS: más chicas, opacas y tenues */
+.product-family-card.inactive {
+  opacity: 0.65 !important;
+  transform: scale(0.95) !important;
+  box-shadow: none !important;
+}
+
+.product-family-card.inactive:hover {
+  opacity: 0.9 !important;
+  transform: scale(0.98) !important;
+}
+
+/* 2. Tarjeta ACTIVA: tamaño pleno, opacidad 100% y sombra destacada */
+.product-family-card.active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 6px 18px rgba(0, 0, 0, 0.35) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ==========================================================
+   NAVBAR FIJO INSTITUCIONAL (CALCE DINÁMICO Y EXACTO)
+   ========================================================== */
+
+.custom-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Centra perfecto horizontalmente */
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  width: auto;
+}
+
+.custom-header-wrapper > div {
+  pointer-events: auto;
+}
+
+/* NIVEL 1: Trapecio Blanco (Desktop) */
+.trapezoid-logo-container {
+  background-color: #ffffff;
+  padding: 10px 40px 14px 40px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  
+  /* 600px arriba - (60px * 2) de diagonales = Base de 480px */
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+}
+
+.trapezoid-logo-container img {
+  max-height: 52px;
+  width: auto;
+}
+
+/* NIVEL 2: Menú Azul Recto (Desktop: 480px exactos) */
+.capsule-nav-container {
+  background-color: var(--azul-ultramar, #2A2A58);
+  padding: 8px 24px;
+  margin-top: -3px;
+  width: 480px; /* Coincide exactamente con la base del trapecio */
+  border-radius: 0 !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.capsule-nav-link {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.8px;
+  padding: 6px 14px !important;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  border-radius: 0 !important;
+  position: relative;
+}
+
+.capsule-nav-link:hover {
+  opacity: 0.85;
+}
+
+.capsule-nav-link.active {
+  color: #ffffff !important;
+}
+
+.capsule-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background-color: var(--rojo-principal, #EE353D);
+}
+
+/* ==========================================================
+    ADAPTACIÓN RESPONSIVE MOBILE (MATEMÁTICA PURA)
+    ========================================================== */
+@media (max-width: 768px) {
+  /* 1. Trapecio blanco: Ancho 360px - Corte 30px por lado = Base EXACTA de 300px */
+  .trapezoid-logo-container {
+    width: 360px !important;
+    min-width: 360px !important;
+    max-width: 360px !important;
+    height: 58px !important;
+    padding: 6px 20px 8px 20px !important;
+    box-sizing: border-box !important;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 30px) 100%, 30px 100%) !important;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 30px) 100%, 30px 100%) !important;
+  }
+
+  .trapezoid-logo-container img {
+    max-height: 36px !important;
+  }
+
+  /* 2. Barra azul: Forzada a los mismos 300px exactos */
+  .capsule-nav-container {
+    width: 300px !important;     /* Coincide exactamente con la base del trapecio */
+    min-width: 300px !important;
+    max-width: 300px !important;
+    padding: 4px 8px !important;
+    margin-top: -2px !important;
+    box-sizing: border-box !important;
+  }
+
+  .capsule-nav-container .nav {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-nowrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3. Enlaces reducidos para que no empujen el contenedor */
+  .capsule-nav-link {
+    font-size: 0.65rem !important; /* Tamaño justo para legibilidad */
+    padding: 3px 2px !important;   /* Sin padding excesivo */
+    letter-spacing: 0px !important;
+    margin: 0 !important;
+  }
+
+  /* Subrayado de la pestaña activa */
+  .capsule-nav-link.active::after {
+    left: 2px !important;
+    right: 2px !important;
+    bottom: -1px !important;
+    height: 1.5px !important;
+  }
 }
