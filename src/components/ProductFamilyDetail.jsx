@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table, Accordion } from 'react-bootstrap';
 import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt, FaWhatsapp } from 'react-icons/fa';
 import { DoubleProductTable } from './DoubleProductTable';
 
@@ -435,16 +435,16 @@ export const ProductFamilyDetail = () => {
           className="bg-white shadow-sm w-100" 
           style={{ 
             position: 'sticky', 
-            top: '125px', /* Desplaza el contenedor por debajo del Navbar completo */
+            top: 0,                   /* Se pega al techo de la pantalla */
             zIndex: 1025,
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
+            paddingTop: '115px'        /* Da el espacio exacto para que el Navbar flote encima sin tapar el título */
           }}
         >
-          <Container fluid className="px-4 px-md-5 pt-3 pb-3">
+          <Container fluid className="px-4 px-md-5 pt-2 pb-3">
             
             {/* ENCABEZADO "PRODUCTOS" CON LÍNEA ROJA FIJA */}
             <div className="mb-3 text-start">
-              {/* Línea roja directa */}
               <div 
                 style={{ 
                   width: '45px', 
@@ -679,47 +679,77 @@ export const ProductFamilyDetail = () => {
                 </Row>
               </div>
 
-              {/* BLOQUE DE PREGUNTAS FRECUENTES (FAQ) */}
+              {/* BLOQUE DE PREGUNTAS FRECUENTES (FAQ) ACORDEÓN */}
               <div className="bg-white rounded-3 p-4 p-md-5 border shadow-sm text-start">
-                <h4 className="fw-bold mb-4" style={{ color: 'var(--azul-ultramar)' }}>
-                  Preguntas Frecuentes sobre Mecanizado
-                </h4>
-                <Row className="g-3">
+                
+                {/* Título centrado con línea decorativa */}
+                <div className="text-center mb-4">
+                  <h3 className="fw-bold mb-2" style={{ color: 'var(--azul-ultramar, #1e2044)' }}>
+                    Preguntas Frecuentes sobre Mecanizado
+                  </h3>
+                  <div 
+                    style={{ 
+                      width: '50px', 
+                      height: '4px', 
+                      backgroundColor: currentFamily.color, /* O bien currentFamily.color si querés que sea dinámico */
+                      borderRadius: '2px', 
+                      margin: '0 auto' 
+                    }} 
+                  />
+                </div>
+
+                {/* Acordeón de Preguntas */}
+                <Accordion defaultActiveKey="0" className="faq-accordion d-flex flex-column gap-3">
                   
-                  <Col xs={12} md={4}>
-                    <div className="p-3 bg-light rounded-3 border h-100">
-                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
-                        ¿Procesan piezas torneadas bajo plano o muestra?
-                      </h6>
-                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
-                        Sí, trabajamos directamente con planos constructivos (PDF/JPG) o desarrollamos la ingeniería inversa a partir de una muestra física.
-                      </p>
-                    </div>
-                  </Col>
+                  {/* Pregunta 1 */}
+                  <Accordion.Item eventKey="0" className="border rounded-3 overflow-hidden">
+                    <Accordion.Header>
+                      <span className="fw-bold" style={{ color: '#0d1b2a', fontSize: '0.95rem' }}>
+                        ¿Bajo qué formatos de archivos reciben planos técnicos?
+                      </span>
+                    </Accordion.Header>
+                    <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+                      Aceptamos planos de fabricación en formatos 3D nativos como <strong>SolidWorks, STEP e IGES</strong>, y formatos vectoriales en 2D como <strong>DXF, DWG</strong> y documentos <strong>PDF</strong> estándar para realizar cotizaciones rápidas.
+                    </Accordion.Body>
+                  </Accordion.Item>
 
-                  <Col xs={12} md={4}>
-                    <div className="p-3 bg-light rounded-3 border h-100">
-                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
-                        ¿Cómo aseguran la calidad dimensional de las series?
-                      </h6>
-                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
-                        Monitoreamos el proceso de torneado en nuestro laboratorio metrológico equipado con MMC (Máquina de Medición por Coordenadas).
-                      </p>
-                    </div>
-                  </Col>
+                  {/* Pregunta 2 */}
+                  <Accordion.Item eventKey="1" className="border rounded-3 overflow-hidden">
+                    <Accordion.Header>
+                      <span className="fw-bold" style={{ color: '#0d1b2a', fontSize: '0.95rem' }}>
+                        ¿Cuáles son los lotes mínimos de producción que manejan?
+                      </span>
+                    </Accordion.Header>
+                    <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    Nos especializamos en producciones de <strong>series medianas y grandes</strong>. Optimizamos nuestros tiempos de ciclo mediante celdas automatizadas y tornos multiejos para ofrecer el mejor costo unitario en lotes seriados.
+                    </Accordion.Body>
+                  </Accordion.Item>
 
-                  <Col xs={12} md={4}>
-                    <div className="p-3 bg-light rounded-3 border h-100">
-                      <h6 className="fw-bold text-dark mb-2" style={{ fontSize: '0.95rem' }}>
-                        ¿Atienden pedidos para petróleo, minería y agro?
-                      </h6>
-                      <p className="text-secondary small mb-0" style={{ lineHeight: '1.5' }}>
-                        Sí, estamos enfocados en la fabricación de piezas críticas de tornería para dichos sectores en Buenos Aires y todo el país.
-                      </p>
-                    </div>
-                  </Col>
+                  {/* Pregunta 3 */}
+                  <Accordion.Item eventKey="2" className="border rounded-3 overflow-hidden">
+                    <Accordion.Header>
+                      <span className="fw-bold" style={{ color: '#0d1b2a', fontSize: '0.95rem' }}>
+                        ¿Realizan envíos de piezas mecanizadas a todo el país?
+                      </span>
+                    </Accordion.Header>
+                    <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    Sí, realizamos el embalaje protectivo y despacho de piezas desde nuestra planta industrial en <strong>Rafaela, Santa Fe</strong>, hacia cualquier punto de la República Argentina mediante expresos contratados por el cliente o transportes líderes de carga.
+                    </Accordion.Body>
+                  </Accordion.Item>
 
-                </Row>
+                  {/* Pregunta 4 */}
+                  <Accordion.Item eventKey="3" className="border rounded-3 overflow-hidden">
+                    <Accordion.Header>
+                      <span className="fw-bold" style={{ color: '#0d1b2a', fontSize: '0.95rem' }}>
+                        ¿Cómo cotizan si no tengo un plano digital de la pieza?
+                      </span>
+                    </Accordion.Header>
+                    <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+                    Puede enviarnos una muestra física de la pieza a mecanizar. Nuestro equipo de ingeniería realiza relevamientos dimensionales e <strong>ingeniería inversa</strong> en planta para generar el plano constructivo digital y cotizarlo sin demoras.
+                    </Accordion.Body>
+                  </Accordion.Item>
+
+                </Accordion>
               </div>
 
             </div>

@@ -1318,3 +1318,159 @@ video::-webkit-media-controls-mute-button {
     height: 1.5px !important;
   }
 }
+
+/* ==========================================================
+   UNIFICACIÓN DE FONDO BLANCO EN LA SECCIÓN DE PRODUCTOS
+   ========================================================== */
+
+/* 1. Resetear el padding superior general (el espacio ahora lo maneja el bloque blanco) */
+.products-page-container,
+.products-section-wrapper {
+  padding-top: 0 !important;
+}
+
+/* 2. Scroll margin para que las secciones/anclas frenen en el punto exacto */
+#productos,
+.product-family-section {
+  scroll-margin-top: 240px; /* Ajustado para que frene debajo de la barra fija completa */
+}
+
+/* 3. Ajuste responsive para celulares */
+@media (max-width: 768px) {
+  .products-page-container {
+    padding-top: 0 !important;
+  }
+
+  .products-page-container section {
+    padding-top: 0 !important;
+  }
+}
+
+/* ==========================================================
+   COLOR OFICIAL WHATSAPP UNIFICADO
+   ========================================================== */
+:root {
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA5A;
+}
+
+/* 1. Botón circular flotante */
+.whatsapp-floating-btn,
+.btn-whatsapp-floating {
+  background-color: var(--color-whatsapp) !important;
+  color: #ffffff !important;
+}
+
+.whatsapp-floating-btn:hover,
+.btn-whatsapp-floating:hover {
+  background-color: var(--color-whatsapp-hover) !important;
+}
+
+/* 2. Encabezado del modal flotante */
+.whatsapp-modal-header,
+.whatsapp-popup-header {
+  background-color: var(--color-whatsapp) !important;
+  color: #ffffff !important;
+}
+
+/* 3. Botones de opciones (Ventas / Soporte) */
+.whatsapp-channel-btn {
+  border-color: var(--color-whatsapp) !important;
+}
+
+.whatsapp-channel-btn svg,
+.whatsapp-channel-btn .whatsapp-icon,
+.whatsapp-channel-btn .channel-title {
+  color: var(--color-whatsapp) !important;
+}
+
+.whatsapp-channel-btn:hover {
+  background-color: rgba(37, 211, 102, 0.08) !important;
+}
+
+/* ==========================================================
+   BOTONES WHATSAPP PERSONALIZADOS CON HOVER UNIFICADO
+   ========================================================== */
+.btn-whatsapp-custom {
+  background-color: #ffffff !important;
+  border: 1.5px solid #25D366 !important;
+  color: #212529 !important;
+  transition: all 0.2s ease-in-out !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+/* Ícono en estado normal */
+.btn-whatsapp-custom .whatsapp-icon {
+  color: #25D366 !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Texto del número / subtítulo en estado normal */
+.btn-whatsapp-custom .whatsapp-subtext {
+  color: #6c757d !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Estado Hover: Fondo verde oficial, texto e ícono en blanco */
+.btn-whatsapp-custom:hover {
+  background-color: #25D366 !important;
+  border-color: #25D366 !important;
+  color: #ffffff !important;
+}
+
+.btn-whatsapp-custom:hover strong,
+.btn-whatsapp-custom:hover span,
+.btn-whatsapp-custom:hover .whatsapp-icon,
+.btn-whatsapp-custom:hover .whatsapp-subtext {
+  color: #ffffff !important;
+}
+
+/* ==========================================================
+   ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+   ========================================================== */
+.faq-accordion .accordion-item {
+  border: 1px solid #d8e2ed !important;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+/* Cuando el ítem está abierto: borde azul sutil y fondo blanco */
+.faq-accordion .accordion-item:has(.accordion-button:not(.collapsed)) {
+  border-color: #3b82f6 !important;
+  background-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.08);
+}
+
+.faq-accordion .accordion-button {
+  background-color: #f8fafc !important;
+  box-shadow: none !important;
+  padding: 1.1rem 1.25rem;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-accordion .accordion-body {
+  background-color: #ffffff;
+  padding: 1.25rem;
+}
+
+/* ==========================================================
+   ENCABEZADO SECUNDARIO DE TABLAS (MOBILE VS DESKTOP)
+   ========================================================== */
+/* En celular se oculta para no duplicar títulos */
+@media (max-width: 991.98px) {
+  .table-header-secondary {
+    display: none !important;
+  }
+}
+
+/* En desktop (a partir de 992px) se muestra normal como encabezado de tabla */
+@media (min-width: 992px) {
+  .table-header-secondary {
+    display: table-header-group !important;
+  }
+}

@@ -2,10 +2,11 @@ import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
 
 // Subcomponente de una tabla individual con Zoom Flotante Lateral
-const SingleTable = ({ items, hasCompatibility }) => (
+const SingleTable = ({ items, hasCompatibility, isSecondary = false }) => (
   <div className="table-responsive bg-white rounded shadow-sm" style={{ overflow: 'visible' }}>
     <Table hover className="align-middle mb-0 custom-product-table">
-      <thead className="table-light text-secondary text-uppercase small">
+      {/* Usamos la clase personalizada que maneja la media query */}
+      <thead className={`table-light text-secondary text-uppercase small ${isSecondary ? 'table-header-secondary' : ''}`}>
         <tr>
           <th style={{ width: '22%' }} className="text-center">Producto</th>
           <th style={{ width: '25%' }} className="text-start">Código</th>
@@ -18,7 +19,6 @@ const SingleTable = ({ items, hasCompatibility }) => (
           <tr key={`${prod.codigo}-${index}`}>
             <td className="text-center py-2 position-relative product-cell-zoom" style={{ overflow: 'visible' }}>
               <div className="product-preview-container">
-                {/* 1. Miniatura estándar visible en la tabla */}
                 <img 
                   src={prod.foto || '/placeholder.png'} 
                   alt={prod.codigo} 
@@ -26,8 +26,6 @@ const SingleTable = ({ items, hasCompatibility }) => (
                   style={{ maxHeight: '42px', maxWidth: '60px', objectFit: 'contain' }}
                   onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
                 />
-
-                {/* 2. Popover ampliado que aparece al costado en hover */}
                 <div className="product-preview-popover shadow">
                   <img 
                     src={prod.foto || '/placeholder.png'} 
@@ -50,7 +48,7 @@ const SingleTable = ({ items, hasCompatibility }) => (
 );
 
 export const DoubleProductTable = ({ title, products = [], headerColor, hasCompatibility = false }) => {
-    // Calculamos la mitad exacta de los elementos
+  // Calculamos la mitad exacta de los elementos
   const half = Math.ceil(products.length / 2);
   const leftColumnProducts = products.slice(0, half);
   const rightColumnProducts = products.slice(half);
@@ -68,12 +66,15 @@ export const DoubleProductTable = ({ title, products = [], headerColor, hasCompa
       {/* Bloque contenedor con las dos tablas */}
       <div className="bg-white p-2 p-md-3 border border-top-0 rounded-bottom shadow-sm">
         <Row className="g-3 g-xl-4">
-          <Col xs={12} lg={rightColumnProducts.length > 0 ? 6 : 12}>
-            <SingleTable items={leftColumnProducts} hasCompatibility={hasCompatibility} />
+          {/* Tabla 1 (Columna Izquierda) */}
+          <Col xs={12} lg={6}>
+            <SingleTable items={leftColumnProducts} hasCompatibility={hasCompatibility} isSecondary={false} />
           </Col>
+          
+          {/* Tabla 2 (Columna Derecha) */}
           {rightColumnProducts.length > 0 && (
             <Col xs={12} lg={6}>
-              <SingleTable items={rightColumnProducts} hasCompatibility={hasCompatibility} />
+              <SingleTable items={rightColumnProducts} hasCompatibility={hasCompatibility} isSecondary={true} />
             </Col>
           )}
         </Row>
