@@ -699,7 +699,7 @@ export const ProductFamilyDetail = () => {
                 </div>
 
                 {/* Acordeón de Preguntas */}
-                <Accordion defaultActiveKey="0" className="faq-accordion d-flex flex-column gap-3">
+                <Accordion className="faq-accordion d-flex flex-column gap-3">
                   
                   {/* Pregunta 1 */}
                   <Accordion.Item eventKey="0" className="border rounded-3 overflow-hidden">
