@@ -117,6 +117,10 @@ code {
   --rojo-bordeaux: #9D2E35;
 }
 
+.features-bar {
+  --rojo-principal: #9D2E35 !important;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
@@ -222,6 +226,7 @@ html, body, #root {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  border-radius: 8px; /* Acá (usá 8px/10px para algo sutil, o 50px si lo querés cápsula completa) */
 }
 
 .btn-hero-outline:hover {
@@ -574,14 +579,13 @@ section[id] {
   overflow: hidden;
   display: block;
   width: 100%;
-  max-width: 900px;            /* Contenedor más ancho para que la diagonal viaje completa */
+  max-width: 900px;
   height: 430px;
-  margin-left: -90px;          /* Desplaza el inicio de la imagen hacia la izquierda */
-  border-radius: 0 18px 18px 0; /* Puntas redondeadas a la derecha */
+  margin-left: -90px;
   
-  /* 4 puntos: diagonal recta sin quiebres verticales */
-  clip-path: polygon(320px 0%, 100% 0%, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(320px 0%, 100% 0%, 100% 100%, 0% 100%);
+  /* Aplica la máscara vectorial con curvas reales */
+  clip-path: url(#diagonal-curva);
+  -webkit-clip-path: url(#diagonal-curva);
 }
 
 .engineering-img {
@@ -842,7 +846,7 @@ section[id] {
     background-color: #f0f2f5 !important;
   }
   
-  /* Bloque azul: Inclinación exacta a 45° que empata con la foto y el logo */
+  /* Bloque azul: Punta superior redondeada y punta inferior en diagonal nítida */
   .footer-soltermann-blue {
     background-color: var(--azul-ultramar, #2A2A58) !important;
     color: #ffffff;
@@ -851,9 +855,23 @@ section[id] {
     margin-left: -80px;            /* Desplaza el fondo para ganar espacio */
     padding: 40px 30px 20px 140px; /* Padding izquierdo para proteger el texto de la diagonal */
     
-    /* Desplazamiento horizontal a 260px para lograr los 45° */
-    clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
-    -webkit-clip-path: polygon(260px 0%, 100% 0%, 100% 100%, 0% 100%) !important;
+    /* Arriba curva suave | Abajo punta diagonal original */
+    clip-path: polygon(
+      272px 0%,                       /* Inicio borde superior horizontal */
+      100% 0%,                        /* Esquina superior derecha */
+      100% 100%,                      /* Esquina inferior derecha */
+      0% 100%,                        /* Punta diagonal inferior limpia */
+      260px 12px,                     /* Inicio curva superior */
+      266px 4px                       /* Suavizado superior */
+    ) !important;
+    -webkit-clip-path: polygon(
+      272px 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%,
+      260px 12px,
+      266px 4px
+    ) !important;
   }
   
   /* Centrado visual del copyright */
@@ -882,32 +900,37 @@ section[id] {
    ========================================================== */
 
 /* Contenedor relativo en el link de Productos */
-.nav-item-dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+/* 1. Asegurar que los contenedores no recorten elementos salientes */
+.capsule-nav-container,
+.custom-header-wrapper {
+  overflow: visible !important; /* Evita que el dropdown quede oculto/cortado */
 }
 
-/* Menú flotante alineado al inicio del botón PRODUCTOS */
+/* 2. Contenedor relativo del ítem con submenú */
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* 3. Menú flotante desplegable (oculto por defecto) */
 .products-dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;                      /* Alinea el borde izquierdo justo con la "P" de PRODUCTOS */
-  transform: none;              /* Quita el centrado anterior */
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--azul-ultramar, #2A2A58);
-  min-width: 260px;
-  border-radius: 0 0 8px 8px;
+  min-width: 220px;
   padding: 8px 0;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  z-index: 1100;
-  border-top: 2px solid var(--rojo-principal, #EE353D);
+  border-radius: 8px;
+  z-index: 1050 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
 }
 
-/* Al hacer hover */
+/* 4. Mostrar al hacer hover sobre el ítem o el mismo menú */
 .nav-item-dropdown:hover .products-dropdown-menu {
-  display: block;
-  animation: fadeInNav 0.2s ease-in-out;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Animación de entrada fluida */
@@ -923,27 +946,23 @@ section[id] {
 }
 
 /* Opciones de la lista */
+/* 5. Estilo de los botones dentro del dropdown */
 .products-dropdown-item {
-  display: block;
-  width: 100%;
-  padding: 9px 18px;
-  color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-decoration: none;
   background: transparent;
+  color: #ffffff;
   border: none;
   text-align: left;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: 100%;
+  transition: background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .products-dropdown-item:hover {
   background-color: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  padding-left: 22px; /* Pequeño desplazamiento interactivo */
 }
 
 /* ==========================================================
@@ -1179,6 +1198,39 @@ video::-webkit-media-controls-mute-button {
 }
 
 /* ==========================================================
+   FAMILIAS DE PRODUCTOS COMPACTAS EN MOBILE
+   ========================================================== */
+/* ==========================================================
+   FAMILIAS DE PRODUCTOS - VERSIÓN COMPACTA ÓPTIMA (MOBILE)
+   ========================================================== */
+@media (max-width: 767.98px) {
+  .product-family-card {
+    min-height: 64px !important;
+    height: 64px !important;
+    padding: 8px 10px 6px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border-radius: 8px !important;
+  }
+
+  /* Título optimizado para 1 o 2 líneas compactas */
+  .product-family-title {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.2px;
+  }
+
+  /* Barrita inferior sutil */
+  .product-family-line {
+    width: 18px !important;
+    height: 2.5px !important;
+    margin-top: 2px !important;
+  }
+}
+
+/* ==========================================================
    NAVBAR FIJO INSTITUCIONAL (CALCE DINÁMICO Y EXACTO)
    ========================================================== */
 
@@ -1220,12 +1272,17 @@ video::-webkit-media-controls-mute-button {
 }
 
 /* NIVEL 2: Menú Azul Recto (Desktop: 480px exactos) */
+/* NIVEL 2: Menú Azul (Desktop: 480px exactos) */
 .capsule-nav-container {
   background-color: var(--azul-ultramar, #2A2A58);
   padding: 8px 24px;
   margin-top: -3px;
   width: 480px; /* Coincide exactamente con la base del trapecio */
-  border-radius: 0 !important;
+  
+  /* Redondeo en esquinas inferiores (Arriba: 0 | Abajo: 12px) */
+  border-radius: 0 0 12px 12px !important;
+  overflow: hidden;
+  
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
 }
@@ -1262,8 +1319,8 @@ video::-webkit-media-controls-mute-button {
 }
 
 /* ==========================================================
-    ADAPTACIÓN RESPONSIVE MOBILE (MATEMÁTICA PURA)
-    ========================================================== */
+   ADAPTACIÓN RESPONSIVE MOBILE (MATEMÁTICA PURA)
+   ========================================================== */
 @media (max-width: 768px) {
   /* 1. Trapecio blanco: Ancho 360px - Corte 30px por lado = Base EXACTA de 300px */
   .trapezoid-logo-container {
@@ -1281,7 +1338,7 @@ video::-webkit-media-controls-mute-button {
     max-height: 36px !important;
   }
 
-  /* 2. Barra azul: Forzada a los mismos 300px exactos */
+  /* 2. Barra azul: Forzada a los mismos 300px exactos con esquinas redondeadas proporcionadas */
   .capsule-nav-container {
     width: 300px !important;     /* Coincide exactamente con la base del trapecio */
     min-width: 300px !important;
@@ -1289,6 +1346,9 @@ video::-webkit-media-controls-mute-button {
     padding: 4px 8px !important;
     margin-top: -2px !important;
     box-sizing: border-box !important;
+    
+    /* En mobile un radio ligeramente más sutil para acompañar el ancho de 300px */
+    border-radius: 0 0 10px 10px !important;
   }
 
   .capsule-nav-container .nav {
@@ -1304,8 +1364,8 @@ video::-webkit-media-controls-mute-button {
 
   /* 3. Enlaces reducidos para que no empujen el contenedor */
   .capsule-nav-link {
-    font-size: 0.65rem !important; /* Tamaño justo para legibilidad */
-    padding: 3px 2px !important;   /* Sin padding excesivo */
+    font-size: 0.65rem !important;
+    padding: 3px 2px !important;
     letter-spacing: 0px !important;
     margin: 0 !important;
   }
@@ -1317,6 +1377,20 @@ video::-webkit-media-controls-mute-button {
     bottom: -1px !important;
     height: 1.5px !important;
   }
+}
+
+/* ==========================================================
+   ANULAR FOCO PERSISTENTE EN LA BARRA DE NAVEGACIÓN
+   ========================================================== */
+.capsule-nav-link:focus:not(.active) {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.capsule-nav-link:focus:not(.active)::after {
+  display: none !important;
 }
 
 /* ==========================================================
@@ -1472,5 +1546,27 @@ video::-webkit-media-controls-mute-button {
 @media (min-width: 992px) {
   .table-header-secondary {
     display: table-header-group !important;
+  }
+}
+
+/* ==========================================================
+   STICKY DINÁMICO: DESKTOP SÍ, MOBILE NO (el menú fijo de productos)
+   ========================================================== */
+
+/* 1. Mobile y Tablet (< 992px): Flujo normal con el scroll */
+.products-sticky-header {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  padding-top: 100px !important; /* Espacio para que el navbar flotante no tape el título inicial */
+}
+
+/* 2. Desktop (>= 992px): Queda fijado arriba al scrollear */
+@media (min-width: 992px) {
+  .products-sticky-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1025 !important;
+    padding-top: 115px !important; /* Espacio para el navbar en pantallas grandes */
   }
 }

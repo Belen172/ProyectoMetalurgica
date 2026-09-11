@@ -4,11 +4,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 // Lista de familias institucionales
 const PRODUCT_FAMILIES = [
-  { id: 'alemites-pulgadas', name: 'Alemites Rosca en Pulgadas' },
-  { id: 'alemites-metrica', name: 'Alemites Rosca Métrica' },
+  { id: 'alemites-pulgadas', name: 'Alemites y Tapones Rosca en Pulgadas' },
+  { id: 'alemites-metrica', name: 'Alemites y Tapones Rosca Métrica' },
   { id: 'especiales', name: 'Especiales' },
   { id: 'cuplas', name: 'Cuplas Roscadas' },
-  { id: 'aire-comprimido', name: 'Aire Comprimido' },
+  { id: 'aire-comprimido', name: 'Accesorios para Aire Comprimido' },
   { id: 'mecanizado-plano', name: 'Servicio de Mecanizado' },
 ];
 
@@ -25,31 +25,51 @@ export const Navbar = ({ onOpenContact }) => {
       }
       return;
     }
-
+  
     const sections = ['inicio', 'nosotros', 'productos'];
+  
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
+      // Si estamos arriba de todo (primeros 100px), aseguramos 'inicio'
+      if (window.scrollY < 100) {
+        setActiveSection('inicio');
+        return;
+      }
+  
+      // Línea de lectura: 30% de la altura de la pantalla
+      const triggerPoint = window.innerHeight * 0.35;
+  
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
+          const rect = el.getBoundingClientRect();
+          // Si el inicio de la sección ya pasó la línea de disparo pero su base sigue visible
+          if (rect.top <= triggerPoint && rect.bottom > triggerPoint) {
             setActiveSection(section);
             break;
           }
         }
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
+  
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Ejecuta una vez al cargar la página
+  
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
   // Manejador de navegación general (Inicio / Nosotros / Productos general)
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
-
+  
+    // 1. Quita el foco visual del enlace clickeado
+    if (e.currentTarget) {
+      e.currentTarget.blur();
+    }
+  
+    // 2. Fuerza el cambio de sección activa de inmediato
+    setActiveSection(targetId);
+  
+    // 3. Maneja la navegación y el scroll
     if (location.pathname === '/') {
       const element = document.getElementById(targetId);
       if (element) {

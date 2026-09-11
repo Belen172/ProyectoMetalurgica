@@ -5,11 +5,11 @@ import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt,
 import { DoubleProductTable } from './DoubleProductTable';
 
 export const allFamilies = [
-  { id: 'alemites-pulgadas', title: 'Alemites Rosca en Pulgadas', color: '#2A2A58' },
-  { id: 'alemites-metrica', title: 'Alemites Rosca Métrica', color: '#37418E' },
+  { id: 'alemites-pulgadas', title: 'Alemites y Tapones Rosca en Pulgadas', color: '#2A2A58' },
+  { id: 'alemites-metrica', title: 'Alemites y Tapones Rosca Métrica', color: '#37418E' },
   { id: 'especiales', title: 'Especiales', color: '#9D2E35' },
   { id: 'cuplas', title: 'Cuplas Roscadas', color: '#EE353D' },
-  { id: 'aire-comprimido', title: 'Aire Comprimido', color: '#009ADC' },
+  { id: 'aire-comprimido', title: 'Accesorios para Aire Comprimido', color: '#009ADC' },
   { id: 'mecanizado-plano', title: 'Servicio de Mecanizado', color: '#F68B34' },
 ];
 
@@ -17,7 +17,7 @@ export const allFamilies = [
 const familiesDatabase = {
   // 1. ALEMITES ROSCA EN PULGADAS
   'alemites-pulgadas': {
-    title: 'Alemites Rosca en Pulgadas',
+    title: 'Alemites y Tapones Rosca en Pulgadas',
     color: '#2A2A58',
     tipo: 'catalogo',
     pdf: '/catalogos/catalogo-alemites-pulgadas.pdf',
@@ -73,7 +73,7 @@ const familiesDatabase = {
 
   // 2. ALEMITES ROSCA MÉTRICA
   'alemites-metrica': {
-    title: 'Alemites Rosca Métrica',
+    title: 'Alemites y Tapones Rosca Métrica',
     color: '#37418E',
     tipo: 'catalogo',
     pdf: '/catalogos/catalogo-alemites-metrica.pdf',
@@ -178,7 +178,7 @@ const familiesDatabase = {
     title: 'Especiales',
     color: '#9D2E35',
     tipo: 'catalogo',
-    pdf: '/catalogos/catalogo-alemites-especiales.pdf',
+    pdf: '/catalogos/catalogo-especiales.pdf',
     subfamilias: [
       {
         nombre: 'Válvulas de Alivio (respiro)',
@@ -211,7 +211,7 @@ const familiesDatabase = {
     title: 'Servicio de Mecanizado',
     color: '#F68B34',
     tipo: 'servicio',
-    pdf: '/catalogos/ficha-mecanizado-cnc.pdf',
+    pdf: '/catalogos/catalogo-servicio-de-mecanizado.pdf',
     contenido: {
       titulo: 'Tornería Automática y Mecanizado CNC',
       subtitulo: 'SOLUCIONES A MEDIDA SEGÚN PLANO',
@@ -238,7 +238,7 @@ const familiesDatabase = {
 
   // 6. AIRE COMPRIMIDO
   'aire-comprimido': {
-    title: 'Aire Comprimido',
+    title: 'Accesorios para Aire Comprimido',
     color: '#009ADC',
     tipo: 'catalogo',
     pdf: '/catalogos/catalogo-aire-comprimido.pdf',
@@ -430,26 +430,17 @@ export const ProductFamilyDetail = () => {
     <div className="products-page-container">
       <section className="bg-light min-vh-100 pb-4">
         
-        {/* BLOQUE STICKY COMPLETO CON FONDO BLANCO Y MARGEN DE CONTENCIÓN */}
-        <div 
-          className="bg-white shadow-sm w-100" 
-          style={{ 
-            position: 'sticky', 
-            top: 0,                   /* Se pega al techo de la pantalla */
-            zIndex: 1025,
-            backgroundColor: '#ffffff',
-            paddingTop: '115px'        /* Da el espacio exacto para que el Navbar flote encima sin tapar el título */
-          }}
-        >
+        {/* BLOQUE CON CLASE RESPONSIVE PARA EL COMPORTAMIENTO STICKY */}
+        <div className="products-sticky-header bg-white shadow-sm w-100">
           <Container fluid className="px-4 px-md-5 pt-2 pb-3">
             
-            {/* ENCABEZADO "PRODUCTOS" CON LÍNEA ROJA FIJA */}
+            {/* ENCABEZADO "PRODUCTOS" CON LÍNEA ROJA */}
             <div className="mb-3 text-start">
               <div 
                 style={{ 
                   width: '45px', 
                   height: '4px', 
-                  backgroundColor: '#e63946', 
+                  backgroundColor: 'var(--rojo-principal, #9D2E35)', 
                   borderRadius: '2px',
                   display: 'block',
                   marginBottom: '10px'
@@ -691,7 +682,7 @@ export const ProductFamilyDetail = () => {
                     style={{ 
                       width: '50px', 
                       height: '4px', 
-                      backgroundColor: currentFamily.color, /* O bien currentFamily.color si querés que sea dinámico */
+                      backgroundColor: currentFamily.color, 
                       borderRadius: '2px', 
                       margin: '0 auto' 
                     }} 
@@ -709,7 +700,7 @@ export const ProductFamilyDetail = () => {
                       </span>
                     </Accordion.Header>
                     <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
-                      Aceptamos planos de fabricación en formatos 3D nativos como <strong>SolidWorks, STEP e IGES</strong>, y formatos vectoriales en 2D como <strong>DXF, DWG</strong> y documentos <strong>PDF</strong> estándar para realizar cotizaciones rápidas.
+                      Recibimos tu plano técnico en formato <strong>PDF o JPG</strong>. Lo evaluamos para cotizar la fabricación de la pieza según tus requerimientos.
                     </Accordion.Body>
                   </Accordion.Item>
 
@@ -721,7 +712,7 @@ export const ProductFamilyDetail = () => {
                       </span>
                     </Accordion.Header>
                     <Accordion.Body className="text-secondary" style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
-                    Nos especializamos en producciones de <strong>series medianas y grandes</strong>. Optimizamos nuestros tiempos de ciclo mediante celdas automatizadas y tornos multiejos para ofrecer el mejor costo unitario en lotes seriados.
+                    Nos especializamos en producciones de <strong>series medianas y grandes</strong>. Optimizamos nuestros tiempos de ciclo para ofrecer el mejor costo unitario en lotes seriados.
                     </Accordion.Body>
                   </Accordion.Item>
 

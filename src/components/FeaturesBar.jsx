@@ -10,15 +10,14 @@ export const FeaturesBar = () => {
           
           {/* COLUMNA 1: Isotipo Soltermann */}
           <Col sm={6} lg={3} className="feature-item px-3">
-            <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+          <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
             <img 
               src="/isotipo_met.png" 
               alt="Isotipo Metalúrgica Soltermann" 
               style={{ 
                 height: '38px', 
                 width: 'auto', 
-                objectFit: 'contain',
-                filter: 'brightness(0) saturate(100%) invert(26%) sepia(85%) saturate(3040%) hue-rotate(345deg) brightness(92%) contrast(92%)'
+                objectFit: 'contain'
               }} 
             />
               <div>
@@ -62,13 +61,12 @@ export const FeaturesBar = () => {
               <FaShieldAlt className="fs-1" style={{ color: 'var(--rojo-principal)' }} />
               <div>
                 <h5 className="fw-bold mb-0 text-white text-uppercase fs-6">
-                  CALIDAD EN CADA<span style={{ color: 'var(--rojo-principal)' }}> PIEZA</span>
+                  CALIDAD EN CADA <span style={{ color: 'var(--rojo-principal)' }}>PIEZA</span>
                 </h5>
                 <small className="text-light opacity-75">Compromiso con los más altos estándares.</small>
               </div>
             </div>
           </Col>
-
         </Row>
       </Container>
     </section>

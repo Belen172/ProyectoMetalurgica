@@ -6,13 +6,13 @@ import { FaFilePdf, FaExternalLinkAlt } from 'react-icons/fa';
 const productFamilies = [
   {
     id: 'alemites-pulgadas',
-    title: 'Alemites Rosca en Pulgadas',
+    title: 'Alemites y Tapones Rosca en Pulgadas',
     color: '#2A2A58',
     link: '/productos/alemites-pulgadas'
   },
   {
     id: 'alemites-metrica',
-    title: 'Alemites Rosca Métrica',
+    title: 'Alemites y Tapones Rosca Métrica',
     color: '#37418E',
     link: '/productos/alemites-metrica'
   },
@@ -30,7 +30,7 @@ const productFamilies = [
   },
   {
     id: 'aire-comprimido',
-    title: 'Aire Comprimido',
+    title: 'Accesorios para Aire Comprimido',
     color: '#009ADC',
     link: '/productos/aire-comprimido'
   },

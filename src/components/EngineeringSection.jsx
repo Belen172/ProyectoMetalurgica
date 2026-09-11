@@ -36,13 +36,31 @@ export const EngineeringSection = () => {
             <a 
               href="#nosotros" 
               className="btn btn-engineering text-white text-uppercase px-4 py-3 fw-bold d-inline-flex align-items-center gap-2"
-              style={{ backgroundColor: 'var(--azul-ultramar)', borderRadius: '2px' }}
+              style={{ backgroundColor: 'var(--azul-ultramar)', borderRadius: '8px' }}
             >
               SOBRE NOSOTROS <FaArrowRight style={{ color: 'var(--rojo-principal)' }} />
             </a>
           </Col>
 
-          {/* Columna de Imagen con el corte del Isotipo */}
+          {/* Máscara vectorial oculta para corte diagonal con esquinas redondeadas en la imagen*/}
+          <svg width="0" height="0" style={{ position: 'absolute' }}>
+            <defs>
+              <clipPath id="diagonal-curva" clipPathUnits="objectBoundingBox">
+                {/* Recorte con esquinas redondeadas reales en coordenadas proporcionales (0 a 1) */}
+                <path d="M 0.38 0 
+                        L 0.96 0 
+                        Q 1 0 1 0.05 
+                        L 1 0.95 
+                        Q 1 1 0.96 1 
+                        L 0.04 1 
+                        Q 0 1 0.02 0.95 
+                        L 0.34 0.05 
+                        Q 0.36 0 0.38 0 Z" />
+              </clipPath>
+            </defs>
+          </svg>
+
+          {/* Columna de Imagen */}
           <Col lg={7} xl={7} className="d-flex justify-content-end">
             <div className="engineering-img-container">
               <img 
