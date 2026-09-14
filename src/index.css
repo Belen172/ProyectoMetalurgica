@@ -1570,3 +1570,39 @@ video::-webkit-media-controls-mute-button {
     padding-top: 115px !important; /* Espacio para el navbar en pantallas grandes */
   }
 }
+
+/* ==========================================================
+   OPTIMIZACIÓN GLOBAL DE TABLAS EN MOBILE (< 768px)
+   ========================================================== */
+   @media (max-width: 767.98px) {
+    /* Habilita scroll horizontal fluido en cualquier tabla de producto */
+    .table-responsive {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+    }
+  
+    /* Ancho mínimo para tablas estándar (con o sin compatibilidad) */
+    .custom-product-table {
+      min-width: 440px !important;
+    }
+  
+    /* Si tiene la columna de compatibilidad, le damos un poco más de aire */
+    .custom-product-table th:nth-child(4),
+    .custom-product-table td:nth-child(4) {
+      min-width: 140px;
+    }
+  
+    /* Compactar paddings y tamaños de fuente */
+    .custom-product-table th,
+    .custom-product-table td {
+      padding: 6px 4px !important;
+      font-size: 0.75rem !important;
+    }
+  
+    /* Ajuste de miniatura */
+    .custom-product-table .product-thumb-img {
+      max-height: 32px !important;
+      max-width: 45px !important;
+    }
+  }

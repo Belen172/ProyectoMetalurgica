@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table, Accordion } from 'react-bootstrap';
 import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt, FaWhatsapp } from 'react-icons/fa';
 import { DoubleProductTable } from './DoubleProductTable';
+import { DoubleCuplasTable } from './DoubleCuplasTable'; 
 
 export const allFamilies = [
   { id: 'alemites-pulgadas', title: 'Alemites y Tapones Rosca en Pulgadas', color: '#2A2A58' },
@@ -147,27 +148,27 @@ const familiesDatabase = {
       {
         nombre: 'Cuplas - Rosca en pulgadas',
         productos: [
-          { denominacion: 'Cupla roscada 1/4', codigo: 'CR001', diametroH: '9,52', rosca: 'W 1/4" x 20', largo: '22' },
-          { denominacion: 'Cupla roscada 5/16', codigo: 'CR002', diametroH: '12,7', rosca: 'W 5/16" x 18', largo: '25' },
-          { denominacion: 'Cupla roscada 3/8', codigo: 'CR003', diametroH: '14', rosca: 'W 3/8" x 16', largo: '28,5' },
-          { denominacion: 'Cupla roscada 3/8', codigo: 'CR004', diametroH: '14', rosca: 'W 3/8" x 16', largo: '45' },
-          { denominacion: 'Cupla roscada 7/16', codigo: 'CR005', diametroH: '16', rosca: 'W 7/16" x 14', largo: '50' },
-          { denominacion: 'Cupla roscada 7/16 pesada', codigo: 'CR006', diametroH: '17', rosca: 'W 7/16" x 14', largo: '50' },
-          { denominacion: 'Cupla roscada 1/2 liviana', codigo: 'CR007', diametroH: '17', rosca: 'W 1/2" x 12', largo: '50' },
-          { denominacion: 'Cupla roscada 1/2 pesada', codigo: 'CR008', diametroH: '19', rosca: 'W 1/2" x 12', largo: '50' }
+          { foto: '/productos/CR001.png', denominacion: 'Cupla roscada 1/4', codigo: 'CR001', diametroH: '9,52', rosca: 'W 1/4" x 20', largo: '22' },
+          { foto: '/productos/CR002.png', denominacion: 'Cupla roscada 5/16', codigo: 'CR002', diametroH: '12,7', rosca: 'W 5/16" x 18', largo: '25' },
+          { foto: '/productos/CR003.png', denominacion: 'Cupla roscada 3/8', codigo: 'CR003', diametroH: '14', rosca: 'W 3/8" x 16', largo: '28,5' },
+          { foto: '/productos/CR004.png', denominacion: 'Cupla roscada 3/8', codigo: 'CR004', diametroH: '14', rosca: 'W 3/8" x 16', largo: '45' },
+          { foto: '/productos/CR005.png', denominacion: 'Cupla roscada 7/16', codigo: 'CR005', diametroH: '16', rosca: 'W 7/16" x 14', largo: '50' },
+          { foto: '/productos/CR006.png', denominacion: 'Cupla roscada 7/16 pesada', codigo: 'CR006', diametroH: '17', rosca: 'W 7/16" x 14', largo: '50' },
+          { foto: '/productos/CR007.png', denominacion: 'Cupla roscada 1/2 liviana', codigo: 'CR007', diametroH: '17', rosca: 'W 1/2" x 12', largo: '50' },
+          { foto: '/productos/CR008.png', denominacion: 'Cupla roscada 1/2 pesada', codigo: 'CR008', diametroH: '19', rosca: 'W 1/2" x 12', largo: '50' }
         ]
       },
       {
         nombre: 'Cuplas - Reducción / Especiales',
         productos: [
-          { denominacion: 'Cupla roscada 3/8 Larga', codigo: 'CR009', diametroH: '14', rosca: 'W 3/8" x 16', largo: '80' },
-          { denominacion: 'Cupla roscada 7/16 - 3/8 Reducción', codigo: 'CR010', diametroH: '17', rosca: 'W 7/16" x 14 / W 3/8" x 16', largo: '50' },
-          { denominacion: 'Cupla roscada 7/16 Larga', codigo: 'CR011', diametroH: '17', rosca: 'W 7/16" x 14', largo: '80' },
-          { denominacion: 'Cupla roscada 1/2 - 7/16 Reducción', codigo: 'CR012', diametroH: '19 o 19.03', rosca: 'W 1/2" x 12 / W 7/16" x 14', largo: '50' },
-          { denominacion: 'Cupla roscada 1/2 Larga', codigo: 'CR013', diametroH: '19 o 19.03', rosca: 'W 1/2" x 12', largo: '80' },
-          { denominacion: 'Cupla roscada 5/8 Reforzada', codigo: 'CR014', diametroH: '22', rosca: 'W 5/8" x 11', largo: '60' },
-          { denominacion: 'Cupla roscada 5/8 - 1/2 Reducción', codigo: 'CR015', diametroH: '22', rosca: 'W 5/8" x 11 / W 1/2" x 12', largo: '60' },
-          { denominacion: 'Cupla roscada 5/8 Larga', codigo: 'CR016', diametroH: '22', rosca: 'W 5/8" x 11', largo: '80' }
+          { foto: '/productos/CR009.png', denominacion: 'Cupla roscada 3/8 Larga', codigo: 'CR009', diametroH: '14', rosca: 'W 3/8" x 16', largo: '80' },
+          { foto: '/productos/CR010.png', denominacion: 'Cupla roscada 7/16 - 3/8 Reducción', codigo: 'CR010', diametroH: '17', rosca: 'W 7/16" x 14 / W 3/8" x 16', largo: '50' },
+          { foto: '/productos/CR011.png', denominacion: 'Cupla roscada 7/16 Larga', codigo: 'CR011', diametroH: '17', rosca: 'W 7/16" x 14', largo: '80' },
+          { foto: '/productos/CR012.png', denominacion: 'Cupla roscada 1/2 - 7/16 Reducción', codigo: 'CR012', diametroH: '19 o 19.03', rosca: 'W 1/2" x 12 / W 7/16" x 14', largo: '50' },
+          { foto: '/productos/CR013.png', denominacion: 'Cupla roscada 1/2 Larga', codigo: 'CR013', diametroH: '19 o 19.03', rosca: 'W 1/2" x 12', largo: '80' },
+          { foto: '/productos/CR014.png', denominacion: 'Cupla roscada 5/8 Reforzada', codigo: 'CR014', diametroH: '22', rosca: 'W 5/8" x 11', largo: '60' },
+          { foto: '/productos/CR015.png', denominacion: 'Cupla roscada 5/8 - 1/2 Reducción', codigo: 'CR015', diametroH: '22', rosca: 'W 5/8" x 11 / W 1/2" x 12', largo: '60' },
+          { foto: '/productos/CR016.png', denominacion: 'Cupla roscada 5/8 Larga', codigo: 'CR016', diametroH: '22', rosca: 'W 5/8" x 11', largo: '80' }
         ]
       }
     ]
@@ -746,104 +747,42 @@ export const ProductFamilyDetail = () => {
             </div>
           )}
 
-          {/* CASO 2: TABLA DE CUPLAS (CON PLANO TÉCNICO Y FOTO REAL) */}
+          {/* CASO 2: TABLAS DOBLES DE CUPLAS + PLANO TÉCNICO AL PIE */}
           {currentFamily.tipo === 'cuplas' && (
-            <Row className="g-4 align-items-center">
-              
-              {/* Columna Izquierda: Ambas Imágenes (Plano Técnico + Foto Real) */}
-              <Col xs={12} lg={3} xl={3}> 
-                <div className="d-flex flex-column gap-3 justify-content-center">
-                  
-                  {/* 1. Plano Técnico Estático con Cotas (Más alto y aprovechando todo el ancho) */}
-                  <div className="bg-light p-2 border rounded text-center shadow-sm">
-                    <div 
-                      className="bg-white p-2 border rounded shadow-sm d-flex align-items-center justify-content-center" 
-                      style={{ height: '310px' }}
-                    >
-                      <img 
-                        src="/productos/cuplas-plano.png" 
-                        alt="Plano Técnico Cupla" 
-                        style={{ 
-                          height: '100%', 
-                          width: '100%', 
-                          objectFit: 'contain',
-                          display: 'block',
-                          margin: '0 auto'
-                        }}
-                      />
-                    </div>
-                  </div>
+            <div className="d-flex flex-column gap-3">
+              {currentFamily.subfamilias.map((sub, idx) => (
+                <DoubleCuplasTable
+                  key={idx}
+                  title={sub.nombre}
+                  products={sub.productos}
+                  headerColor={currentFamily.color}
+                />
+              ))}
 
-                  {/* 2. Foto Real con Zoom */}
-                  <div className="bg-light p-2 border rounded text-center shadow-sm">
-                    <div 
-                      className="cupla-zoom-wrapper p-2 border shadow-sm d-flex align-items-center justify-content-center" 
-                      style={{ backgroundColor: '#fff', borderRadius: '8px', height: '240px' }}
-                    >
-                      <img 
-                        src="/productos/cuplas-roscadas.png" 
-                        alt="Cuplas Roscadas" 
-                        className="cupla-zoom-img"
-                        style={{ 
-                          maxHeight: '100%', 
-                          maxWidth: '100%', 
-                          objectFit: 'contain' 
-                        }}
-                      />
-                    </div>
-                  </div>
-
+              {/* PLANO TÉCNICO COMPACTO AL PIE */}
+              <div 
+                className="bg-white p-3 border rounded shadow-sm text-center mt-2 mx-auto"
+                style={{ maxWidth: '550px', width: '100%' }}
+              >
+                <h6 
+                  className="text-secondary fw-bold text-uppercase mb-2" 
+                  style={{ fontSize: '0.8rem', letterSpacing: '0.5px' }}
+                >
+                  Plano Técnico
+                </h6>
+                <div className="d-flex justify-content-center align-items-center">
+                  <img 
+                    src="/productos/cuplas-plano.png" 
+                    alt="Plano Técnico Cupla" 
+                    style={{ 
+                      maxHeight: '180px', 
+                      maxWidth: '100%', 
+                      objectFit: 'contain' 
+                    }} 
+                  />
                 </div>
-              </Col>
-
-              {/* Columna Derecha: Tablas de Subfamilias con sus cabeceras rojas */}
-              <Col xs={12} lg={9} xl={9}>
-                <div className="d-flex flex-column gap-4">
-                  {currentFamily.subfamilias.map((sub, idx) => (
-                    <div key={idx} className="subfamily-container">
-                      
-                      {/* Cabecera roja alineada exclusivamente con el ancho de la tabla */}
-                      <div 
-                        className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase" 
-                        style={{ backgroundColor: currentFamily.color, fontSize: '0.95rem', letterSpacing: '0.5px' }}
-                      >
-                        {sub.nombre}
-                      </div>
-
-                      {/* Contenedor de la tabla */}
-                      <div className="bg-white p-3 border border-top-0 rounded-bottom shadow-sm">
-                        <div className="table-responsive rounded">
-                          <Table hover className="align-middle mb-0 custom-product-table">
-                            <thead className="table-light text-secondary text-uppercase small">
-                              <tr>
-                                <th style={{ width: '15%' }} className="text-start">Código</th>
-                                <th style={{ width: '35%' }} className="text-start">Descripción</th>
-                                <th style={{ width: '15%' }} className="text-start">ØH (mm)</th>
-                                <th style={{ width: '23%' }} className="text-start">Ø1 Ø2 Rosca</th>
-                                <th style={{ width: '12%' }} className="text-start">L (mm)</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {sub.productos.map((prod, pIdx) => (
-                                <tr key={pIdx}>
-                                  <td className="fw-bold text-dark text-start py-2">{prod.codigo}</td>
-                                  <td className="text-secondary small text-start py-2">{prod.denominacion}</td>
-                                  <td className="text-secondary small text-start py-2">{prod.diametroH}</td>
-                                  <td className="text-secondary small text-start py-2">{prod.rosca}</td>
-                                  <td className="text-secondary small text-start py-2">{prod.largo}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </Table>
-                        </div>
-                      </div>
-
-                    </div>
-                  ))}
-                </div>
-              </Col>
-
-            </Row>
+              </div>
+            </div>
           )}
 
           {/* CASO 3: CATÁLOGO ESTÁNDAR (IMPLEMENTADO CON DOUBLE PRODUCT TABLE) */}
