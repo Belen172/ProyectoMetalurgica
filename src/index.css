@@ -1552,22 +1552,36 @@ video::-webkit-media-controls-mute-button {
 /* ==========================================================
    STICKY DINÁMICO: DESKTOP SÍ, MOBILE NO (el menú fijo de productos)
    ========================================================== */
-
-/* 1. Mobile y Tablet (< 992px): Flujo normal con el scroll */
+/* 1. Mobile y Tablet (< 992px): Flujo normal, transparente y sin sombra */
 .products-sticky-header {
   position: static !important;
   top: auto !important;
   z-index: auto !important;
   padding-top: 100px !important; /* Espacio para que el navbar flotante no tape el título inicial */
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* 2. Desktop (>= 992px): Queda fijado arriba al scrollear */
+/* 2. Desktop (>= 992px): Queda fijado arriba al scrollear con su fondo blanco y sombra */
 @media (min-width: 992px) {
   .products-sticky-header {
     position: sticky !important;
     top: 0 !important;
     z-index: 1025 !important;
     padding-top: 115px !important; /* Espacio para el navbar en pantallas grandes */
+    background-color: #ffffff !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  }
+}
+
+/* ==========================================================
+  MOBILE: ANULA EL FONDO BLANCO EN LÍNEA DEL NAVBAR
+  ========================================================== */
+@media (max-width: 991.98px) {
+  .custom-header-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
   }
 }
 
