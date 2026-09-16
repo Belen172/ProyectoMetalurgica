@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
 
-// Subtabla reutilizable para renderizar cualquier lista de items
+// Subtabla individual con productos
 const SingleTable = ({ items, hasCompatibility, isSecondary = false }) => (
   <div className="table-responsive bg-white rounded shadow-sm">
     <Table hover className="align-middle mb-0 custom-product-table">
@@ -46,6 +46,26 @@ const SingleTable = ({ items, hasCompatibility, isSecondary = false }) => (
   </div>
 );
 
+// Esqueleto vacío para rellenar el espacio cuando hay 1 solo producto
+const EmptyTablePlaceholder = () => (
+  <div className="table-responsive bg-white rounded shadow-sm border border-light h-100 d-flex flex-column">
+    <Table className="align-middle mb-0 custom-product-table">
+      <thead className="table-light">
+        <tr>
+          {/* Cabecera gris vacía con la misma altura */}
+          <th style={{ height: '37px', borderBottom: 'none' }}>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {/* Cuerpo blanco vacío con la altura aproximada de una fila */}
+          <td style={{ height: '58px', borderBottom: 'none' }}>&nbsp;</td>
+        </tr>
+      </tbody>
+    </Table>
+  </div>
+);
+
 export const DoubleProductTable = ({ title, products = [], headerColor, hasCompatibility = false }) => {
   // División para vista en computadoras de escritorio (>= 992px)
   const half = Math.ceil(products.length / 2);
@@ -53,33 +73,38 @@ export const DoubleProductTable = ({ title, products = [], headerColor, hasCompa
   const rightColumnProducts = products.slice(half);
 
   return (
-    <div className="subfamily-container mb-4">
-      {/* Título unificado de la subfamilia */}
+    <div className="subfamily-container mb-4" style={{ overflow: 'visible' }}>
+      {/* Título unificado */}
       <div 
-        className="text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase"
+        className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase"
         style={{ backgroundColor: headerColor || 'var(--azul-ultramar)', fontSize: '0.95rem', letterSpacing: '0.5px' }}
       >
         {title}
       </div>
 
-      <div className="bg-white p-2 p-md-3 border border-top-0 rounded-bottom shadow-sm">
+      <div 
+        className="bg-white p-2 p-md-3 border border-top-0 rounded-bottom shadow-sm"
+        style={{ overflow: 'visible' }}
+      >
         
-        {/* 1. VISTA MOBILE / TABLET (< 992px): Una única tabla continua */}
+        {/* 1. VISTA MOBILE (< 992px): Muestra solo los productos que existen */}
         <div className="d-block d-lg-none">
           <SingleTable items={products} hasCompatibility={hasCompatibility} isSecondary={false} />
         </div>
 
-        {/* 2. VISTA DESKTOP (>= 992px): Dos columnas paralelas lado a lado */}
+        {/* 2. VISTA DESKTOP (>= 992px): Si hay 1 solo producto, muestra el esqueleto al lado */}
         <div className="d-none d-lg-block">
           <Row className="g-3 g-xl-4">
             <Col lg={6}>
               <SingleTable items={leftColumnProducts} hasCompatibility={hasCompatibility} isSecondary={false} />
             </Col>
-            {rightColumnProducts.length > 0 && (
-              <Col lg={6}>
+            <Col lg={6}>
+              {rightColumnProducts.length > 0 ? (
                 <SingleTable items={rightColumnProducts} hasCompatibility={hasCompatibility} isSecondary={true} />
-              </Col>
-            )}
+              ) : (
+                <EmptyTablePlaceholder />
+              )}
+            </Col>
           </Row>
         </div>
 

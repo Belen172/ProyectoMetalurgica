@@ -1355,7 +1355,7 @@ video::-webkit-media-controls-mute-button {
     width: 100% !important;
     display: flex !important;
     flex-direction: row !important;
-    flex-nowrap: nowrap !important;
+    flex-wrap: nowrap !important;
     justify-content: space-between !important;
     align-items: center !important;
     margin: 0 !important;
@@ -1606,3 +1606,60 @@ video::-webkit-media-controls-mute-button {
       max-width: 45px !important;
     }
   }
+
+/* ==========================================================
+   ZOOM FLOTANTE DESKTOP (>= 768px): SIN RECORTES
+   ========================================================== */
+@media (min-width: 768px) {
+  /* 1. En desktop liberamos el overflow de las tablas para que el zoom flote libre */
+  .table-responsive,
+  .subfamily-container,
+  .subfamily-container > div {
+    overflow: visible !important;
+  }
+
+  /* 2. La celda y la fila sobre la que pasás el mouse pasan al frente absoluto */
+  .product-cell-zoom {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .product-cell-zoom:hover,
+  tr:hover .product-cell-zoom {
+    z-index: 9999 !important;
+  }
+
+  /* 3. Popover flotante con z-index superior */
+  .product-preview-popover {
+    z-index: 10000 !important;
+  }
+
+  /* 4. La barra de título azul queda con un z-index bajo */
+  .subfamily-header {
+    position: relative;
+    z-index: 1 !important;
+  }
+}
+
+/* ==========================================================
+    MOBILE (< 768px): MINIATURA DIRECTA SIN POPOVER
+    ========================================================== */
+@media (max-width: 767.98px) {
+  /* Scroll horizontal limpio en celulares */
+  .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Oculta el popover flotante en celulares */
+  .product-preview-popover {
+    display: none !important;
+  }
+
+  /* Miniatura ampliada y nítida directamente en la celda */
+  .product-thumb-img {
+    max-height: 44px !important;
+    max-width: 60px !important;
+    pointer-events: none;
+  }
+}

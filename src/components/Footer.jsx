@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaInstagram, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin, FaPhoneAlt, FaMapMarkerAlt, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 
 export const Footer = () => {
   return (
@@ -40,11 +40,22 @@ export const Footer = () => {
                 
               <div className="d-flex justify-content-center gap-3 fs-5">
                 <a 
+                  href="https://www.facebook.com/URL" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: 'var(--azul-ultramar)' }}
+                  className="opacity-85 hover-opacity-100"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook />
+                </a>
+                <a 
                   href="https://www.instagram.com/metalurgica.soltermann/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ color: 'var(--azul-ultramar)' }}
                   className="opacity-85 hover-opacity-100"
+                  aria-label="Instagram"
                 >
                   <FaInstagram />
                 </a>
@@ -54,6 +65,7 @@ export const Footer = () => {
                   rel="noopener noreferrer" 
                   style={{ color: 'var(--azul-ultramar)' }}
                   className="opacity-85 hover-opacity-100"
+                  aria-label="LinkedIn"
                 >
                   <FaLinkedin />
                 </a>

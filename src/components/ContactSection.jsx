@@ -7,6 +7,7 @@ import {
   FaMapMarkerAlt, 
   FaInstagram, 
   FaLinkedin, 
+  FaFacebook,
   FaPaperPlane,
   FaCheckCircle 
 } from 'react-icons/fa';
@@ -146,6 +147,28 @@ export const ContactSection = ({ show, handleClose }) => {
                   Redes Institucionales
                 </small>
                 <div className="d-flex gap-3">
+                  {/* Facebook */}
+                  <a 
+                    href="https://www.facebook.com/URL" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn d-flex align-items-center justify-content-center shadow-sm"
+                    style={{ 
+                      width: '46px', 
+                      height: '46px', 
+                      backgroundColor: 'var(--azul-ultramar)',
+                      borderRadius: '6px', 
+                      border: 'none',
+                      transition: 'transform 0.2s ease, opacity 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                    aria-label="Facebook"
+                  >
+                    <FaFacebook className="fs-4 text-white" />
+                  </a>
+
+                  {/* Instagram */}
                   <a 
                     href="https://www.instagram.com/metalurgica.soltermann/" 
                     target="_blank" 
@@ -155,16 +178,18 @@ export const ContactSection = ({ show, handleClose }) => {
                       width: '46px', 
                       height: '46px', 
                       backgroundColor: 'var(--azul-ultramar)',
-                      borderRadius: '6px',
+                      borderRadius: '6px', 
                       border: 'none',
                       transition: 'transform 0.2s ease, opacity 0.2s ease'
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                    aria-label="Instagram"
                   >
                     <FaInstagram className="fs-4 text-white" />
                   </a>
 
+                  {/* LinkedIn */}
                   <a 
                     href="https://www.linkedin.com/company/metal%C3%BArgica-soltermann/home/" 
                     target="_blank" 
@@ -174,12 +199,13 @@ export const ContactSection = ({ show, handleClose }) => {
                       width: '46px', 
                       height: '46px', 
                       backgroundColor: 'var(--azul-ultramar)',
-                      borderRadius: '6px',
+                      borderRadius: '6px', 
                       border: 'none',
                       transition: 'transform 0.2s ease, opacity 0.2s ease'
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                    aria-label="LinkedIn"
                   >
                     <FaLinkedin className="fs-4 text-white" />
                   </a>

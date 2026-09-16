@@ -58,11 +58,11 @@ export const DoubleCuplasTable = ({ title, products = [], headerColor }) => {
   return (
     <div className="subfamily-container mb-4">
       <div 
-        className="text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase" 
-        style={{ 
-          backgroundColor: headerColor || 'var(--rojo-principal, #9D2E35)', 
-          fontSize: '0.95rem', 
-          letterSpacing: '0.5px' 
+        className="subfamily-header text-white text-center fw-bold py-2 px-3 rounded-top text-uppercase"
+        style={{
+          backgroundColor: headerColor || 'var(--rojo-principal, #9D2E35)',
+          fontSize: '0.95rem',
+          letterSpacing: '0.5px'
         }}
       >
         {title}
