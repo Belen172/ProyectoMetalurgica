@@ -5,28 +5,33 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
 
 const server = express();
+let isAppInitialized = false;
 
 export const createServer = async () => {
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+  if (!isAppInitialized) {
+    const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
 
-  app.enableCors({
-    origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  });
+    app.enableCors({
+      origin: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      credentials: true,
+    });
 
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
+    app.useGlobalPipes(
+      new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
+    );
 
-  await app.init();
+    await app.init();
+    isAppInitialized = true;
+  }
   return server;
 };
 
+// Si corre localmente con npm run start:dev
 if (process.env.NODE_ENV !== 'production') {
   createServer().then(() => {
     const port = process.env.PORT || 3000;
@@ -36,7 +41,8 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-export default async (req: any, res: any) => {
+// Handler serverless para Vercel
+export default async function handler(req: any, res: any) {
   await createServer();
   return server(req, res);
-};
+}
