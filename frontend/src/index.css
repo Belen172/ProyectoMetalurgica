@@ -1,0 +1,1679 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+:root {
+  --azul-ultramar: #2A2A58;
+  --azul-petroleo: #37418E;
+  --rojo-principal: #EE353D;
+  --rojo-bordeaux: #9D2E35;
+}
+
+.features-bar {
+  --rojo-principal: #9D2E35 !important;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Estilos creativos para la barra de navegación */
+.nav-custom-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 2px; /* Espaciado tipográfico elegante */
+  padding: 8px 16px !important;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Línea indicadora animada en el rojo de la marca */
+.nav-custom-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--rojo-principal);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-custom-link:hover::after {
+  width: 80%;
+}
+
+.nav-custom-link:hover {
+  color: #ffffff !important;
+  opacity: 0.9;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip; /* Evita el scroll horizontal */
+}
+
+/* Hero y Fondos */
+.hero-container {
+  position: relative;
+  min-height: 80vh;
+  background-color: #0b0f19;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Gradiente para opacar la izquierda y resaltar el texto */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.7) 45%, rgba(11,15,25,0.2) 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* AJUSTE DEL TÍTULO HERO */
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  max-width: 680px;
+}
+
+.hero-title .highlight-red {
+  color: var(--rojo-principal);
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .hero-title .highlight-red {
+    white-space: normal; /* Permite corte en pantallas muy pequeñas si no entra */
+  }
+}
+
+/* Botón transparente del Hero */
+.btn-hero-outline {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px; /* Acá (usá 8px/10px para algo sutil, o 50px si lo querés cápsula completa) */
+}
+
+.btn-hero-outline:hover {
+  background: var(--rojo-principal);
+  border-color: var(--rojo-principal);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* Sección de Características (FEATURES BAR) */
+.features-bar {
+  background-color: var(--azul-ultramar);
+}
+
+.feature-item {
+  position: relative;
+  border: none !important; /* Limpia cualquier borde previo que haya quedado */
+}
+
+/* 1. EN DESKTOP (pantallas grandes): Separadores verticales a la derecha */
+@media (min-width: 992px) {
+  .feature-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* 2. EN MOBILE / TABLET (pantallas chicas): Separadores horizontales con aire */
+@media (max-width: 991.98px) {
+  .feature-item {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  /* Línea horizontal abajo, centrada y con buen margen */
+  .feature-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Imagen con corte diagonal para la sección Ingeniería */
+.diagonal-img-container {
+  overflow: hidden;
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  transition: transform 0.5s ease;
+}
+
+.diagonal-img-container img {
+  transition: transform 0.6s ease;
+}
+
+.diagonal-img-container:hover img {
+  transform: scale(1.04);
+}
+
+/* Badge flotante sobre la foto */
+.badge-card {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--azul-ultramar);
+  color: white;
+  border-left: 4px solid var(--rojo-principal);
+  padding: 15px 20px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* Estado activo para el Navbar (línea roja fija) */
+.nav-custom-link.active::after {
+  width: 80% !important;
+}
+
+.nav-custom-link.active {
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+/* Compensación de scroll para el Navbar sticky */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 140px;
+}
+
+/* ==========================================================
+   NAVBAR FIJO INSTITUCIONAL (PROPORCIONES AMPLIAS)
+   ========================================================== */
+
+   .custom-header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  
+  .custom-header-wrapper > div {
+    pointer-events: auto;
+  }
+  
+  /* NIVEL 1: Trapecio Blanco Amplio */
+  /* NIVEL 1: Trapecio Blanco que coincide exactamente con las puntas */
+  .trapezoid-logo-container {
+    background-color: #ffffff;
+    padding: 10px 40px 14px 40px;
+    width: 600px; /* Ancho superior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    
+    /* Corte matemático: la base inferior medirá exactamente 480px */
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+  }
+  
+  /* NIVEL 2: Menú Azul Recto con Espaciado Cómodo */
+  .capsule-nav-container {
+    background-color: var(--azul-ultramar, #2A2A58);
+    padding: 8px 24px;
+    margin-top: -3px;
+    width: 480px; /* 👈 Rectángulo más ancho para lectura limpia */
+    border-radius: 0 !important; /* Puntas rectas */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Enlaces del Menú */
+  .capsule-nav-link {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.88rem; /* Tipografía más legible */
+    letter-spacing: 0.8px;
+    padding: 6px 16px !important;
+    white-space: nowrap; /* Evita que los textos se quiebren en dos líneas */
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    border-radius: 0 !important;
+    position: relative;
+  }
+  
+  .capsule-nav-link:hover {
+    opacity: 0.85;
+  }
+  
+  /* Indicador de pestaña activa */
+  .capsule-nav-link.active {
+    color: #ffffff !important;
+  }
+  
+  .capsule-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background-color: var(--rojo-principal, #EE353D);
+  }
+
+/* Adaptación Mobile */
+@media (max-width: 768px) {
+  .custom-header-wrapper {
+    width: 100%;
+  }
+
+  /* Bloque del logo full-width sin cortes diagonales */
+  .trapezoid-logo-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    clip-path: none !important;
+    border-radius: 0 !important;
+    padding: 10px 15px !important;
+  }
+
+  .trapezoid-logo-container img {
+    max-height: 44px !important;
+  }
+
+  /* Barra azul full-width cubriendo de borde a borde */
+  .capsule-nav-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    border-radius: 0 !important;
+    padding: 6px 4px !important;
+  }
+
+  /* Menú que ocupa todo el ancho y distribuye los botones parejos */
+  .capsule-nav-container .navbar-nav,
+  .capsule-nav-container .nav {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+  }
+
+  .capsule-nav-link {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.2px !important;
+    padding: 6px 4px !important;
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .capsule-nav-link.active::after {
+    left: 4px !important;
+    right: 4px !important;
+  }
+}
+
+/* SECCIÓN NOSOTROS - CARDS */
+.nosotros-section {
+  background-color: #f8f9fa;
+}
+
+.nosotros-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.nosotros-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--azul-ultramar);
+}
+
+.nosotros-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  background-color: rgba(227, 43, 43, 0.1);
+  color: var(--rojo-principal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.nosotros-badge-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #f1f3f5;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333333;
+  margin: 4px;
+}
+
+/* ==========================================================
+   BORDES AZULES SECCIÓN SOBRE NOSOTROS
+   ========================================================== */
+
+/* Las 3 tarjetas de arriba (borde azul superior de 4px) */
+.nosotros-card {
+  border-top: 4px solid var(--azul-ultramar) !important;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nosotros-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Variante para las 2 tarjetas inferiores (borde azul izquierdo de 4px) */
+.nosotros-card.nosotros-card-side {
+  border-top: none !important;
+  border-left: 4px solid var(--azul-ultramar) !important;
+}
+
+.nosotros-card.nosotros-card-side:hover {
+  transform: translateY(-3px);
+}
+
+/* SECCIÓN SELLOS / LOGOS GRANDES */
+.cert-seal-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cert-seal-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================
+   CORTE ISOTIPO: DIAGONAL + PANCITA CALIBRADA (MÁS ARRIBA)
+   ========================================================== */
+
+/* 1. SECCIÓN INGENIERÍA: Imagen con la misma curva exacta que el Footer */
+.soltermann-cut-container {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .soltermann-cut-container {
+    border-radius: 0 12px 12px 0;
+    /* La diagonal baja recta */
+    clip-path: polygon(13% 0%, 100% 0%, 100% 100%, 0% 100%);
+    /* Curva circular calibrada para que remate suavemente en la base sin dejar borde abajo */
+    -webkit-mask-image: radial-gradient(circle 58px at -6px 95%, transparent 54px, #000 55px);
+    mask-image: radial-gradient(circle 58px at -6px 95%, transparent 54px, #000 55px);
+  }
+}
+
+/* ==========================================================
+   MICRO-INTERACCIONES EN ENGINEERING SECTION
+   ========================================================== */
+/* ==========================================================
+   IMAGEN INGENIERÍA (DIAGONAL CONTINUA DE PUNTA A PUNTA)
+   ========================================================== */
+
+.engineering-img-container {
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: 430px;
+  margin-left: -90px;
+  
+  /* Aplica la máscara vectorial con curvas reales */
+  clip-path: url(#diagonal-curva);
+  -webkit-clip-path: url(#diagonal-curva);
+}
+
+.engineering-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform;
+}
+
+.engineering-img-container:hover .engineering-img {
+  transform: scale(1.05);
+}
+
+/* 2. Efecto de elevación y empuje de flecha en el botón */
+.btn-engineering {
+  background-color: var(--azul-ultramar);
+  border-radius: 2px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.btn-engineering:hover {
+  transform: translateY(-3px); /* Se eleva suavemente */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  background-color: #161c47 !important; /* Tono sutilmente más activo */
+}
+
+/* Desplazamiento sutil de la flecha roja al hacer hover en el botón */
+.btn-engineering svg {
+  transition: transform 0.25s ease;
+}
+
+.btn-engineering:hover svg {
+  transform: translateX(5px); /* La flechita avanza hacia la derecha */
+}
+
+/* ==========================================================
+   ADAPTACIÓN MOBILE / TABLET: IMAGEN RECTANGULAR COMPLETA
+   ========================================================== */
+@media (max-width: 991px) {
+  .engineering-img-container {
+    max-width: 100% !important;
+    height: 240px !important;            /* Altura ideal para mobile */
+    margin-left: 0 !important;           /* Anula el desplazamiento de -90px */
+    margin-top: 1.5rem !important;
+    border-radius: 12px !important;      /* Bordes redondeados en las 4 esquinas */
+    clip-path: none !important;          /* Quita el corte diagonal */
+    -webkit-clip-path: none !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .engineering-img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* ==========================================================
+   TARJETAS HORIZONTALES - SECCIÓN PRODUCTOS
+   ========================================================== */
+  .product-family-card {
+    border-radius: 10px;
+    min-height: 130px;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* 👈 Alinea la línea y elementos al inicio */
+    text-align: left;        /* 👈 Alinea el texto a la izquierda */
+    padding: 1.25rem 1.1rem;
+    transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.25s ease, filter 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .product-family-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    filter: brightness(1.06);
+  }
+
+  .product-family-title {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.5rem;
+    text-align: left; /* 👈 Texto alineado a la izquierda */
+    width: 100%;
+  }
+  
+  .product-family-line {
+    width: 26px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+  }
+
+  /* ==========================================================
+   BOTÓN CATÁLOGO - ESTILO TARJETA / OUTLINE AZUL
+   ========================================================== */
+.btn-catalogo-compacto {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #ffffff;
+  color: var(--azul-ultramar);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1.5px solid #dee2e6;
+  border-top: 3px solid var(--azul-ultramar); /* 👈 Mismo acento superior que las tarjetas */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.btn-catalogo-compacto:hover {
+  background-color: #ffffff;
+  color: var(--azul-ultramar);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.09);
+  border-color: #ced4da;
+  border-top-color: var(--azul-ultramar);
+}
+
+/* ==========================================================
+   VISTA DETALLE DE PRODUCTOS & SUBFAMILIAS
+   ========================================================== */
+
+/* Navegación superior entre familias */
+.product-tab-btn {
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: left;
+  padding: 1rem;
+  min-height: 110px;
+  height: 110%;
+  width: 100%;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  opacity: 0.72;
+  transform: scale(0.97);
+}
+
+.product-tab-btn:hover {
+  opacity: 0.95;
+  transform: scale(1);
+}
+
+/* Tarjeta activa: más grande, con sombra destacada y opacidad total */
+/* Tarjeta activa: destacada sin desbordar el contenedor sticky */
+.product-tab-btn.active {
+  opacity: 1 !important;
+  transform: none !important; /* Anula cualquier scale o translate */
+  height: 110px !important;   /* Mantiene exactamente la misma altura */
+  min-height: unset !important;
+  box-shadow: 0 0 0 3px #ffffff, 0 4px 12px rgba(0, 0, 0, 0.3) !important; /* Resalte interior sin agrandar */
+}
+
+/* Tabla técnica de subfamilia */
+.subfamily-container {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.subfamily-header {
+  background-color: var(--azul-ultramar);
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+}
+
+.product-table th {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  border: none;
+}
+
+.product-table td {
+  padding: 0.75rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7;
+  font-size: 0.9rem;
+}
+
+.product-img-cell {
+  width: 90px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* ==========================================================
+   ZOOM CONTROLADO EN IMÁGENES DE PRODUCTOS
+   ========================================================== */
+.product-img-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  padding: 4px 10px; /* Margen interno de seguridad */
+  cursor: zoom-in;
+}
+
+.product-img-cell {
+  width: 72px;       /* Tamaño base balanceado */
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              filter 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover con zoom moderado para no tocar el borde */
+.product-img-wrapper:hover .product-img-cell {
+  transform: scale(1.35); /* Zoom del 35% (suficiente para ver detalles sin desbordar) */
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  z-index: 10;
+}
+
+/* ==========================================================
+   FOOTER SOLTERMANN CON FONDO GRIS CONTINUO REAL
+   ========================================================== */
+   .footer-soltermann-wrapper {
+    background-color: #f0f2f5 !important; /* Gris institucional visible de las secciones */
+    position: relative;
+    width: 100%;
+    border-top: none !important;
+  }
+  
+  /* Columna izquierda del logo: asegura el fondo gris en todas las páginas */
+  .footer-left-col {
+    background-color: #f0f2f5 !important;
+  }
+  
+  /* Bloque azul: Punta superior redondeada y punta inferior en diagonal nítida */
+  .footer-soltermann-blue {
+    background-color: var(--azul-ultramar, #2A2A58) !important;
+    color: #ffffff;
+    position: relative;
+    border-radius: 0 !important;
+    margin-left: -80px;            /* Desplaza el fondo para ganar espacio */
+    padding: 40px 30px 20px 140px; /* Padding izquierdo para proteger el texto de la diagonal */
+    
+    /* Arriba curva suave | Abajo punta diagonal original */
+    clip-path: polygon(
+      272px 0%,                       /* Inicio borde superior horizontal */
+      100% 0%,                        /* Esquina superior derecha */
+      100% 100%,                      /* Esquina inferior derecha */
+      0% 100%,                        /* Punta diagonal inferior limpia */
+      260px 12px,                     /* Inicio curva superior */
+      266px 4px                       /* Suavizado superior */
+    ) !important;
+    -webkit-clip-path: polygon(
+      272px 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%,
+      260px 12px,
+      266px 4px
+    ) !important;
+  }
+  
+  /* Centrado visual del copyright */
+  .footer-copyright {
+    text-align: center;
+    width: 100%;
+    margin-left: -200px;
+  }
+  
+  /* Responsive en pantallas chicas */
+  @media (max-width: 991.98px) {
+    .footer-soltermann-blue {
+      margin-left: 0;
+      padding: 35px 20px 20px 20px;
+      clip-path: none !important;
+      -webkit-clip-path: none !important;
+    }
+    
+    .footer-copyright {
+      margin-left: 0;
+    }
+  }
+
+/* ==========================================================
+   DROPDOWN HOVER DE PRODUCTOS
+   ========================================================== */
+
+/* Contenedor relativo en el link de Productos */
+/* 1. Asegurar que los contenedores no recorten elementos salientes */
+.capsule-nav-container,
+.custom-header-wrapper {
+  overflow: visible !important; /* Evita que el dropdown quede oculto/cortado */
+}
+
+/* 2. Contenedor relativo del ítem con submenú */
+.nav-item-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* 3. Menú flotante desplegable (oculto por defecto) */
+.products-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--azul-ultramar, #2A2A58);
+  min-width: 220px;
+  padding: 8px 0;
+  border-radius: 8px;
+  z-index: 1050 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 4. Mostrar al hacer hover sobre el ítem o el mismo menú */
+.nav-item-dropdown:hover .products-dropdown-menu {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Animación de entrada fluida */
+@keyframes fadeInNav {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Opciones de la lista */
+/* 5. Estilo de los botones dentro del dropdown */
+.products-dropdown-item {
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  text-align: left;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: 100%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.products-dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* ==========================================================
+   COMPENSACIÓN NAVBAR FIJO EN VISTAS Y SECCIÓN PRODUCTOS
+   ========================================================== */
+
+/* 1. Si estás en la vista/ruta dedicada de productos */
+.products-page-container,
+.products-section-wrapper {
+  padding-top: 100px !important; /* Espacio para que respire abajo del navbar */
+}
+
+/* 2. Scroll margin para que el scrollIntoView no tape el título */
+#productos,
+.product-family-section {
+  scroll-margin-top: 130px;
+}
+
+@media (max-width: 768px) {
+  .products-page-container {
+    padding-top: 0 !important;
+  }
+
+  .products-page-container section {
+    padding-top: 95px !important; /* Da el margen exacto para que la línea roja quede visible y despegada */
+  }
+
+  .products-page-container .container,
+  .products-page-container .container-fluid {
+    padding-top: 0 !important;
+  }
+}
+
+/* Estilo para las tablas de productos en columnas */
+.custom-product-table th {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: #555;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.custom-product-table td {
+  font-size: 0.82rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.custom-product-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================
+   ZOOM HOVER PARA IMÁGENES DE CUPLAS
+   ========================================================== */
+.cupla-zoom-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+}
+
+.cupla-zoom-img {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  object-fit: contain;
+}
+
+.cupla-zoom-wrapper:hover .cupla-zoom-img {
+  transform: scale(1.6); /* Mismo factor de zoom interactivo */
+}
+
+/* ==========================================================
+   PREVIEW FLOTANTE EN HOVER (ZOOM LATERAL SIN SOLAPAMIENTO)
+   ========================================================== */
+
+/* 1. Cuando se pasa el mouse por la fila, esa fila pasa al frente de toda la tabla */
+.custom-product-table tbody tr:hover {
+  position: relative;
+  z-index: 99999 !important;
+}
+
+/* 2. Celda del producto con contexto relativo limpio */
+.custom-product-table td.product-cell-zoom {
+  position: relative;
+  overflow: visible !important;
+}
+
+.product-preview-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Popover flotante con z-index alto y fondo blanco sólido */
+.product-preview-popover {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 115%;                  /* Desplazamiento a la derecha de la miniatura */
+  transform: translateY(-50%);
+  background-color: #ffffff !important;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #d0d7de;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28) !important;
+  z-index: 100000 !important;   /* Garantiza que esté por encima de texto y códigos */
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-preview-popover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mostrar al hacer hover */
+.product-preview-container:hover .product-preview-popover {
+  display: flex;
+}
+
+/* En las últimas 2 o 3 filas se despliega hacia arriba */
+.custom-product-table tbody tr:nth-last-child(-n+3) .product-preview-popover {
+  top: auto;
+  bottom: 10%;
+  transform: translateY(0);
+}
+
+/* Ocultar botón y control de volumen en videos */
+video::-webkit-media-controls-volume-control-container,
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+  /* ========================================================
+   CORRECCIÓN DEFINITIVA DE CAPAS Y TARJETAS
+   ======================================================== */
+
+/* 1. La tabla siempre viaja por debajo del bloque sticky */
+.products-page-container table,
+.products-page-container .table,
+.products-page-container .table-responsive,
+.products-page-container tr,
+.products-page-container td {
+  position: static !important;
+  z-index: 1 !important;
+}
+
+/* 2. Botones de familias dentro del límite sticky */
+.product-tab-btn {
+  height: 90px !important;
+  min-height: 90px !important;
+  max-height: 90px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 14px 12px 10px 12px !important;
+  border-radius: 8px !important;
+  transform: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+}
+
+.product-tab-btn .product-tab-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.80rem !important;
+  line-height: 1.2 !important;
+}
+
+.product-tab-btn .product-tab-indicator {
+  width: 22px !important;
+  height: 3px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 2px !important;
+}
+
+/* Tarjeta activa: mismo tamaño exacto con marco de resalte */
+.product-tab-btn.active {
+  opacity: 1 !important;
+  transform: none !important;
+  height: 90px !important;
+  min-height: 90px !important;
+  max-height: 90px !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ========================================================
+   ESTILOS DE FAMILIAS: ACTIVA VS INACTIVAS
+  ======================================================== */
+.product-family-card {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  transition: all 0.25s ease-in-out;
+}
+
+/* 1. Tarjetas INACTIVAS: más chicas, opacas y tenues */
+.product-family-card.inactive {
+  opacity: 0.65 !important;
+  transform: scale(0.95) !important;
+  box-shadow: none !important;
+}
+
+.product-family-card.inactive:hover {
+  opacity: 0.9 !important;
+  transform: scale(0.98) !important;
+}
+
+/* 2. Tarjeta ACTIVA: tamaño pleno, opacidad 100% y sombra destacada */
+.product-family-card.active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 6px 18px rgba(0, 0, 0, 0.35) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ==========================================================
+   FAMILIAS DE PRODUCTOS COMPACTAS EN MOBILE
+   ========================================================== */
+/* ==========================================================
+   FAMILIAS DE PRODUCTOS - VERSIÓN COMPACTA ÓPTIMA (MOBILE)
+   ========================================================== */
+@media (max-width: 767.98px) {
+  .product-family-card {
+    min-height: 64px !important;
+    height: 64px !important;
+    padding: 8px 10px 6px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    border-radius: 8px !important;
+  }
+
+  /* Título optimizado para 1 o 2 líneas compactas */
+  .product-family-title {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.2px;
+  }
+
+  /* Barrita inferior sutil */
+  .product-family-line {
+    width: 18px !important;
+    height: 2.5px !important;
+    margin-top: 2px !important;
+  }
+}
+
+/* ==========================================================
+   NAVBAR FIJO INSTITUCIONAL (CALCE DINÁMICO Y EXACTO)
+   ========================================================== */
+
+.custom-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Centra perfecto horizontalmente */
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  width: auto;
+}
+
+.custom-header-wrapper > div {
+  pointer-events: auto;
+}
+
+/* NIVEL 1: Trapecio Blanco (Desktop) */
+.trapezoid-logo-container {
+  background-color: #ffffff;
+  padding: 10px 40px 14px 40px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  
+  /* 600px arriba - (60px * 2) de diagonales = Base de 480px */
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 60px) 100%, 60px 100%);
+}
+
+.trapezoid-logo-container img {
+  max-height: 52px;
+  width: auto;
+}
+
+/* NIVEL 2: Menú Azul Recto (Desktop: 480px exactos) */
+/* NIVEL 2: Menú Azul (Desktop: 480px exactos) */
+.capsule-nav-container {
+  background-color: var(--azul-ultramar, #2A2A58);
+  padding: 8px 24px;
+  margin-top: -3px;
+  width: 480px; /* Coincide exactamente con la base del trapecio */
+  
+  /* Redondeo en esquinas inferiores (Arriba: 0 | Abajo: 12px) */
+  border-radius: 0 0 12px 12px !important;
+  overflow: hidden;
+  
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+.capsule-nav-link {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.8px;
+  padding: 6px 14px !important;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  border-radius: 0 !important;
+  position: relative;
+}
+
+.capsule-nav-link:hover {
+  opacity: 0.85;
+}
+
+.capsule-nav-link.active {
+  color: #ffffff !important;
+}
+
+.capsule-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background-color: var(--rojo-principal, #EE353D);
+}
+
+/* ==========================================================
+   ADAPTACIÓN RESPONSIVE MOBILE (MATEMÁTICA PURA)
+   ========================================================== */
+@media (max-width: 768px) {
+  /* 1. Trapecio blanco: Ancho 360px - Corte 30px por lado = Base EXACTA de 300px */
+  .trapezoid-logo-container {
+    width: 360px !important;
+    min-width: 360px !important;
+    max-width: 360px !important;
+    height: 58px !important;
+    padding: 6px 20px 8px 20px !important;
+    box-sizing: border-box !important;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 30px) 100%, 30px 100%) !important;
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, calc(100% - 30px) 100%, 30px 100%) !important;
+  }
+
+  .trapezoid-logo-container img {
+    max-height: 36px !important;
+  }
+
+  /* 2. Barra azul: Forzada a los mismos 300px exactos con esquinas redondeadas proporcionadas */
+  .capsule-nav-container {
+    width: 300px !important;     /* Coincide exactamente con la base del trapecio */
+    min-width: 300px !important;
+    max-width: 300px !important;
+    padding: 4px 8px !important;
+    margin-top: -2px !important;
+    box-sizing: border-box !important;
+    
+    /* En mobile un radio ligeramente más sutil para acompañar el ancho de 300px */
+    border-radius: 0 0 10px 10px !important;
+  }
+
+  .capsule-nav-container .nav {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3. Enlaces reducidos para que no empujen el contenedor */
+  .capsule-nav-link {
+    font-size: 0.65rem !important;
+    padding: 3px 2px !important;
+    letter-spacing: 0px !important;
+    margin: 0 !important;
+  }
+
+  /* Subrayado de la pestaña activa */
+  .capsule-nav-link.active::after {
+    left: 2px !important;
+    right: 2px !important;
+    bottom: -1px !important;
+    height: 1.5px !important;
+  }
+}
+
+/* ==========================================================
+   ANULAR FOCO PERSISTENTE EN LA BARRA DE NAVEGACIÓN
+   ========================================================== */
+.capsule-nav-link:focus:not(.active) {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.capsule-nav-link:focus:not(.active)::after {
+  display: none !important;
+}
+
+/* ==========================================================
+   UNIFICACIÓN DE FONDO BLANCO EN LA SECCIÓN DE PRODUCTOS
+   ========================================================== */
+
+/* 1. Resetear el padding superior general (el espacio ahora lo maneja el bloque blanco) */
+.products-page-container,
+.products-section-wrapper {
+  padding-top: 0 !important;
+}
+
+/* 2. Scroll margin para que las secciones/anclas frenen en el punto exacto */
+#productos,
+.product-family-section {
+  scroll-margin-top: 240px; /* Ajustado para que frene debajo de la barra fija completa */
+}
+
+/* 3. Ajuste responsive para celulares */
+@media (max-width: 768px) {
+  .products-page-container {
+    padding-top: 0 !important;
+  }
+
+  .products-page-container section {
+    padding-top: 0 !important;
+  }
+}
+
+/* ==========================================================
+   COLOR OFICIAL WHATSAPP UNIFICADO
+   ========================================================== */
+:root {
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #20BA5A;
+}
+
+/* 1. Botón circular flotante */
+.whatsapp-floating-btn,
+.btn-whatsapp-floating {
+  background-color: var(--color-whatsapp) !important;
+  color: #ffffff !important;
+}
+
+.whatsapp-floating-btn:hover,
+.btn-whatsapp-floating:hover {
+  background-color: var(--color-whatsapp-hover) !important;
+}
+
+/* 2. Encabezado del modal flotante */
+.whatsapp-modal-header,
+.whatsapp-popup-header {
+  background-color: var(--color-whatsapp) !important;
+  color: #ffffff !important;
+}
+
+/* 3. Botones de opciones (Ventas / Soporte) */
+.whatsapp-channel-btn {
+  border-color: var(--color-whatsapp) !important;
+}
+
+.whatsapp-channel-btn svg,
+.whatsapp-channel-btn .whatsapp-icon,
+.whatsapp-channel-btn .channel-title {
+  color: var(--color-whatsapp) !important;
+}
+
+.whatsapp-channel-btn:hover {
+  background-color: rgba(37, 211, 102, 0.08) !important;
+}
+
+/* ==========================================================
+   BOTONES WHATSAPP PERSONALIZADOS CON HOVER UNIFICADO
+   ========================================================== */
+.btn-whatsapp-custom {
+  background-color: #ffffff !important;
+  border: 1.5px solid #25D366 !important;
+  color: #212529 !important;
+  transition: all 0.2s ease-in-out !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+/* Ícono en estado normal */
+.btn-whatsapp-custom .whatsapp-icon {
+  color: #25D366 !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Texto del número / subtítulo en estado normal */
+.btn-whatsapp-custom .whatsapp-subtext {
+  color: #6c757d !important;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Estado Hover: Fondo verde oficial, texto e ícono en blanco */
+.btn-whatsapp-custom:hover {
+  background-color: #25D366 !important;
+  border-color: #25D366 !important;
+  color: #ffffff !important;
+}
+
+.btn-whatsapp-custom:hover strong,
+.btn-whatsapp-custom:hover span,
+.btn-whatsapp-custom:hover .whatsapp-icon,
+.btn-whatsapp-custom:hover .whatsapp-subtext {
+  color: #ffffff !important;
+}
+
+/* ==========================================================
+   ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+   ========================================================== */
+.faq-accordion .accordion-item {
+  border: 1px solid #d8e2ed !important;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+/* Cuando el ítem está abierto: borde azul sutil y fondo blanco */
+.faq-accordion .accordion-item:has(.accordion-button:not(.collapsed)) {
+  border-color: #3b82f6 !important;
+  background-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.08);
+}
+
+.faq-accordion .accordion-button {
+  background-color: #f8fafc !important;
+  box-shadow: none !important;
+  padding: 1.1rem 1.25rem;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-accordion .accordion-body {
+  background-color: #ffffff;
+  padding: 1.25rem;
+}
+
+/* ==========================================================
+   ENCABEZADO SECUNDARIO DE TABLAS (MOBILE VS DESKTOP)
+   ========================================================== */
+/* En celular se oculta para no duplicar títulos */
+@media (max-width: 991.98px) {
+  .table-header-secondary {
+    display: none !important;
+  }
+}
+
+/* En desktop (a partir de 992px) se muestra normal como encabezado de tabla */
+@media (min-width: 992px) {
+  .table-header-secondary {
+    display: table-header-group !important;
+  }
+}
+
+/* ==========================================================
+   STICKY DINÁMICO: DESKTOP SÍ, MOBILE NO (el menú fijo de productos)
+   ========================================================== */
+/* 1. Mobile y Tablet (< 992px): Flujo normal, transparente y sin sombra */
+.products-sticky-header {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+  padding-top: 100px !important; /* Espacio para que el navbar flotante no tape el título inicial */
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 2. Desktop (>= 992px): Queda fijado arriba al scrollear con su fondo blanco y sombra */
+@media (min-width: 992px) {
+  .products-sticky-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1025 !important;
+    padding-top: 115px !important; /* Espacio para el navbar en pantallas grandes */
+    background-color: #ffffff !important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  }
+}
+
+/* ==========================================================
+  MOBILE: ANULA EL FONDO BLANCO EN LÍNEA DEL NAVBAR
+  ========================================================== */
+@media (max-width: 991.98px) {
+  .custom-header-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+/* ==========================================================
+   OPTIMIZACIÓN GLOBAL DE TABLAS EN MOBILE (< 768px)
+   ========================================================== */
+   @media (max-width: 767.98px) {
+    /* Habilita scroll horizontal fluido en cualquier tabla de producto */
+    .table-responsive {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+    }
+  
+    /* Ancho mínimo para tablas estándar (con o sin compatibilidad) */
+    .custom-product-table {
+      min-width: 440px !important;
+    }
+  
+    /* Si tiene la columna de compatibilidad, le damos un poco más de aire */
+    .custom-product-table th:nth-child(4),
+    .custom-product-table td:nth-child(4) {
+      min-width: 140px;
+    }
+  
+    /* Compactar paddings y tamaños de fuente */
+    .custom-product-table th,
+    .custom-product-table td {
+      padding: 6px 4px !important;
+      font-size: 0.75rem !important;
+    }
+  
+    /* Ajuste de miniatura */
+    .custom-product-table .product-thumb-img {
+      max-height: 32px !important;
+      max-width: 45px !important;
+    }
+  }
+
+/* ==========================================================
+   ZOOM FLOTANTE DESKTOP (>= 768px): SIN RECORTES
+   ========================================================== */
+@media (min-width: 768px) {
+  /* 1. En desktop liberamos el overflow de las tablas para que el zoom flote libre */
+  .table-responsive,
+  .subfamily-container,
+  .subfamily-container > div {
+    overflow: visible !important;
+  }
+
+  /* 2. La celda y la fila sobre la que pasás el mouse pasan al frente absoluto */
+  .product-cell-zoom {
+    position: relative;
+    overflow: visible !important;
+  }
+
+  .product-cell-zoom:hover,
+  tr:hover .product-cell-zoom {
+    z-index: 9999 !important;
+  }
+
+  /* 3. Popover flotante con z-index superior */
+  .product-preview-popover {
+    z-index: 10000 !important;
+  }
+
+  /* 4. La barra de título azul queda con un z-index bajo */
+  .subfamily-header {
+    position: relative;
+    z-index: 1 !important;
+  }
+}
+
+/* ==========================================================
+    MOBILE (< 768px): MINIATURA DIRECTA SIN POPOVER
+    ========================================================== */
+@media (max-width: 767.98px) {
+  /* Scroll horizontal limpio en celulares */
+  .table-responsive {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Oculta el popover flotante en celulares */
+  .product-preview-popover {
+    display: none !important;
+  }
+
+  /* Miniatura ampliada y nítida directamente en la celda */
+  .product-thumb-img {
+    max-height: 44px !important;
+    max-width: 60px !important;
+    pointer-events: none;
+  }
+}
