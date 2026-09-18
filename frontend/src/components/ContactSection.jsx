@@ -35,7 +35,10 @@ export const ContactSection = ({ show, handleClose }) => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('http://localhost:3000/contact', {
+      // Usa la URL dinámica según el entorno (localhost en desarrollo o Vercel en producción)
+      const apiUrl = import.meta.env.VITE_API_URL;
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
