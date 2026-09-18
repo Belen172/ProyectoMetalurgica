@@ -37,7 +37,8 @@ export const ContactSection = ({ show, handleClose }) => {
     try {
       // Usa la URL dinámica según el entorno (localhost en desarrollo o Vercel en producción)
       const apiUrl = import.meta.env.VITE_API_URL;
-
+      console.log("Conectando con API:", import.meta.env.VITE_API_URL);
+      
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
