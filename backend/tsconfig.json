@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2021",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -16,6 +16,8 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["src/**/*", "api/**/*"]
 }
