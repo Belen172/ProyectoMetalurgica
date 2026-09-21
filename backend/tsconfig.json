@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "incremental": true,
     "skipLibCheck": true,
@@ -19,5 +20,5 @@
     "noFallthroughCasesInSwitch": false,
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src/**/*", "api/**/*"]
+  "include": ["src/**/*"]
 }
