@@ -416,6 +416,44 @@ const familiesDatabase = {
   }
 };
 
+const seoData = {
+  'alemites-pulgadas': {
+    title: 'Alemites Rosca en Pulgadas | Metalúrgica Soltermann',
+    description:
+      'Alemites y tapones con rosca en pulgadas SAE y BSP (GAS). Consulte medidas, códigos y modelos de Metalúrgica Soltermann en Rafaela, Santa Fe.'
+  },
+
+  'alemites-metrica': {
+    title: 'Alemites Rosca Métrica | Metalúrgica Soltermann',
+    description:
+      'Alemites y tapones con rosca métrica M6, M8 y M10. Consulte medidas, códigos y modelos de Metalúrgica Soltermann en Rafaela, Santa Fe.'
+  },
+
+  'cuplas': {
+    title: 'Cuplas Roscadas | Metalúrgica Soltermann',
+    description:
+      'Cuplas roscadas industriales en diferentes medidas, largos y reducciones. Fabricadas por Metalúrgica Soltermann en Rafaela, Santa Fe.'
+  },
+
+  'especiales': {
+    title: 'Productos Especiales | Metalúrgica Soltermann',
+    description:
+      'Válvulas de alivio, visores de nivel y productos especiales para aplicaciones industriales. Metalúrgica Soltermann, Rafaela, Santa Fe.'
+  },
+
+  'aire-comprimido': {
+    title: 'Accesorios para Aire Comprimido | Metalúrgica Soltermann',
+    description:
+      'Conectores rápidos, racords, acoples y accesorios para sistemas de aire comprimido. Metalúrgica Soltermann en Rafaela, Santa Fe.'
+  },
+
+  'mecanizado-plano': {
+    title: 'Servicio de Mecanizado | Metalúrgica Soltermann',
+    description:
+      'Servicio de tornería automática y mecanizado CNC de piezas según plano para series medianas y grandes. Metalúrgica Soltermann en Rafaela, Santa Fe.'
+  }
+};
+
 export const ProductFamilyDetail = () => {
   const { familyId } = useParams();
   const navigate = useNavigate();
@@ -425,6 +463,50 @@ export const ProductFamilyDetail = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+    const seo = seoData[currentId];
+  
+    if (seo) {
+      document.title = seo.title;
+  
+      let description = document.querySelector('meta[name="description"]');
+  
+      if (description) {
+        description.setAttribute('content', seo.description);
+      }
+  
+      let canonical = document.querySelector('link[rel="canonical"]');
+  
+      if (canonical) {
+        canonical.setAttribute(
+          'href',
+          `https://www.metalurgicasoltermann.com.ar/productos/${currentId}`
+        );
+      }
+    }
+  
+    return () => {
+      document.title =
+        'Metalúrgica Soltermann | Alemites y Mecanizados en Rafaela';
+  
+      const description = document.querySelector('meta[name="description"]');
+  
+      if (description) {
+        description.setAttribute(
+          'content',
+          'Metalúrgica Soltermann en Rafaela, Santa Fe. Fabricación de alemites, cuplas, piezas especiales y mecanizados según plano para aplicaciones industriales.'
+        );
+      }
+  
+      const canonical = document.querySelector('link[rel="canonical"]');
+  
+      if (canonical) {
+        canonical.setAttribute(
+          'href',
+          'https://www.metalurgicasoltermann.com.ar/'
+        );
+      }
+    };
   }, [currentId]);
 
   return (
