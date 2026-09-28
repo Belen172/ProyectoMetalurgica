@@ -10,16 +10,17 @@ export const FeaturesBar = () => {
           
           {/* COLUMNA 1: Isotipo Soltermann */}
           <Col sm={6} lg={3} className="feature-item px-3">
-          <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-            <img 
-              src="/isotipo_met.png" 
-              alt="Isotipo Metalúrgica Soltermann" 
-              style={{ 
-                height: '38px', 
-                width: 'auto', 
-                objectFit: 'contain'
-              }} 
-            />
+            <div className="d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+              <img 
+                src="/isotipo_met.png" 
+                alt="Isotipo Metalúrgica Soltermann" 
+                style={{ 
+                  height: '38px', 
+                  width: 'auto', 
+                  objectFit: 'contain',
+                  filter: 'brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(4500%) hue-rotate(345deg) brightness(105%) contrast(100%)'
+                }} 
+              />
               <div>
                 <h5 className="fw-bold mb-0 text-white text-uppercase fs-6">
                   AÑOS DE <span style={{ color: 'var(--rojo-principal)' }}>EXPERIENCIA</span> 
