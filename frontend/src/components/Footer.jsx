@@ -83,20 +83,42 @@ export const Footer = () => {
                 <Col md={6} className="d-flex flex-column align-items-center text-center">
                   <h5 className="fw-bold text-uppercase mb-2 text-white">Contacto</h5>
                   
-                  <ul className="list-unstyled small d-flex flex-column align-items-center gap-3 text-light opacity-90 p-0 m-0 text-center mt-2 mt-md-3">
+                  <ul className="list-unstyled small d-flex flex-column align-items-center gap-3 p-0 m-0 text-center mt-2 mt-md-3">
                     <li className="d-flex align-items-center justify-content-center gap-2">
                       <FaPhoneAlt style={{ color: 'var(--rojo-principal)' }} />
-                      <span>Fijo: (03492) 505594</span>
+                      <a 
+                        href="tel:+543492505594" 
+                        className="footer-contact-link"
+                      >
+                        Fijo: (03492) 505594
+                      </a>
                     </li>
+
                     <li className="d-flex align-items-center justify-content-center gap-2">
                       <FaWhatsapp className="text-success" />
-                      <span>Ventas: +54 9 3492 22-0724</span>
+                      <a 
+                        href="https://wa.me/5493492220724?text=Hola,%20me%20comunico%20desde%20la%20web" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="footer-contact-link"
+                      >
+                        Ventas: +54 9 3492 22-0724
+                      </a>
                     </li>
+
                     <li className="d-flex align-items-center justify-content-center gap-2">
                       <FaWhatsapp className="text-success" />
-                      <span>Soporte Técnico: +54 9 3492 41-9267</span>
+                      <a 
+                        href="https://wa.me/5493492419267?text=Hola,%20me%20comunico%20desde%20la%20web%20por%20soporte%20t%C3%A9cnico" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="footer-contact-link"
+                      >
+                        Soporte Técnico: +54 9 3492 41-9267
+                      </a>
                     </li>
-                    <li className="d-flex align-items-center justify-content-center gap-2 mt-1 text-nowrap">
+
+                    <li className="d-flex align-items-center justify-content-center gap-2 mt-1 text-nowrap text-light">
                       <FaMapMarkerAlt style={{ color: 'var(--rojo-principal)' }} className="flex-shrink-0" />
                       <span>Lisandro de la Torre 1960, Rafaela, Santa Fe, Argentina</span>
                     </li>

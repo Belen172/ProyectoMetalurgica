@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table, Accordion } from 'react-bootstrap';
-import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaLayerGroup, FaCheck, FaDraftingCompass, FaFilePdf, FaExternalLinkAlt, FaWhatsapp, FaShoppingCart, FaMousePointer } from 'react-icons/fa';
 import { DoubleProductTable } from './DoubleProductTable';
 import { DoubleCuplasTable } from './DoubleCuplasTable'; 
+import { useCart } from '../context/CartContext';
+import { CartModal } from './CartModal';
 
 export const allFamilies = [
   { id: 'alemites-pulgadas', title: 'Alemites y Tapones Rosca en Pulgadas', color: '#2A2A58' },
@@ -461,22 +463,23 @@ export const ProductFamilyDetail = () => {
   const currentId = familyId || 'alemites-pulgadas';
   const currentFamily = familiesDatabase[currentId] || familiesDatabase['alemites-pulgadas'];
 
+  const [showCartModal, setShowCartModal] = useState(false);
+  const { totalItemsCount } = useCart();
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  
+
     const seo = seoData[currentId];
-  
+
     if (seo) {
       document.title = seo.title;
-  
+
       let description = document.querySelector('meta[name="description"]');
-  
       if (description) {
         description.setAttribute('content', seo.description);
       }
-  
+
       let canonical = document.querySelector('link[rel="canonical"]');
-  
       if (canonical) {
         canonical.setAttribute(
           'href',
@@ -484,22 +487,20 @@ export const ProductFamilyDetail = () => {
         );
       }
     }
-  
+
     return () => {
       document.title =
         'Metalúrgica Soltermann | Alemites y Mecanizados en Rafaela';
-  
+
       const description = document.querySelector('meta[name="description"]');
-  
       if (description) {
         description.setAttribute(
           'content',
           'Metalúrgica Soltermann en Rafaela, Santa Fe. Fabricación de alemites, cuplas, piezas especiales y mecanizados según plano para aplicaciones industriales.'
         );
       }
-  
+
       const canonical = document.querySelector('link[rel="canonical"]');
-  
       if (canonical) {
         canonical.setAttribute(
           'href',
@@ -517,28 +518,59 @@ export const ProductFamilyDetail = () => {
         <div className="products-sticky-header bg-white shadow-sm w-100">
           <Container fluid className="px-4 px-md-5 pt-2 pb-3">
             
-            {/* ENCABEZADO "PRODUCTOS" CON LÍNEA ROJA */}
-            <div className="mb-3 text-start">
-              <div 
-                style={{ 
-                  width: '45px', 
-                  height: '4px', 
-                  backgroundColor: 'var(--rojo-principal, #9D2E35)', 
-                  borderRadius: '2px',
-                  display: 'block',
-                  marginBottom: '10px'
-                }} 
-              />
-              <h2 
-                className="display-5 fw-bold text-uppercase mb-0"
+            {/* ENCABEZADO "PRODUCTOS" CON BOTÓN DE CARRITO */}
+            <div className="d-flex align-items-center justify-content-between mb-3 px-1">
+              <div className="text-start">
+                <div 
+                  style={{ 
+                    width: '45px', 
+                    height: '4px', 
+                    backgroundColor: 'var(--rojo-principal, #9D2E35)', 
+                    borderRadius: '2px',
+                    display: 'block',
+                    marginBottom: '10px'
+                  }} 
+                />
+                <h2 
+                  className="display-5 fw-bold text-uppercase mb-0"
+                  style={{
+                    color: '#1e2044',
+                    fontWeight: '800',
+                    letterSpacing: '0.5px'
+                  }}
+                >
+                  Productos
+                </h2>
+              </div>
+
+              {/* BOTÓN DEL CARRITO ALINEADO */}
+              <button
+                type="button"
+                onClick={() => setShowCartModal(true)}
+                className="btn position-relative d-flex align-items-center gap-2 shadow-sm px-3 py-2 me-1 btn-hover-lift"
                 style={{
-                  color: '#1e2044',
-                  fontWeight: '800',
-                  letterSpacing: '0.5px'
+                  backgroundColor: 'var(--azul-ultramar, #1e2044)',
+                  color: '#ffffff',
+                  borderRadius: '8px',
+                  border: 'none',
+                  fontWeight: '600'
                 }}
               >
-                Productos
-              </h2>
+                <FaShoppingCart size={18} />
+                <span className="d-none d-sm-inline">Ver Cotización</span>
+                {totalItemsCount > 0 && (
+                  <span
+                    className="badge rounded-pill"
+                    style={{
+                      backgroundColor: 'var(--rojo-principal, #9D2E35)',
+                      color: '#ffffff',
+                      fontSize: '0.78rem'
+                    }}
+                  >
+                    {totalItemsCount}
+                  </span>
+                )}
+              </button>
             </div>
 
             {/* GRILLA DE LAS 6 FAMILIAS */}
@@ -884,6 +916,12 @@ export const ProductFamilyDetail = () => {
 
         </Container>
       </section>
+
+      {/* Modal del carrito de presupuesto */}
+      <CartModal 
+        show={showCartModal} 
+        onHide={() => setShowCartModal(false)} 
+      />
     </div>
   );
 };

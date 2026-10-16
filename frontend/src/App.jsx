@@ -10,6 +10,7 @@ import { ProductFamilyDetail } from './components/ProductFamilyDetail';
 import { ContactSection } from './components/ContactSection';
 import { FloatingWhatsapp } from './components/FloatingWhatsapp';
 import { Footer } from './components/Footer';
+import { CartProvider } from './context/CartContext';
 
 // Componente para la página principal
 const HomePage = () => (
@@ -36,26 +37,28 @@ function App() {
   const handleCloseContact = () => setShowContact(false);
 
   return (
-    <div>
-      <Navbar onOpenContact={handleOpenContact} />
-      
-      {/* Definición de Rutas */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/productos/:familyId" element={<ProductFamilyDetail />} />
-        {/* Redirección por si alguien entra a /productos directo */}
-        <Route path="/productos" element={<ProductFamilyDetail />} />
-      </Routes>
+    <CartProvider>
+      <div>
+        <Navbar onOpenContact={handleOpenContact} />
+        
+        {/* Definición de Rutas */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/productos/:familyId" element={<ProductFamilyDetail />} />
+          {/* Redirección por si alguien entra a /productos directo */}
+          <Route path="/productos" element={<ProductFamilyDetail />} />
+        </Routes>
 
-      {/* MODAL DE CONTACTO */}
-      <ContactSection 
-        show={showContact} 
-        handleClose={handleCloseContact} 
-      />
+        {/* MODAL DE CONTACTO */}
+        <ContactSection 
+          show={showContact} 
+          handleClose={handleCloseContact} 
+        />
 
-      <FloatingWhatsapp />
-      <Footer />
-    </div>
+        <FloatingWhatsapp />
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 

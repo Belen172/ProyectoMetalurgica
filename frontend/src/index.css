@@ -895,6 +895,16 @@ section[id] {
     }
   }
 
+  .footer-contact-link {
+    color: #f8f9fa; /* blanco suave idéntico a text-light */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .footer-contact-link:hover {
+    color: var(--rojo-principal) !important;
+  }
+
 /* ==========================================================
    DROPDOWN HOVER DE PRODUCTOS
    ========================================================== */
@@ -1676,4 +1686,34 @@ video::-webkit-media-controls-mute-button {
     max-width: 60px !important;
     pointer-events: none;
   }
+}
+
+/* Efecto hover suave idéntico a los botones del Home */
+.btn-hover-lift {
+  transition: all 0.25s ease-in-out !important;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(30, 32, 68, 0.25) !important;
+  filter: brightness(1.08);
+}
+
+.btn-hover-lift:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Para el botoncito cuadrado del carrito en la tabla */
+.btn-cart-table {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.btn-cart-table:hover {
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 6px 12px rgba(30, 32, 68, 0.28) !important;
+  filter: brightness(1.12);
+}
+
+.btn-cart-table:active {
+  transform: translateY(0) scale(0.95);
 }

@@ -60,16 +60,23 @@ export const Navbar = ({ onOpenContact }) => {
   // Manejador de navegación general (Inicio / Nosotros / Productos general)
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
-  
+
     // 1. Quita el foco visual del enlace clickeado
     if (e.currentTarget) {
       e.currentTarget.blur();
     }
-  
-    // 2. Fuerza el cambio de sección activa de inmediato
+
+    // 2. Fuerza el cambio de sección activa
     setActiveSection(targetId);
-  
-    // 3. Maneja la navegación y el scroll
+
+    // 3. Caso especial para PRODUCTOS: redirige a la URL dedicada /productos
+    if (targetId === 'productos') {
+      navigate('/productos');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // 4. Manejo de Inicio y Nosotros dentro de la Home
     if (location.pathname === '/') {
       const element = document.getElementById(targetId);
       if (element) {

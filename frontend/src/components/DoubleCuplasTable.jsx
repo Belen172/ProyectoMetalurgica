@@ -1,18 +1,25 @@
 import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
+import { FaCartPlus } from 'react-icons/fa';
+import { getWhatsappProductUrl } from '../utils/whatsapp';
+import { useCart } from '../context/CartContext';
 
 // Subtabla individual para cuplas con Zoom Flotante y columnas técnicas
-const SingleCuplaTable = ({ items, isSecondary = false }) => (
+const SingleCuplaTable = ({ items, isSecondary = false }) => {
+  const { addToCart } = useCart();
+
+  return (
     <div className="table-responsive bg-white rounded shadow-sm">
       <Table hover className="align-middle mb-0 custom-product-table custom-product-table-cuplas">
         <thead className={`table-light text-secondary text-uppercase small ${isSecondary ? 'table-header-secondary' : ''}`}>
           <tr>
-            <th style={{ width: '12%' }} className="text-center">Producto</th>
-            <th style={{ width: '16%' }} className="text-start">Código</th>
-            <th style={{ width: '28%' }} className="text-start">Descripción</th>
-            <th style={{ width: '14%' }} className="text-center">ØH (mm)</th>
-            <th style={{ width: '18%' }} className="text-start">Ø1 Ø2 Rosca</th>
-            <th style={{ width: '12%' }} className="text-center">L (mm)</th>
+            <th style={{ width: '10%' }} className="text-center">Producto</th>
+            <th style={{ width: '15%' }} className="text-start">Código</th>
+            <th style={{ width: '25%' }} className="text-start">Descripción</th>
+            <th style={{ width: '13%' }} className="text-center">ØH (mm)</th>
+            <th style={{ width: '16%' }} className="text-start">Ø1 Ø2 Rosca</th>
+            <th style={{ width: '11%' }} className="text-center">L (mm)</th>
+            <th style={{ width: '44px' }} className="text-center p-1"></th>
           </tr>
         </thead>
         <tbody>
@@ -42,12 +49,32 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => (
               <td className="text-secondary small text-center py-1">{prod.diametroH}</td>
               <td className="text-secondary small text-start py-1">{prod.rosca}</td>
               <td className="text-secondary small text-center py-1">{prod.largo}</td>
+              <td className="text-center align-middle p-1">
+                <button
+                  type="button"
+                  onClick={() => addToCart(prod)}
+                  className="btn btn-sm d-inline-flex align-items-center justify-content-center p-0 btn-cart-table"
+                  style={{
+                    backgroundColor: 'var(--azul-ultramar, #1e2044)',
+                    color: '#fff',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '6px',
+                    border: 'none',
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                  }}
+                  title={`Agregar ${prod.codigo} a la cotización`}
+                >
+                  <FaCartPlus size={15} />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </Table>
     </div>
-);
+  );
+};
 
 // Componente Principal: Divide en 2 columnas en Desktop (>= 992px)
 export const DoubleCuplasTable = ({ title, products = [], headerColor }) => {
