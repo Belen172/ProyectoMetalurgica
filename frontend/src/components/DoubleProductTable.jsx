@@ -111,7 +111,9 @@ const SingleTable = ({ items, hasCompatibility, isSecondary = false }) => {
                     type="button"
                     onClick={() => !isAdded && addToCart(prod)}
                     disabled={isAdded}
-                    className="btn btn-sm d-inline-flex align-items-center justify-content-center p-0"
+                    className={`btn btn-sm d-inline-flex align-items-center justify-content-center p-0 ${
+                      isAdded ? 'btn-cart-added' : 'btn-cart-table'
+                    }`}
                     style={{
                       backgroundColor: isAdded ? '#6c757d' : 'var(--azul-ultramar, #1e2044)',
                       color: '#fff',
