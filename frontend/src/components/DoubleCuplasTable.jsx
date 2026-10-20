@@ -1,16 +1,19 @@
 import React from 'react';
 import { Row, Col, Table } from 'react-bootstrap';
-import { FaCartPlus } from 'react-icons/fa';
-import { getWhatsappProductUrl } from '../utils/whatsapp';
+import { FaCartPlus, FaCheck } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 
 // Subtabla individual para cuplas con Zoom Flotante y columnas técnicas
 const SingleCuplaTable = ({ items, isSecondary = false }) => {
-  const { addToCart } = useCart();
+  const { addToCart, cartItems } = useCart();
 
   return (
     <div className="table-responsive bg-white rounded shadow-sm">
-      <Table hover className="align-middle mb-0 custom-product-table custom-product-table-cuplas">
+      <Table 
+        hover 
+        className="align-middle mb-0 custom-product-table custom-product-table-cuplas"
+        style={{ borderCollapse: 'separate', borderSpacing: 0 }}
+      >
         <thead className={`table-light text-secondary text-uppercase small ${isSecondary ? 'table-header-secondary' : ''}`}>
           <tr>
             <th style={{ width: '10%' }} className="text-center">Producto</th>
@@ -19,57 +22,95 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
             <th style={{ width: '13%' }} className="text-center">ØH (mm)</th>
             <th style={{ width: '16%' }} className="text-start">Ø1 Ø2 Rosca</th>
             <th style={{ width: '11%' }} className="text-center">L (mm)</th>
-            <th style={{ width: '44px' }} className="text-center p-1"></th>
+
+            {/* TH PEGADO A LA DERECHA */}
+            <th 
+              className="text-center p-1"
+              style={{
+                width: '46px',
+                minWidth: '46px',
+                position: 'sticky',
+                right: 0,
+                zIndex: 6,
+                backgroundColor: '#f8f9fa',
+                boxShadow: '-3px 0 6px -1px rgba(0, 0, 0, 0.1)',
+                borderLeft: '1px solid #dee2e6'
+              }}
+              className="text-center p-1 th-sticky-action"
+            ></th>
           </tr>
         </thead>
         <tbody>
-          {items.map((prod, index) => (
-            <tr key={`${prod.codigo}-${index}`}>
-              {/* Celda con Zoom */}
-              <td className="text-center py-1 position-relative product-cell-zoom">
-                <div className="product-preview-container">
-                  <img 
-                    src={prod.foto || '/placeholder.png'} 
-                    alt={prod.denominacion || prod.codigo} 
-                    className="product-thumb-img"
-                    style={{ maxHeight: '38px', maxWidth: '55px', objectFit: 'contain' }}
-                    onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
-                  />
-                  <div className="product-preview-popover shadow">
+          {items.map((prod, index) => {
+            const isAdded = cartItems.some((item) => item.codigo === prod.codigo);
+
+            return (
+              <tr key={`${prod.codigo}-${index}`}>
+                <td className="text-center py-1 position-relative product-cell-zoom">
+                  <div className="product-preview-container">
                     <img 
                       src={prod.foto || '/placeholder.png'} 
-                      alt={`Detalle ${prod.codigo}`} 
-                      onError={(e) => { e.target.src = 'https://placehold.co/150x150?text=Pieza'; }}
+                      alt={prod.denominacion || prod.codigo} 
+                      className="product-thumb-img"
+                      style={{ maxHeight: '38px', maxWidth: '55px', objectFit: 'contain' }}
+                      onError={(e) => { e.target.src = 'https://placehold.co/100x55?text=Pieza'; }}
                     />
+                    <div className="product-preview-popover shadow">
+                      <img 
+                        src={prod.foto || '/placeholder.png'} 
+                        alt={`Detalle ${prod.codigo}`} 
+                        onError={(e) => { e.target.src = 'https://placehold.co/150x150?text=Pieza'; }}
+                      />
+                    </div>
                   </div>
-                </div>
-              </td>
-              <td className="fw-bold text-dark text-start py-1">{prod.codigo}</td>
-              <td className="text-secondary small text-start py-1">{prod.denominacion}</td>
-              <td className="text-secondary small text-center py-1">{prod.diametroH}</td>
-              <td className="text-secondary small text-start py-1">{prod.rosca}</td>
-              <td className="text-secondary small text-center py-1">{prod.largo}</td>
-              <td className="text-center align-middle p-1">
-                <button
-                  type="button"
-                  onClick={() => addToCart(prod)}
-                  className="btn btn-sm d-inline-flex align-items-center justify-content-center p-0 btn-cart-table"
+                </td>
+                <td className="fw-bold text-dark text-start py-1">{prod.codigo}</td>
+                <td className="text-secondary small text-start py-1">{prod.denominacion}</td>
+                <td className="text-secondary small text-center py-1">{prod.diametroH}</td>
+                <td className="text-secondary small text-start py-1">{prod.rosca}</td>
+                <td className="text-secondary small text-center py-1">{prod.largo}</td>
+
+                {/* TD DEL CARRITO PEGADO A LA DERECHA */}
+                <td 
+                  className="text-center align-middle p-1"
                   style={{
-                    backgroundColor: 'var(--azul-ultramar, #1e2044)',
-                    color: '#fff',
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '6px',
-                    border: 'none',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
+                    width: '46px',
+                    minWidth: '46px',
+                    position: 'sticky',
+                    right: 0,
+                    zIndex: 5,
+                    backgroundColor: '#ffffff',
+                    boxShadow: '-3px 0 6px -1px rgba(0, 0, 0, 0.1)',
+                    borderLeft: '1px solid #dee2e6'
                   }}
-                  title={`Agregar ${prod.codigo} a la cotización`}
+                  className="text-center align-middle p-1 td-sticky-action"
                 >
-                  <FaCartPlus size={15} />
-                </button>
-              </td>
-            </tr>
-          ))}
+                  <button
+                    type="button"
+                    onClick={() => !isAdded && addToCart(prod)}
+                    disabled={isAdded}
+                    className={`btn btn-sm d-inline-flex align-items-center justify-content-center p-0 ${
+                      isAdded ? 'btn-cart-added' : 'btn-cart-table'
+                    }`}
+                    style={{
+                      backgroundColor: isAdded ? '#6c757d' : 'var(--azul-ultramar, #1e2044)',
+                      color: '#fff',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '6px',
+                      border: 'none',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+                      cursor: isAdded ? 'default' : 'pointer',
+                      opacity: isAdded ? 0.75 : 1
+                    }}
+                    title={isAdded ? `Producto ${prod.codigo} ya agregado` : `Agregar ${prod.codigo} a la cotización`}
+                  >
+                    <FaCartPlus size={15} />
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </div>

@@ -1717,3 +1717,53 @@ video::-webkit-media-controls-mute-button {
 .btn-cart-table:active {
   transform: translateY(0) scale(0.95);
 }
+
+
+/* Contenedor con scroll horizontal */
+.table-responsive:has(> .custom-product-table) {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Configuración de las tablas */
+.custom-product-table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+/* Columna del carrito fija a la derecha */
+.custom-product-table .th-sticky-action,
+.custom-product-table .td-sticky-action {
+  position: sticky !important;
+  right: 0 !important;
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  background-color: #ffffff !important;
+  box-shadow: -3px 0 6px rgba(0, 0, 0, 0.08) !important;
+  border-left: 1px solid #e9ecef !important;
+}
+
+/* Encabezado del carrito */
+.custom-product-table thead .th-sticky-action {
+  background-color: #f8f9fa !important;
+  z-index: 11 !important;
+}
+
+/* Botones del carrito */
+.custom-product-table tbody .td-sticky-action {
+  z-index: 10 !important;
+}
+
+/* Hover sobre las filas */
+.custom-product-table tbody tr:hover .td-sticky-action {
+  background-color: #f1f3f5 !important;
+}
+
+/* Estilo del botón cuando ya está agregado */
+.btn-cart-added {
+  cursor: default !important;
+  opacity: 0.75 !important;
+  transition: all 0.2s ease !important;
+}
