@@ -1767,3 +1767,14 @@ video::-webkit-media-controls-mute-button {
   opacity: 0.75 !important;
   transition: all 0.2s ease !important;
 }
+
+/* Bloquear estrictamente el submenú de PRODUCTOS en dispositivos móviles y táctiles */
+@media (max-width: 991.98px) {
+  .nav-item-dropdown:hover .products-dropdown-menu,
+  .products-dropdown-menu {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}

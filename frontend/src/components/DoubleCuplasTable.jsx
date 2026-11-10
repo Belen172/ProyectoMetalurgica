@@ -25,7 +25,7 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
 
             {/* TH PEGADO A LA DERECHA */}
             <th 
-              className="text-center p-1"
+              className="text-center p-1 th-sticky-action"
               style={{
                 width: '46px',
                 minWidth: '46px',
@@ -36,7 +36,6 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
                 boxShadow: '-3px 0 6px -1px rgba(0, 0, 0, 0.1)',
                 borderLeft: '1px solid #dee2e6'
               }}
-              className="text-center p-1 th-sticky-action"
             ></th>
           </tr>
         </thead>
@@ -72,7 +71,7 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
 
                 {/* TD DEL CARRITO PEGADO A LA DERECHA */}
                 <td 
-                  className="text-center align-middle p-1"
+                  className="text-center align-middle p-1 td-sticky-action"
                   style={{
                     width: '46px',
                     minWidth: '46px',
@@ -83,7 +82,6 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
                     boxShadow: '-3px 0 6px -1px rgba(0, 0, 0, 0.1)',
                     borderLeft: '1px solid #dee2e6'
                   }}
-                  className="text-center align-middle p-1 td-sticky-action"
                 >
                   <button
                     type="button"
@@ -105,7 +103,7 @@ const SingleCuplaTable = ({ items, isSecondary = false }) => {
                     }}
                     title={isAdded ? `Producto ${prod.codigo} ya agregado` : `Agregar ${prod.codigo} a la cotización`}
                   >
-                    <FaCartPlus size={15} />
+                    {isAdded ? <FaCheck size={13} /> : <FaCartPlus size={15} />}
                   </button>
                 </td>
               </tr>

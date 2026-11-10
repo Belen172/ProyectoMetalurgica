@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,8 +14,33 @@ const PRODUCT_FAMILIES = [
 
 export const Navbar = ({ onOpenContact }) => {
   const [activeSection, setActiveSection] = useState('inicio');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Cerrar el dropdown al hacer clic en cualquier parte fuera del menú
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, []);
+
+  // Cerrar el dropdown si cambia de ruta
+  useEffect(() => {
+    setShowDropdown(false);
+  }, [location.pathname]);
 
   // Detección de sección activa mediante Scroll (solo en la Home)
   useEffect(() => {
@@ -29,20 +54,17 @@ export const Navbar = ({ onOpenContact }) => {
     const sections = ['inicio', 'nosotros', 'productos'];
   
     const handleScroll = () => {
-      // Si estamos arriba de todo (primeros 100px), aseguramos 'inicio'
       if (window.scrollY < 100) {
         setActiveSection('inicio');
         return;
       }
   
-      // Línea de lectura: 30% de la altura de la pantalla
       const triggerPoint = window.innerHeight * 0.35;
   
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // Si el inicio de la sección ya pasó la línea de disparo pero su base sigue visible
           if (rect.top <= triggerPoint && rect.bottom > triggerPoint) {
             setActiveSection(section);
             break;
@@ -52,31 +74,28 @@ export const Navbar = ({ onOpenContact }) => {
     };
   
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Ejecuta una vez al cargar la página
+    handleScroll();
   
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  // Manejador de navegación general (Inicio / Nosotros / Productos general)
+  // Manejador de navegación general
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
 
-    // 1. Quita el foco visual del enlace clickeado
     if (e.currentTarget) {
       e.currentTarget.blur();
     }
 
-    // 2. Fuerza el cambio de sección activa
     setActiveSection(targetId);
+    setShowDropdown(false);
 
-    // 3. Caso especial para PRODUCTOS: redirige a la URL dedicada /productos
     if (targetId === 'productos') {
       navigate('/productos');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
-    // 4. Manejo de Inicio y Nosotros dentro de la Home
     if (location.pathname === '/') {
       const element = document.getElementById(targetId);
       if (element) {
@@ -99,10 +118,9 @@ export const Navbar = ({ onOpenContact }) => {
 
   // Manejador al hacer click en una familia específica del dropdown
   const handleFamilyClick = (familyId) => {
-    // Opción A: Si manejás rutas dedicadas tipo "/productos/:id"
+    setShowDropdown(false);
     navigate(`/productos/${familyId}`);
 
-    // Opción B: Si las familias están dentro del home en la sección #productos
     if (location.pathname === '/') {
       const element = document.getElementById('productos');
       if (element) {
@@ -111,7 +129,6 @@ export const Navbar = ({ onOpenContact }) => {
     }
   };
 
-  // Si estamos en la home (/), fondo transparente. Si estamos en productos, fondo blanco.
   const isHome = location.pathname === '/';
 
   return (
@@ -158,8 +175,22 @@ export const Navbar = ({ onOpenContact }) => {
               NOSOTROS
             </Nav.Link>
             
-            {/* ÍTEM PRODUCTOS CON DROPDOWN EN HOVER */}
-            <div className="nav-item-dropdown">
+            {/* ÍTEM PRODUCTOS CON CONTROL CONTROLADO POR REACT */}
+            <div 
+              ref={dropdownRef}
+              className="nav-item-dropdown position-relative"
+              onMouseEnter={() => {
+                // Solo abre por hover si la pantalla es de escritorio (>= 992px)
+                if (window.innerWidth >= 992) {
+                  setShowDropdown(true);
+                }
+              }}
+              onMouseLeave={() => {
+                if (window.innerWidth >= 992) {
+                  setShowDropdown(false);
+                }
+              }}
+            >
               <Nav.Link 
                 href="#productos" 
                 onClick={(e) => handleNavClick(e, 'productos')}
@@ -168,18 +199,24 @@ export const Navbar = ({ onOpenContact }) => {
                 PRODUCTOS
               </Nav.Link>
   
-              <div className="products-dropdown-menu shadow-lg">
-                {PRODUCT_FAMILIES.map((family) => (
-                  <button
-                    key={family.id}
-                    type="button"
-                    className="products-dropdown-item"
-                    onClick={() => handleFamilyClick(family.id)}
-                  >
-                    {family.name}
-                  </button>
-                ))}
-              </div>
+              {/* Solo se monta en el DOM si showDropdown es true */}
+              {showDropdown && (
+                <div 
+                  className="products-dropdown-menu shadow-lg d-none d-lg-block"
+                  style={{ display: 'block' }}
+                >
+                  {PRODUCT_FAMILIES.map((family) => (
+                    <button
+                      key={family.id}
+                      type="button"
+                      className="products-dropdown-item"
+                      onClick={() => handleFamilyClick(family.id)}
+                    >
+                      {family.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
             
             {/* Botón de Contacto */}
