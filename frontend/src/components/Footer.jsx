@@ -154,7 +154,7 @@ export const Footer = () => {
                   className="d-none d-md-flex align-items-center"
                   style={{
                     position: 'absolute',
-                    right: '50px',
+                    right: '82px', // Alineado con el borde derecho del mapa y sin tocar WhatsApp
                     bottom: '8px',
                     width: 'auto',
                     zIndex: 10
@@ -162,29 +162,29 @@ export const Footer = () => {
                 >
                   <a 
                     href="https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-zbrun/" 
-                    target="_blank"  /* Abre el LinkedIn en una pestaña nueva */
-                    rel="noopener noreferrer" /* Abre el LinkedIn en una pestaña nueva */
+                    target="_blank"
+                    rel="noopener noreferrer"
                     title="Desarrollado por María Belén Zbrun"
-                    style={{ display: 'inline-block', textDecoration: 'none' }}
+                    style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
                   >
                     <img 
                       src="/logo-dev.png" 
                       alt="Perfil LinkedIn Desarrollador" 
                       style={{ 
-                        maxHeight: '58px',
+                        maxHeight: '48px',
                         width: 'auto',
                         objectFit: 'contain',
                         filter: 'brightness(0) invert(1)',
-                        opacity: 0.95,
+                        opacity: 0.75,
                         cursor: 'pointer',
                         transition: 'transform 0.2s ease, opacity 0.2s ease'
                       }} 
                       onMouseEnter={(e) => {
                         e.currentTarget.style.opacity = '1';
-                        e.currentTarget.style.transform = 'scale(1.05)';
+                        e.currentTarget.style.transform = 'scale(1.06)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.opacity = '0.9';
+                        e.currentTarget.style.opacity = '0.75';
                         e.currentTarget.style.transform = 'scale(1)';
                       }}
                     />
