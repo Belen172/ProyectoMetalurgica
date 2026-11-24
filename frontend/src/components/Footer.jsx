@@ -149,7 +149,7 @@ export const Footer = () => {
                   © 2026 Metalúrgica Soltermann. Todos los derechos reservados.
                 </Col>
 
-                {/* LOGO DE AUTOR / DESARROLLADOR ANCLADO A LA DERECHA CON ENLACE A LINKEDIN */}
+                {/* LOGO DE AUTOR / DESARROLLADOR ANCLADO A LA DERECHA CON ENLACE A PORTFOLIO */}
                 <div 
                   className="d-none d-md-flex align-items-center"
                   style={{
@@ -161,7 +161,7 @@ export const Footer = () => {
                   }}
                 >
                   <a 
-                    href="https://www.linkedin.com/in/mar%C3%ADa-bel%C3%A9n-zbrun/" 
+                    href="https://portfolio-belen-rho.vercel.app/" 
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Desarrollado por María Belén Zbrun"
@@ -169,7 +169,7 @@ export const Footer = () => {
                   >
                     <img 
                       src="/logo-dev.png" 
-                      alt="Perfil LinkedIn Desarrollador" 
+                      alt="Portfolio Desarrollador" 
                       style={{ 
                         maxHeight: '48px',
                         width: 'auto',
